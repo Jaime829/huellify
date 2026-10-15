@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\PasswordController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,11 @@ Route::middleware('guest')
         Route::get('/register', [RegisterController::class, 'index'])->name('register');
         Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
     });
+
+Route::get('/auth/forgot-password', [PasswordController::class, 'create'])->name('password.request');
+route::post('auth/forgot-password', [PasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('/auth/reset-password/{token}', [PasswordController::class, 'showResetForm'])->middleware('guest')->name('password.reset');
+Route::post('/auth/reset-password', [PasswordController::class, 'update'])->middleware('guest')->name('password.update');
 
 Route::post('/auth/logout', [LogoutController::class, 'store'])->middleware('auth')->name('auth.logout');
 

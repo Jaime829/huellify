@@ -54,7 +54,7 @@
                     <span class="text-sm text-gray-500">Recuérdame</span>
                 </div>
 
-                <a class="text-emerald-600 text-sm" href="">¿Olvidaste tu contraseña?</a>
+                <a class="text-emerald-600 text-sm" href="{{ route('password.request') }}">¿Olvidaste tu contraseña?</a>
 
             </div>
             <button
