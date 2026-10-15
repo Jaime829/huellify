@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\WelcomeUser;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
@@ -33,6 +34,7 @@ Route::post('/auth/logout', [LogoutController::class, 'store'])->middleware('aut
 
 Route::get('auth/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
+    event(new WelcomeUser($request->user()));
     return redirect()->route('dashboard.index')->with('success', 'Email confirmado con exito, Bienvenido');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
