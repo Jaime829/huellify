@@ -10,7 +10,7 @@ Huellify es un plataforma que te permite seguir tu huella de carbono personal y 
 
 ## Tecnologías utilizadas
 
-- **Frontend:** Blade, Interia.js,React, TailwindCSS
+- **Frontend:** Blade, Interia.js, React, TailwindCSS
 - **Backend:** Laravel
 - **Base de datos:** PostgreSQL
 
@@ -19,24 +19,24 @@ Huellify es un plataforma que te permite seguir tu huella de carbono personal y 
 Instrucciones paso a paso para clonar y ejecutar el proyecto localmente:
 
 1. Clona el repositorio:
-   \`\`\`bash
+   ```bash
    git clone https://github.com/tu-usuario/tu-repositorio.git
-   \`\`\`
+   ```
 
 2. Instala las dependencias:
-   \`\`\`bash
+   ```bash
 
     npm install
     composer install
 
-    \`\`\`
+    ```
 
 3. Configura tus variables de entorno:
     - Duplica el archivo `.env.example` y renómbralo a `.env`.
     - Completa los datos de conexión a tu base de datos.
 
 4. Ejecuta el servidor de desarrollo:
-   \`\`\`bash
+   ```bash
    composer run dev
-   \`\`\`
+   ```
 
