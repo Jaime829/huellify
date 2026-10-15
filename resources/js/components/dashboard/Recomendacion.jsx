@@ -23,7 +23,7 @@ export default function Recomendacion({
                 <p className="font-medium text-[12px]">{recomendacion}</p>
                 <p className="text-gray-500 text-[10px]">{descripcion}</p>
             </div>
-            <div className={`rounded-xl px-2 ${stylesPrioridad}`}>
+            <div className={`rounded-xl px-2 text-[12px] ${stylesPrioridad}`}>
                 <p>{prioridad}</p>
             </div>
         </div>
