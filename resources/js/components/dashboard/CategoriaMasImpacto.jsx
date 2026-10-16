@@ -3,7 +3,7 @@ import IconItemsDashboard from "./IconItemsDashboard";
 
 export default function CategoriaMasImpacto() {
     return (
-        <section className="flex flex-col p-4 rounded-md shadow bg-white gap-2">
+        <div className="flex flex-col p-4 rounded-md shadow bg-white gap-2">
             <p className="font-bold text-[14px]">Categoria con mayor impacto</p>
             <div>
                 <div className="flex gap-2">
@@ -26,6 +26,6 @@ export default function CategoriaMasImpacto() {
             >
                 Ver recomendaciones <ArrowRight size={15} />
             </a>
-        </section>
+        </div>
     );
 }

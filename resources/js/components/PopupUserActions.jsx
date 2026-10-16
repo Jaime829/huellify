@@ -5,11 +5,10 @@ import {
 } from "@/components/ui/collapsible";
 import { ChevronDown, ChevronUp, Eye, LogOut } from "lucide-react";
 import UserInfo from "./UserInfo";
-import { useEffect, useState } from "react";
 import { route } from "ziggy-js";
 
-import { useForm } from "@inertiajs/react";
 import { userStore } from "@/stores/user-store";
+import { useState } from "react";
 
 export default function PopupUserActions() {
     const [state, setState] = useState(false);
@@ -38,7 +37,7 @@ export default function PopupUserActions() {
                 <UserInfo />
                 <a
                     className="text-center text-gray-500 flex gap-1 items-center w-full text-[12px] hover:bg-gray-100 rounded-md p-2"
-                    href="#"
+                    href={route("dashboard.profile")}
                 >
                     <Eye className="size-5" /> Ver perfil
                 </a>

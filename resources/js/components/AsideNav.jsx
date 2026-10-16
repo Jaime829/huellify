@@ -63,7 +63,11 @@ export default function AsideNav() {
                             texto={"Recomendaciones"}
                             icon={Lightbulb}
                         />
-                        <NavEnlace url={"#"} texto={"Perfil"} icon={User} />
+                        <NavEnlace
+                            url={route("dashboard.profile")}
+                            texto={"Perfil"}
+                            icon={User}
+                        />
                     </nav>
                 </div>
                 <QuoteNav className="shrink-0" />

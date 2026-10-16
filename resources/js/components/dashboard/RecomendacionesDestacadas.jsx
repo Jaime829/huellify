@@ -3,7 +3,7 @@ import Recomendacion from "./Recomendacion";
 
 export default function RecomendacionesDestacadas() {
     return (
-        <section className="p-4 bg-white shadow rounded-md flex flex-col gap-2">
+        <div className="p-4 bg-white shadow rounded-md flex flex-col gap-2">
             <header className="flex justify-between items-center">
                 <div className="flex gap-2 items-center">
                     <Lightbulb />
@@ -28,6 +28,6 @@ export default function RecomendacionesDestacadas() {
                     prioridad={"Alta"}
                 />
             </div>
-        </section>
+        </div>
     );
 }

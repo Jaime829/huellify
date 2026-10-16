@@ -11,7 +11,7 @@ import {
 
 export default function UltimosPeriodos() {
     return (
-        <section className="p-4 col-span-2 bg-white shadow rounded-md flex flex-col gap-2">
+        <div className="p-4 col-span-2 bg-white shadow rounded-md flex flex-col gap-2">
             <header className="flex justify-between items-center">
                 <div className="flex gap-2 items-center">
                     <Clock />
@@ -46,6 +46,6 @@ export default function UltimosPeriodos() {
                     </TableRow>
                 </TableBody>
             </Table>
-        </section>
+        </div>
     );
 }
