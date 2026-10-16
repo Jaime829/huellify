@@ -44,7 +44,7 @@ export default function PopupUserActions() {
                 </a>
 
                 <form
-                    className="p-2 w-full"
+                    className="w-full"
                     action={route("auth.logout")}
                     method="post"
                 >
@@ -57,7 +57,7 @@ export default function PopupUserActions() {
                     />
                     <button
                         onClick={() => userRemove()}
-                        className="text-center text-gray-500 flex gap-1 items-center w-full text-[12px] hover:bg-gray-100 rounded-md "
+                        className="text-center gap-1 cursor-pointer text-gray-500 flex items-center w-full text-[12px] hover:bg-gray-100 rounded-md p-2"
                         type="submit"
                     >
                         <LogOut className="size-5" /> Cerrar sesion
