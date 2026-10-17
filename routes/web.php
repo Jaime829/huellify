@@ -48,6 +48,14 @@ Route::post('auth/email/verification-notification', function (Request $request) 
     return back()->with('success', 'Email reenviado con exito');
 })->middleware(['auth', 'throttle:1,1'])->name('verification.send');
 
+Route::middleware(['auth', 'verified'])
+    ->prefix('user')
+    ->name('user.')
+    ->group(function () {
+        Route::put('/update/{user}', [UserController::class, 'update'])->name('update');
+        Route::delete('/delete/{user}', [UserController::class, 'destroy'])->name('destroy');
+    });
+
 
 Route::middleware(['auth', 'verified'])
     ->prefix('dashboard')

@@ -1,7 +1,7 @@
 import { authUser } from "@/stores/user-store";
 
 export default function BienvenidaCard() {
-    const user = authUser();
+    const user = authUser().user;
     return (
         <div className="col-span-3 relative w-full max-h-40 rounded-xl bg-slate-50 overflow-hidden p-8 flex items-center shadow">
             <div className="absolute inset-y-0 right-0 w-full md:w-2/3 lg:w-1/2 bg-cover bg-bottom-right z-0">

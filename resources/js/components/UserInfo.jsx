@@ -1,7 +1,7 @@
 import { authUser } from "@/stores/user-store";
 
 export default function UserInfo() {
-    const user = authUser();
+    const user = authUser().user;
     return (
         <div className="flex gap-1 items-center">
             <div className="w-10 h-10">

@@ -13,10 +13,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Enums\UserRole;
+use Carbon\Carbon;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Override;
 
-#[Fillable(['name', 'email', 'password'])]
+#[Fillable(['name', 'email', 'password', 'last_login', 'description'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -33,6 +34,20 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendPasswordResetNotification($token)
     {
         return $this->notify(new SendResetPasswordNotification($token));
+    }
+
+    public function activityLogs()
+    {
+        return $this->hasMany(ActivityLog::class);
+    }
+
+    public function diasActivos()
+    {
+        return $this->activityLogs()
+            ->where('login_at', '>=', Carbon::now()->subDays(30))
+            ->selectRaw('DATE(login_at) as fecha')
+            ->distinct()
+            ->count();
     }
 
     /**

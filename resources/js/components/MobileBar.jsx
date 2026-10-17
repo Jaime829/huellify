@@ -6,7 +6,7 @@ import { route } from "ziggy-js";
 
 export default function MobileBar() {
     return (
-        <nav className="flex items-center justify-around border-t border-gray-100 shadow w-screen h-20 fixed bottom-0 z-1000 md:hidden">
+        <nav className="flex items-center justify-around border-t border-gray-100 shadow w-screen h-20 fixed bottom-0 z-50 md:hidden bg-white">
             <MobileNavEnlace
                 icon={HomeIcon}
                 text={"Inicio"}

@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserDeleteRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Password;
 use Inertia\Inertia;
 
 class UserController
@@ -16,51 +21,35 @@ class UserController
         return Inertia::render('Dashboard/Profile');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(UserUpdateRequest $request, User $user)
     {
-        //
+        Gate::authorize('update', $user);
+
+        $data = $request->validated();
+
+        $user->update($data);
+
+        return back()->with('succes', 'Perfil actualizado con exito');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(UserDeleteRequest $request, User $user)
     {
-        //
+        Gate::authorize('delete', $user);
+
+        $request->validated();
+
+        $status = $user->delete();
+
+        return $status ? Inertia::location(route('auth.login')) :
+            back()->withErrors([
+                'password' => 'Password incorrecta'
+            ]);
     }
 }

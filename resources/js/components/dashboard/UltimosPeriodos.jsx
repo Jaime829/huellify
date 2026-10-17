@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/table";
 
 export default function UltimosPeriodos() {
+
     return (
         <div className="p-4 col-span-2 bg-white shadow rounded-md flex flex-col gap-2">
             <header className="flex justify-between items-center">
