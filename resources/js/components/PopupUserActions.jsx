@@ -9,6 +9,7 @@ import { route } from "ziggy-js";
 
 import { userStore } from "@/stores/user-store";
 import { useState } from "react";
+import { Link } from "@inertiajs/react";
 
 export default function PopupUserActions() {
     const [state, setState] = useState(false);
@@ -35,12 +36,13 @@ export default function PopupUserActions() {
             </CollapsibleTrigger>
             <CollapsibleContent className="absolute  flex flex-col items-center gap-1 top-10 right-0 w-35  py-4 px-2 bg-white border border-gray-400 shadow-md rounded-md">
                 <UserInfo />
-                <a
-                    className="text-center text-gray-500 flex gap-1 items-center w-full text-[12px] hover:bg-gray-100 rounded-md p-2"
+
+                <Link
                     href={route("dashboard.profile")}
+                    className="text-center text-gray-500 flex gap-1 items-center w-full text-[12px] hover:bg-gray-100 rounded-md p-2"
                 >
                     <Eye className="size-5" /> Ver perfil
-                </a>
+                </Link>
 
                 <form
                     className="w-full"

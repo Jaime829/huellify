@@ -27,7 +27,7 @@ class LoginController
         }
 
         return back()->withErrors([
-            'email' => 'Credenciales incorrectas'
+            'password' => 'Credenciales incorrectas'
         ])->onlyInput('email');
     }
 
