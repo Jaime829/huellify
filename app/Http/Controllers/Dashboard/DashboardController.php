@@ -11,9 +11,7 @@ class DashboardController
     public function index()
     {
 
-        return Inertia::render('Dashboard/Dashboard', [
-            'user' => Auth::user()
-        ]);
+        return Inertia::render('Dashboard/Dashboard');
     }
 
 }

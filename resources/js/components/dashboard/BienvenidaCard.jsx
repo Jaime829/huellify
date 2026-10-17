@@ -1,8 +1,7 @@
-import { userStore } from "@/stores/user-store";
+import { authUser } from "@/stores/user-store";
 
 export default function BienvenidaCard() {
-    const userRecover = userStore((state) => state.userSaved);
-
+    const user = authUser();
     return (
         <div className="col-span-3 relative w-full max-h-40 rounded-xl bg-slate-50 overflow-hidden p-8 flex items-center shadow">
             <div className="absolute inset-y-0 right-0 w-full md:w-2/3 lg:w-1/2 bg-cover bg-bottom-right z-0">
@@ -17,10 +16,7 @@ export default function BienvenidaCard() {
             <div className="relative z-10 max-w-xl grid gap-2">
                 <p className="text-sm font-medium text-emerald-800 flex items-center gap-1">
                     {" "}
-                    Hola,{" "}
-                    {userRecover
-                        ? userRecover.name
-                        : "Cargando usuario..."}{" "}
+                    Hola, {user.name}
                     <span>👋</span>
                 </p>
                 <h1 className="text-2xl md:text-2xl font-bold text-teal-950 tracking-tight">

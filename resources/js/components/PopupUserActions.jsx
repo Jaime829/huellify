@@ -7,13 +7,11 @@ import { ChevronDown, ChevronUp, Eye, LogOut } from "lucide-react";
 import UserInfo from "./UserInfo";
 import { route } from "ziggy-js";
 
-import { userStore } from "@/stores/user-store";
 import { useState } from "react";
 import { Link } from "@inertiajs/react";
 
 export default function PopupUserActions() {
     const [state, setState] = useState(false);
-    const userRemove = userStore((state) => state.reiniciarEstado);
 
     return (
         <Collapsible className="relative">
@@ -57,7 +55,6 @@ export default function PopupUserActions() {
                             ?.getAttribute("content")}
                     />
                     <button
-                        onClick={() => userRemove()}
                         className="text-center gap-1 cursor-pointer text-gray-500 flex items-center w-full text-[12px] hover:bg-gray-100 rounded-md p-2"
                         type="submit"
                     >

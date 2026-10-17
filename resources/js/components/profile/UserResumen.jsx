@@ -1,9 +1,9 @@
-import { Link, usePage } from "@inertiajs/react";
+import { authUser } from "@/stores/user-store";
+import { Link } from "@inertiajs/react";
 import { CircleCheck, CircleX, Edit, Pencil } from "lucide-react";
 
 export default function UserResumen() {
-    const { user } = usePage().props;
-
+    const user = authUser();
     return (
         <div className="flex bg-green-600/10 col-span-3 rounded-md p-2 relative">
             <div className="w-20 h-20 rounded-full overflow-hidden">
@@ -36,7 +36,7 @@ export default function UserResumen() {
                 </div>
             </div>
             <Link className="absolute flex items-center gap-2 bottom-4 right-4 bg-white border border-green-700 text-green-700 px-3 py-2 rounded-[10px] text-[14px]">
-                <Pencil size={17}/> Editar perfil
+                <Pencil size={17} /> Editar perfil
             </Link>
         </div>
     );

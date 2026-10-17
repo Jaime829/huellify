@@ -1,16 +1,6 @@
-import { create } from "zustand";
+import { usePage } from "@inertiajs/react";
 
-
-export const userStore = create((set) => ({
-    userSaved: null,
-
-    userSave: (user) =>
-        set({
-            userSaved: user,
-        }),
-
-    reiniciarEstado: () =>
-        set({
-            userSaved: null,
-        }),
-}));
+export function authUser() {
+    const { user } = usePage().props;
+    return user;
+}

@@ -1,5 +1,4 @@
 import PopupUserActions from "./PopupUserActions";
-import UserInfo from "./UserInfo";
 
 export default function UserNavSection() {
     return (

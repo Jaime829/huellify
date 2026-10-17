@@ -2,18 +2,8 @@ import AsideNav from "@/components/AsideNav";
 import DashboardContent from "@/components/dashboard/DashboardContent";
 import HeaderDashboard from "@/components/dashboard/HeaderDashboard";
 import MobileBar from "@/components/MobileBar";
-import { userStore } from "@/stores/user-store";
-import { useEffect } from "react";
 
-export default function Dashboard({ user }) {
-    const userSave = userStore((state) => state.userSave);
-
-    useEffect(() => {
-        if (user) {
-            userSave(user);
-        }
-    }, [user, userSave]);
-
+export default function Dashboard() {
     return (
         <>
             <main className="flex min-h-screen">

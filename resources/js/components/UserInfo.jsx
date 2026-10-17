@@ -1,8 +1,7 @@
-import { userStore } from "@/stores/user-store";
+import { authUser } from "@/stores/user-store";
 
 export default function UserInfo() {
-    const user = userStore((state) => state.userSaved);
-
+    const user = authUser();
     return (
         <div className="flex gap-1 items-center">
             <div className="w-10 h-10">
