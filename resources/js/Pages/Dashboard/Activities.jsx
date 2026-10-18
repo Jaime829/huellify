@@ -1,4 +1,7 @@
 import ActivitiesContent from "@/components/activities/ActivitiesContent";
+import AsideNav from "@/components/AsideNav";
+import HeaderDashboard from "@/components/dashboard/HeaderDashboard";
+import MobileBar from "@/components/MobileBar";
 
 export default function Activities() {
     return (

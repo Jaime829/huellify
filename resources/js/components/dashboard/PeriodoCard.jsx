@@ -1,6 +1,5 @@
-import { Calendar, ChevronRight, Leaf } from "lucide-react";
+import { Calendar, ChevronRight } from "lucide-react";
 import IconItemsDashboard from "./IconItemsDashboard";
-import { IconArrowNarrowRight } from "@tabler/icons-react";
 
 export default function PeriodoCard() {
     const fecha = new Date();
@@ -13,9 +12,9 @@ export default function PeriodoCard() {
     return (
         <div className="bg-green-500/10 max-h-40 rounded-xl p-4 flex gap-2 relative">
             <IconItemsDashboard
-                icon={Leaf}
+                icon={Calendar}
                 colorIcon={"text-emerald-900"}
-                bg={"bg-emerald-800/20"}
+                bg={"bg-emerald-800/10"}
             />
 
             <div className="flex flex-col gap-2">
