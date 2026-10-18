@@ -24,7 +24,7 @@ export default function ActivitiesResumen() {
                 <p className="font-medium text-green-700">Estadistica aqui</p>
                 <small className="text-gray-500">vs. periodo anterior</small>
             </div>
-            <PeriodoCard />
+            <PeriodoCard isPrincipal={false} />
         </div>
     );
 }

@@ -7,7 +7,7 @@ export default function LatestActivities() {
         <div className="flex flex-col gap-2 p-2 shadow rounded-md">
             <h3 className="font-bold text-emerald-900">Últimas actividades</h3>
             <div className="shadow rounded-md">
-                <Table>
+                <Table className={"bg-white rounded-md"}>
                     <TableBody>
                         <TableRow className={"flex items-center gap-2 p-1"}>
                             <TableCell className={"flex-1"}>

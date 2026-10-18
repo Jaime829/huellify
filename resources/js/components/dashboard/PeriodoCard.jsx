@@ -1,7 +1,7 @@
 import { Calendar, ChevronRight } from "lucide-react";
 import IconItemsDashboard from "./IconItemsDashboard";
 
-export default function PeriodoCard() {
+export default function PeriodoCard({ isPrincipal = true }) {
     const fecha = new Date();
     const mes = fecha.getMonth();
     const year = fecha.getFullYear();
@@ -10,7 +10,9 @@ export default function PeriodoCard() {
     const opcionesFecha = { day: "2-digit", month: "short", year: "numeric" };
 
     return (
-        <div className="bg-green-500/10 max-h-40 rounded-xl p-4 flex gap-2 relative">
+        <div
+            className={`${isPrincipal ? "bg-green-500/10" : ""}  max-h-40 rounded-xl p-4 flex gap-2 relative`}
+        >
             <IconItemsDashboard
                 icon={Calendar}
                 colorIcon={"text-emerald-900"}

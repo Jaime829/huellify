@@ -7,27 +7,21 @@ import GraficoEmisiones from "./GraficoEmisiones";
 import CategoriaMasImpacto from "./CategoriaMasImpacto";
 import UltimosPeriodos from "./UltimosPeriodos";
 import RecomendacionesDestacadas from "./RecomendacionesDestacadas";
+import { IconLeafFilled } from "@tabler/icons-react";
+import ResumenHuella from "./ResumenHuella";
 
 export default function DashboardContent() {
     return (
         <div className="grid grid-cols-3 max-h-full md:grid-cols-4 items-start gap-6 p-4">
             <BienvenidaCard />
             <PeriodoCard />
-            <CardInfo
-                sectionName={"Huella de carbono total"}
-                icon={Leaf}
-                colorIcon={"text-emerald-900"}
-                bgIcon={"bg-emerald-800/10"}
-                colorBar={"bg-emerald-800"}
-                value={29.2}
-                isPrincipal={true}
-            />
+            <ResumenHuella />
             <CardInfo
                 sectionName={"Transporte"}
                 icon={Car}
-                colorIcon={"text-emerald-900"}
-                bgIcon={"bg-emerald-800/10"}
-                colorBar={"bg-emerald-800"}
+                colorIcon={"text-green-900"}
+                bgIcon={"bg-green-800/10"}
+                colorBar={"bg-green-800"}
                 value={29.2}
             />
             <CardInfo
