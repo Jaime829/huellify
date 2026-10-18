@@ -1,4 +1,4 @@
-<div class="flex justify-end p-2 items-center gap-1 fixed right-2 sm:top-2 top-30 bg-white rounded-2xl shadow-md">
+<div class="flex justify-end p-2 items-center gap-1 fixed right-2 sm:top-2 top-26 bg-white rounded-2xl shadow-md">
     <div class="w-10 h-10 rounded-full bg-bg-icons flex justify-center items-center text-emerald-800">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"

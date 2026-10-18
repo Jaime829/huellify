@@ -14,4 +14,8 @@ class DashboardController
         return Inertia::render('Dashboard/Dashboard');
     }
 
+    public function activities()
+    {
+        dd("Hola");
+    }
 }

@@ -37,19 +37,11 @@ export default function AsideNav() {
                             texto={"Dashboard"}
                             icon={House}
                         />
-                        <Collapsible className="w-full">
-                            <CollapsibleTrigger className="cursor-pointer w-full flex items-center gap-1 text-sm text-gray-600 transition-colors delay-100 ease-in-out hover:bg-green-600/30 hover:text-emerald-800 p-2 rounded-md">
-                                <Calendar className="size-5" /> Actividades{" "}
-                                {<ChevronDown className="size-5" />}
-                            </CollapsibleTrigger>
-                            <CollapsibleContent className="pl-6">
-                                <NavEnlace
-                                    url={"#"}
-                                    texto={"Registrar actividad"}
-                                />
-                                <NavEnlace url={"#"} texto={"Mis registros"} />
-                            </CollapsibleContent>
-                        </Collapsible>
+                        <NavEnlace
+                            url={route("dashboard.activities")}
+                            texto={"Actividades"}
+                            icon={Calendar}
+                        />
                         <NavEnlace url={"#"} texto={"Transporte"} icon={Car} />
                         <NavEnlace url={"#"} texto={"Energia"} icon={Zap} />
                         <NavEnlace url={"#"} texto={"Habitos"} icon={Leaf} />

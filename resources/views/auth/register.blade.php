@@ -2,19 +2,20 @@
 
 @section('auth-content')
     <x-eco-message />
-    <div class="bg-white shadow-md flex flex-col p-8 sm:w-[80%] sm:max-w-[85%] w-[90%] rounded-xl gap-10">
+    <div
+        class="bg-white shadow-md flex flex-col px-8 py-5 mb-2 sm:mb-0 sm:py-6 sm:w-[80%] sm:max-w-[85%] w-[90%] rounded-xl gap-3">
         <div>
             <h1 class="text-emerald-900 font-medium text-2xl">¡Bienvenido a Huellify!</h1>
             <p class="text-sm text-gray-500">Registra tu cuenta, para empezar a cambiar el mundo.</p>
         </div>
 
 
-        <form class="flex flex-col gap-6" action="{{ route('auth.register.store') }}" method="post">
+        <form class="flex flex-col gap-4" action="{{ route('auth.register.store') }}" method="post">
             @csrf
 
-            <div class="flex flex-col gap-6">
+            <div class="flex flex-col gap-4">
                 <div class="flex flex-col gap-1">
-                    <label class="text-emerald-900 text-sm font-medium" for="email">Nombre</label>
+                    <label class="text-emerald-900 text-sm font-medium" for="name">Nombre</label>
                     <div class="flex border border-gray-300 p-2 rounded-lg gap-2 items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="#004e3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -55,6 +56,17 @@
                         </svg>
                         <input class="text-gray-500 flex-1 focus:outline-none" type="password" name="password"
                             id="password" placeholder="********">
+                        <button id="password-show" type="button" class="cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-eye-closed preview-icon">
+                                <path d="m15 18-.722-3.25" />
+                                <path d="M2 8a10.645 10.645 0 0 0 20 0" />
+                                <path d="m20 15-1.726-2.05" />
+                                <path d="m4 15 1.726-2.05" />
+                                <path d="m9 18 .722-3.25" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
                 <div class="flex flex-col gap-1">
@@ -69,8 +81,20 @@
                             <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" />
                             <path d="M8 11v-4a4 4 0 1 1 8 0v4" />
                         </svg>
-                        <input class="text-gray-500 flex-1 focus:outline-none" type="password" name="password_confirmation"
-                            placeholder="********" id="password_confirmation">
+                        <input class="text-gray-500 flex-1 focus:outline-none" type="password"
+                            name="password_confirmation" placeholder="********" id="password_confirmation">
+
+                        <button id="password-show" type="button" class="cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-eye-closed preview-icon">
+                                <path d="m15 18-.722-3.25" />
+                                <path d="M2 8a10.645 10.645 0 0 0 20 0" />
+                                <path d="m20 15-1.726-2.05" />
+                                <path d="m4 15 1.726-2.05" />
+                                <path d="m9 18 .722-3.25" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
             </div>

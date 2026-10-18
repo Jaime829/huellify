@@ -8,17 +8,17 @@
 
 
             <div
-                class="flex flex-col z-10 border-amber-600 relative h-full px-25 py-6 sm:gap-5 gap-2 items-center sm:items-start">
-                <div class="sm:w-50 sm:h-20 w-60 h-30">
+                class="flex flex-col z-10 border-amber-600 relative h-full px-25 gap-2 items-start">
+                <div class="sm:w-60 sm:h-32 flex justify-center items-center">
                     <img class="w-full h-full" src="{{ asset('images/logo.png') }}" alt="Logo Huellify">
                 </div>
-                <div class="flex flex-col gap-6">
+                <div class="flex flex-col gap-4">
 
-                    <h2 class="hidden sm:block sm:text-emerald-900 sm:font-medium sm:text-2xl sm:m-0">Tu huella de carbono,
+                    <h2 class="hidden sm:block sm:text-emerald-900 sm:font-medium sm:text-[20px] sm:m-0">Tu huella de carbono,
                         <br> en
                         tus manos
                     </h2>
-                    <p class="hidden sm:block sm:text-gray-500 sm:text-2xs">Conoce el impacto de tus hábitos, descubre<br>
+                    <p class="hidden sm:block sm:text-gray-500 sm:text-[14px]">Conoce el impacto de tus hábitos, descubre<br>
                         cómo
                         reducirlo y
                         construye un futuro más<br> sostenible.</p>
@@ -45,8 +45,8 @@
                                 </svg>
                             </div>
                             <div>
-                                <p class="text-emerald-900 text-3xs font-medium">Calcula</p>
-                                <p class="text-gray-700 text-xs">Conoce tus emisiones por categoria.</p>
+                                <p class="text-emerald-900 text-[12px] font-medium">Calcula</p>
+                                <p class="text-gray-700 text-[14px]">Conoce tus emisiones por categoria.</p>
                             </div>
                         </li>
                         <li class="flex gap-2">
@@ -67,8 +67,8 @@
                                 </svg>
                             </div>
                             <div>
-                                <p class="text-emerald-900 text-3xs font-medium">Comprende</p>
-                                <p class="text-gray-700 text-xs">Visualiza tu impacto con gráficos claros.</p>
+                                <p class="text-emerald-900 text-[12px] font-medium">Comprende</p>
+                                <p class="text-gray-700 text-[14px]">Visualiza tu impacto con gráficos claros.</p>
                             </div>
                         </li>
                         <li class="flex gap-2">
@@ -85,8 +85,8 @@
                                 </svg>
                             </div>
                             <div>
-                                <p class="text-emerald-900 text-3xs font-medium">Reduce</p>
-                                <p class="text-gray-700 text-xs">Recibe recomendaciones personalizadas <br> para un cambio
+                                <p class="text-emerald-900 text-[12px] font-medium">Reduce</p>
+                                <p class="text-gray-700 text-[14px]">Recibe recomendaciones personalizadas <br> para un cambio
                                     real.</p>
                             </div>
                         </li>

@@ -62,6 +62,6 @@ Route::middleware(['auth', 'verified'])
     ->name('dashboard.')
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
-
         Route::get('/profile', [UserController::class, 'index'])->name('profile');
+        Route::get('/activities', [DashboardController::class, 'activities'])->name('activities');
     });
