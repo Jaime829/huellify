@@ -20,7 +20,7 @@ Instrucciones paso a paso para clonar y ejecutar el proyecto localmente:
 
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/tu-usuario/tu-repositorio.git
+   git clone https://github.com/Jaime829/huellify.git
    ```
 
 2. Instala las dependencias:
