@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('emission_factors', function (Blueprint $table) {
             $table->id();
-            $table->string('category');
+            $table->foreignId('category_id')->constrained('emission_categories')->cascadeOnDelete();
             $table->string('name');
-            $table->string('unit');
-            $table->decimal('value');
-            $table->text('source');
+            $table->foreignId('measurement_unit_id')->constrained('measurement_units')->cascadeOnDelete();
+            $table->decimal('value', 12, 2);
+            $table->string('source', 255);
             $table->date('valid_from');
             $table->date('valid_until')->nullable();
             $table->boolean('active')->default(true);

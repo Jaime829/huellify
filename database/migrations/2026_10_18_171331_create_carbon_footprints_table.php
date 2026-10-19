@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('carbon_footprints', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('period_id')->unique()->constrained()->cascadeOnDelete();
-            $table->decimal('total_emissions');
+            $table->foreignId('period_id')->unique()->constrained('periods')->cascadeOnDelete();
+            $table->decimal('total_emissions', 14, 4);
             $table->timestamp('calculated_at');
             $table->timestamps();
         });

@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('user_recommendations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('recommendation_id')->constrained()->cascadeOnDelete();
-            $table->string('status');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('recommendation_id')->constrained('recommendations')->cascadeOnDelete();
+            $table->enum('status', ['pending', 'adopted', 'dismissed']);
             $table->timestamp('adopted_at')->nullable();
             $table->timestamps();
         });

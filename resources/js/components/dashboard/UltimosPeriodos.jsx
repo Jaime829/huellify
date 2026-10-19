@@ -22,7 +22,7 @@ export default function UltimosPeriodos() {
                     className="flex items-center text-[12px] text-gray-500 transition-colors ease-in-out delay-100 hover:text-gray-700"
                     href="#"
                 >
-                    Ver historial <ArrowRight size={15} />
+                    <ArrowRight size={20} />
                 </a>
             </header>
             <Table>

@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('recommendations', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->foreignId('category_id')->constrained('emission_categories')->cascadeOnDelete();
+            $table->string('title', 150);
             $table->text('description');
-            $table->string('category');
-            $table->string('priority');
+            $table->enum('priority', ['low', 'medium', 'high']);
             $table->timestamps();
         });
     }

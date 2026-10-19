@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('carbon_footprint_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('carbon_footprint_id')->constrained()->cascadeOnDelete();
-            $table->string('category');
-            $table->text('activity_description');
-            $table->decimal('quantity');
-            $table->string('unit');
-            $table->decimal('emission_factor_value');
-            $table->decimal('emissions');
+            $table->foreignId('carbon_footprint_id')->constrained('carbon_footprints')->cascadeOnDelete();
+            $table->foreignId('category_id')->constrained('emission_categories')->cascadeOnDelete();
+            $table->string('activity_description', 255);
+            $table->decimal('quantity', 12, 3);
+            $table->foreignId('measurement_unit_id')->constrained('measurement_units')->cascadeOnDelete();
+            $table->decimal('emission_factor_value', 12, 6);
+            $table->decimal('emissions', 14, 4);
             $table->timestamps();
         });
     }

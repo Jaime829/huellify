@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('transport_activities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('period_id')->cascadeOnDelete();
-            $table->foreignId('transport_type_id')->cascadeOnDelete();
-            $table->foreignId('fuel_type_id')->nullable()->constrained()->onDelete('set null');
-            $table->decimal('distance');
-            $table->string('distance_unit');
+            $table->foreignId('period_id')->constrained('periods')->cascadeOnDelete();
+            $table->foreignId('transport_type_id')->constrained('transport_types')->cascadeOnDelete();
+            $table->foreignId('fuel_type_id')->nullable()->constrained('fuel_types')->onDelete('set null');
+            $table->decimal('distance', 12, 3);
+            $table->foreignId('measurement_unit_id')->constrained('measurement_units')->cascadeOnDelete();
             $table->timestamps();
         });
     }

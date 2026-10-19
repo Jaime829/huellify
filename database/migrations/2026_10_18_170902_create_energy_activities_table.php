@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('energy_activities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('period_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('energy_source_id')->constrained()->cascadeOnDelete();
-            $table->decimal('consumption');
-            $table->string('unit');
+            $table->foreignId('period_id')->constrained('periods')->cascadeOnDelete();
+            $table->foreignId('energy_source_id')->constrained('energy_sources')->cascadeOnDelete();
+            $table->decimal('consumption', 12, 3);
+            $table->foreignId('measurement_unit_id')->constrained('measurement_units')->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('habit_activities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('period_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('habit_type_id')->constrained()->cascadeOnDelete();
-            $table->decimal('quantity');
+            $table->foreignId('period_id')->constrained('periods')->cascadeOnDelete();
+            $table->foreignId('habit_type_id')->constrained('habit_types')->cascadeOnDelete();
+            $table->decimal('quantity', 12, 3);
+            $table->foreignId('measurement_unit_id')->constrained('measurement_units')->cascadeOnDelete();
             $table->date('activity_date');
             $table->text('notes')->nullable();
             $table->timestamps();

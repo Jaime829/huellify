@@ -7,15 +7,15 @@ export default function RecomendacionesDestacadas() {
             <header className="flex justify-between items-center">
                 <div className="flex gap-2 items-center">
                     <Lightbulb />
-                    <p className="font-bold text-[14px]">
+                    <p className="font-bold text-[12px]">
                         Recomendaciones destacadas
                     </p>
                 </div>
                 <a
-                    className="flex items-center text-[12px] text-gray-500 transition-colors ease-in-out delay-100 hover:text-gray-700"
+                    className="flex items-center text-[10px] text-gray-500 transition-colors ease-in-out delay-100 hover:text-gray-700"
                     href="#"
                 >
-                    Ver historial <ArrowRight size={15} />
+                    <ArrowRight size={20} />
                 </a>
             </header>
             <div>

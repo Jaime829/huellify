@@ -12,7 +12,9 @@ class RegisterController
 {
     public function index()
     {
-        return view("auth.register");
+        return view("auth.register", [
+            'title' => 'Register'
+        ]);
     }
 
     public function store(SignUpRequest $request)
