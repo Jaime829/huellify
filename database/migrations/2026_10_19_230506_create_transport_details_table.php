@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transport_activities', function (Blueprint $table) {
+        Schema::create('transport_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('period_id')->constrained('periods')->cascadeOnDelete();
+            $table->foreignId('activity_id')->unique()->constrained('activities')->cascadeOnDelete();
             $table->foreignId('transport_type_id')->constrained('transport_types')->cascadeOnDelete();
-            $table->foreignId('fuel_type_id')->nullable()->constrained('fuel_types')->onDelete('set null');
-            $table->decimal('distance', 12, 3);
-            $table->foreignId('measurement_unit_id')->constrained('measurement_units')->cascadeOnDelete();
+            $table->foreignId('fuel_type_id')->constrained('fuel_types')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transport_activities');
+        Schema::dropIfExists('transport_details');
     }
 };

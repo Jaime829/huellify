@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('habit_types', function (Blueprint $table) {
+        Schema::create('activity_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('name', 100)->unique();
+            $table->string('slug', 100)->unique();
             $table->text('description')->nullable();
             $table->timestamps();
         });
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('habit_types');
+        Schema::dropIfExists('activity_categories');
     }
 };

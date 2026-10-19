@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carbon_footprint_items', function (Blueprint $table) {
+        Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('carbon_footprint_id')->constrained('carbon_footprints')->cascadeOnDelete();
-            $table->foreignId('category_id')->constrained('emission_categories')->cascadeOnDelete();
-            $table->string('activity_description', 255);
+            $table->foreignId('period_id')->constrained('periods')->cascadeOnDelete();
+            $table->foreignId('activity_category_id')->constrained('activity_categories')->cascadeOnDelete();
+            $table->foreignId('emission_factor_id')->constrained('emission_factors')->cascadeOnDelete();
+            $table->date('activity_date');
+            $table->string('description', 255);
             $table->decimal('quantity', 12, 3);
             $table->foreignId('measurement_unit_id')->constrained('measurement_units')->cascadeOnDelete();
-            $table->decimal('emission_factor_value', 12, 6);
-            $table->decimal('emissions', 14, 4);
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carbon_footprint_items');
+        Schema::dropIfExists('activities');
     }
 };

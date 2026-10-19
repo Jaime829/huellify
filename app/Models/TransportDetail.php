@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class EmissionCategory extends Model
+class TransportDetail extends Model
 {
     //
 }

@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('periods', function (Blueprint $table) {
+        Schema::create('recommendations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->string('name');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->foreignId('category_id')->constrained('activity_categories')->cascadeOnDelete();
+            $table->string('title', 150);
+            $table->text('description');
+            $table->enum('priority', ['low', 'medium', 'high']);
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('periods');
+        Schema::dropIfExists('recommendations');
     }
 };

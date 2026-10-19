@@ -1,6 +1,7 @@
 <?php
 
 use App\Events\WelcomeUser;
+use App\Http\Controllers\ActivitiesController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LogoutController;
@@ -63,5 +64,11 @@ Route::middleware(['auth', 'verified'])
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
         Route::get('/profile', [UserController::class, 'index'])->name('profile');
-        Route::get('/activities', [DashboardController::class, 'activities'])->name('activities');
+    });
+Route::middleware(['auth', 'verified'])
+    ->prefix('activities')
+    ->name('activities.')
+    ->group(function () {
+        Route::get('/', [ActivitiesController::class, 'index'])->name('index');
+        Route::get('/create', [ActivitiesController::class, 'create'])->name('create');
     });

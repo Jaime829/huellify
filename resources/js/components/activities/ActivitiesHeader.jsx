@@ -1,5 +1,7 @@
+import { Link } from "@inertiajs/react";
 import { IconLeafFilled } from "@tabler/icons-react";
 import { Plus } from "lucide-react";
+import { route } from "ziggy-js";
 
 export default function ActivitiesHeader() {
     return (
@@ -16,9 +18,9 @@ export default function ActivitiesHeader() {
                     </p>
                 </div>
             </div>
-            <button className="text-white bg-emerald-700 flex font-medium items-center gap-1 text-[12px] p-2 rounded-md transition-colors ease-in-out delay-75 cursor-pointer hover:bg-emerald-900">
+            <Link href={route('activities.create')} className="text-white bg-emerald-700 flex font-medium items-center gap-1 text-[12px] p-2 rounded-md transition-colors ease-in-out delay-75 cursor-pointer hover:bg-emerald-900">
                 <Plus /> Registrar actividadad
-            </button>
+            </Link>
         </header>
     );
 }

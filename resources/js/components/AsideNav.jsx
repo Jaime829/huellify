@@ -38,7 +38,7 @@ export default function AsideNav() {
                             icon={House}
                         />
                         <NavEnlace
-                            url={route("dashboard.activities")}
+                            url={route("activities.index")}
                             texto={"Actividades"}
                             icon={Calendar}
                         />
