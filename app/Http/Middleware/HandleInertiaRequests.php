@@ -2,6 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\ActivityCategory;
+use App\Models\FuelType;
+use App\Models\MeasurementUnit;
+use App\Models\TransportType;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -38,8 +42,19 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             'auth' => [
                 'user' => $request->user(),
-                'dias_activos' => $request->user()?->diasActivos() ?? 0
-            ]
+                'dias_activos' => $request->user()?->diasActivos() ?? 0,
+                'activitiesCategory' => ActivityCategory::all(),
+                'transport' => [
+                    'types' => TransportType::all(),
+                    'fuelTypes' => FuelType::all(),
+                    'measurementUnits' => MeasurementUnit::where('measurement_type', '=', 'distance')->get()
+                ],
+
+            ],
+            'flash' => [
+                'status' => fn() => $request->session()->get('status'),
+                'error'   => fn() => $request->session()->get('error'),
+            ],
         ]);
     }
 }

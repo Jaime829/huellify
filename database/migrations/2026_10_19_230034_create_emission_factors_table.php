@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name', 150);
             $table->foreignId('measurement_unit_id')->constrained('measurement_units');
             $table->decimal('value', 12, 6);
-            $table->string('source', 255);
+            $table->text('source');
             $table->date('valid_from');
             $table->date('valid_until')->nullable();
             $table->boolean('active')->default(true);

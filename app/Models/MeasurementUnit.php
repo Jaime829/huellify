@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class MeasurementUnit extends Model
 {
-    //
+    public function activities()
+    {
+        return $this->hasMany(Activity::class);
+    }
 }

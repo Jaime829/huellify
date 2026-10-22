@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Transport\TransportActivityController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -71,4 +72,8 @@ Route::middleware(['auth', 'verified'])
     ->group(function () {
         Route::get('/', [ActivitiesController::class, 'index'])->name('index');
         Route::get('/create', [ActivitiesController::class, 'create'])->name('create');
+
+
+        Route::post('/create/transport', [TransportActivityController::class, 'store'])->name('transport.store');
+
     });

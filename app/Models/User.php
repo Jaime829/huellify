@@ -50,6 +50,16 @@ class User extends Authenticatable implements MustVerifyEmail
             ->count();
     }
 
+    public function periods()
+    {
+        return $this->hasMany(Period::class);
+    }
+
+    public function recommendations()
+    {
+        return $this->belongsToMany(Recommendation::class, 'user_recommendations');
+    }
+
     /**
      * Get the attributes that should be cast.
      *

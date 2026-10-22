@@ -3,7 +3,6 @@ import AsideNav from "@/components/AsideNav";
 import HeaderDashboard from "@/components/dashboard/HeaderDashboard";
 import MobileBar from "@/components/MobileBar";
 import { Head } from "@inertiajs/react";
-import React from "react";
 
 export default function CreateActivity() {
     return (

@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class EnergySource extends Model
 {
-    //
+    public function energyEmissionFactor()
+    {
+        return $this->hasMany(EnergyEmissionFactor::class);
+    }
 }

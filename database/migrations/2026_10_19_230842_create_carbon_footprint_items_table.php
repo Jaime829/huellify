@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('carbon_footprint_id')->constrained('carbon_footprints')->cascadeOnDelete();
             $table->foreignId('activity_id')->constrained('activities')->cascadeOnDelete();
             $table->foreignId('category_id')->constrained('activity_categories')->cascadeOnDelete();
-            $table->string('activity_description', 255);
+            $table->text('activity_description')->nullable();
             $table->decimal('quantity', 12, 3);
             $table->foreignId('measurement_unit_id')->constrained('measurement_units')->cascadeOnDelete();
             $table->decimal('emission_factor_value', 12, 6);
