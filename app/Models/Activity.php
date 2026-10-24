@@ -3,11 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
-#[Fillable('period_id', 'activity_category_id', 'emission_factor_id', 'activity_date', 'description', 'quantity', 'measurement_unit_id')]
+#[Fillable('period_id', 'activity_category_id', 'emission_factor_id', 'activity_date', 'name', 'description', 'quantity', 'measurement_unit_id')]
 class Activity extends Model
 {
+
+    public function scopeByCategory(Builder $query, ?int $categoryId): void
+    {
+        if ($categoryId) {
+            $query->where('activity_category_id', $categoryId);
+        }
+    }
 
     public function period()
     {

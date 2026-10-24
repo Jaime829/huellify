@@ -8,8 +8,10 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
+import { authUser } from "@/stores/user-store";
 
 export default function UltimosPeriodos() {
+    const limitedPeriods = authUser().periods.slice(0, 3);
 
     return (
         <div className="p-4 col-span-2 bg-white shadow rounded-md flex flex-col gap-2">
@@ -36,15 +38,25 @@ export default function UltimosPeriodos() {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    <TableRow>
-                        <TableCell className={"text-gray-600 font-medium"}>
-                            Septiembre 2026
-                        </TableCell>
-                        <TableCell className={"font-bold"}>245.8</TableCell>
-                        <TableCell className={"font-semibold text-green-800"}>
-                            12%
-                        </TableCell>
-                    </TableRow>
+                    {limitedPeriods.map((period) => {
+                        return (
+                            <TableRow key={period.id}>
+                                <TableCell
+                                    className={"text-gray-600 font-medium"}
+                                >
+                                    {period.name}
+                                </TableCell>
+                                <TableCell className={"font-bold"}>
+                                    {period.total_emissions}
+                                </TableCell>
+                                <TableCell
+                                    className={"font-semibold text-green-800"}
+                                >
+                                    {period.variation_percentage}%
+                                </TableCell>
+                            </TableRow>
+                        );
+                    })}
                 </TableBody>
             </Table>
         </div>

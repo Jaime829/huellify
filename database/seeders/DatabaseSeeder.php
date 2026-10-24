@@ -16,12 +16,13 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            // ActivityCategoriesSeeder::class,
-            // MeasurementUnitsSeeder::class,
-            // TransportTypesSeeder::class,
-            // FuelTypesSeeder::class,
-            // EnergySourcesSeeder::class,
-            RecommendationsSeeder::class
+            ActivityCategoriesSeeder::class,
+            MeasurementUnitsSeeder::class,
+            TransportTypesSeeder::class,
+            FuelTypesSeeder::class,
+            EnergySourcesSeeder::class,
+            RecommendationsSeeder::class,
+            TransportEmissionFactorSeeder::class
         ]);
     }
 }

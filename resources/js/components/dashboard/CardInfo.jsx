@@ -8,6 +8,7 @@ export default function CardInfo({
     colorBar,
     sectionName,
     value,
+    percentage,
     isPrincipal = false,
 }) {
     return (
@@ -29,7 +30,7 @@ export default function CardInfo({
                 </p>
 
                 {!isPrincipal ? (
-                    <ProgressBar porcentaje={value} color={colorBar} />
+                    <ProgressBar porcentaje={percentage} color={colorBar} />
                 ) : (
                     <p className="text-[10px]"> 12% menos que el mes anterior</p>
                 )}

@@ -10,6 +10,7 @@ use App\Models\Period;
 use App\Models\Period as ModelsPeriod;
 use App\Models\TransportActivity;
 use App\Models\TransportEmissionFactor;
+use App\Models\TransportType;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -68,12 +69,14 @@ class TransportActivityController
 
 
         return DB::transaction(function () use ($carbon_footprint, $emission_factor, $data, $period) {
+            $name_activity = TransportType::find($data['transport_type_id'], ['name'])->name;
 
             $activity = Activity::create([
                 'period_id' => $period->id,
                 'activity_category_id' => 1,
                 'emission_factor_id' => $emission_factor->emission_factor_id,
                 'activity_date' => $data['activity_date'],
+                'name' => $name_activity,
                 'description' => $data['description'],
                 'quantity' => $data['quantity'],
                 'measurement_unit_id' => $data['measurement_unit_id']

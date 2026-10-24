@@ -1,21 +1,33 @@
 import { Doughnut } from "react-chartjs-2";
 import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
+import { authUser } from "@/stores/user-store";
 
 Chart.register(ArcElement, Tooltip, Legend);
 
+const activityColors = {
+    transport: "bg-green-600",
+    energy: "bg-blue-400",
+    food: "bg-purple-400",
+    waste: "bg-gray-600",
+};
+
 export default function CardTorta({ wrap = false }) {
+    const footPrint = authUser().last_footprint?.total_emissions ?? 0;
+    const emissions_per_categories = authUser().emissions_per_categories;
+
     const datos = {
-        labels: ["1", "2", "3"],
+        labels: Object.keys(emissions_per_categories),
         datasets: [
             {
-                label: "Inventario disponible",
-                data: [1, 2, 3],
+                label: "Total emisiones",
+                data: Object.values(emissions_per_categories),
                 backgroundColor: [
-                    "rgba(59, 130, 246, 0.7)", // Azul
-                    "rgba(16, 185, 129, 0.7)", // Verde
-                    "rgba(245, 158, 11, 0.7)", // Amarillo/Naranja
+                    "rgba(22, 163, 74, 1)", // Verde
+                    "rgba(96, 165, 250, 1)", // Azul
+                    "rgba(192, 132, 252, 1)", // morado
+                    "rgba(75, 85, 99, 1)", // gris
                 ],
-                borderColor: ["#3b82f6", "#10b981", "#f59e0b"],
+                borderColor: ["#166534", "#1e40af", "#6b21a8", "#1f2937"],
                 borderWidth: 1,
             },
         ],
@@ -46,29 +58,41 @@ export default function CardTorta({ wrap = false }) {
                 >
                     <Doughnut data={datos} options={opciones} />
                     <div className="absolute top-1/2 right-1/2 -translate-y-1/2 translate-x-1/2 flex flex-col items-center justify-center">
-                        <p className="text-[10px] font-bold">Valor total</p>
+                        <p className="text-[10px] font-bold">{footPrint}</p>
                         <span className="text-[8px] text-gray-500">
                             kg CO<sub>2</sub>E
                         </span>
                     </div>
                 </div>
-                <div className="w-[50%]">
-                    <div
-                        className={`flex ${wrap ? "gap-2" : "justify-evenly border-b border-gray-400"}   py-2`}
-                    >
-                        <div className="flex gap-2">
-                            <div className="w-4 h-4 rounded-full bg-blue-400"></div>
-                            <p className="text-gray-500 text-[10px]">
-                                Transporte
-                            </p>
-                        </div>
-                        <div className="flex gap-2">
-                            <p className="text-gray-700 text-[10px] font-bold">
-                                61%
-                            </p>
-                            <p className="text-gray-400 text-[10px]">150.3kg</p>
-                        </div>
-                    </div>
+                <div className="w-[50%] flex flex-col">
+                    {Object.entries(emissions_per_categories).map(
+                        ([key, value]) => {
+                            return (
+                                <div
+                                    key={key}
+                                    className={`flex ${wrap ? "gap-2" : "justify-between border-b border-gray-400"}   py-2`}
+                                >
+                                    <div className="flex gap-2">
+                                        <div
+                                            className={`w-4 h-4 rounded-full ${activityColors[key]}`}
+                                        ></div>
+                                        <p className="text-gray-500 text-[10px]">
+                                            {key}
+                                        </p>
+                                    </div>
+                                    <div className="flex gap-2">
+                                        <p className="text-gray-700 text-[10px] font-bold">
+                                            {(
+                                                (value / footPrint) *
+                                                100
+                                            ).toFixed()}
+                                            %
+                                        </p>
+                                    </div>
+                                </div>
+                            );
+                        },
+                    )}
                 </div>
             </div>
         </div>

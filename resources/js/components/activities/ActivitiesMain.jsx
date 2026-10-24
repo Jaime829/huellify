@@ -4,14 +4,73 @@ import {
     IconBoltFilled,
     IconTrash,
     IconShoppingCart,
+    IconLeafFilled,
 } from "@tabler/icons-react";
-import { ShoppingCart } from "lucide-react";
 import ActivitiesResumen from "./ActivitiesResumen";
 import LatestActivities from "./LatestActivities";
+import { router, usePage } from "@inertiajs/react";
+import { authUser } from "@/stores/user-store";
+
+const activitiesType = {
+    transporte: {
+        icon: IconCarFilled,
+    },
+    energia: {
+        icon: IconBoltFilled,
+    },
+    habitos: {
+        icon: IconLeafFilled,
+    },
+    alimentacion: {
+        icon: IconToolsKitchen2Filled,
+    },
+    residuos: {
+        icon: IconTrash,
+    },
+};
+
 export default function ActivitiesMain() {
+    const activityCategories = authUser().activitiesCategory;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const activeFilter = urlParams.get("category_type") || "all";
+
+    const filtrarPorTipo = (tipo) => {
+        router.get(
+            window.location.pathname,
+            { category_type: tipo },
+            { preserveState: true, replace: true },
+        );
+    };
+
+
     return (
         <div className="py-4 border-t border-gray-200 flex flex-col gap-4">
             <nav className="flex items-center gap-3">
+                <button
+                    className={`${activeFilter === "all" ? "bg-emerald-700 text-white" : "bg-white text text-gray-500"} flex items-center justify-center  h-8 w-28 shadow rounded-md cursor-pointer font-medium text-[12px] `}
+                    onClick={() => filtrarPorTipo("all")}
+                >
+                    Todas
+                </button>
+                {activityCategories.map((activity) => {
+                    const nombreActividad = activity.name
+                        .toLowerCase()
+                        .normalize("NFD")
+                        .replace(/[\u0300-\u036f]/g, "");
+                    const IconComponent = activitiesType[nombreActividad].icon;
+
+                    return (
+                        <button
+                            className={`${activeFilter == activity.id ? "bg-emerald-700 text-white" : "bg-white text text-gray-500"} flex items-center justify-center gap-1 bg-emerald-700 h-8 w-28 shadow rounded-md cursor-pointer font-medium text-[12px]`}
+                            key={activity.id}
+                            onClick={() => filtrarPorTipo(activity.id)}
+                        >
+                            <IconComponent size={18} /> {activity.name}
+                        </button>
+                    );
+                })}
+                {/*
                 <button className="bg-emerald-700 h-8 w-16 shadow rounded-md cursor-pointer font-medium text-[12px] text-white">
                     Todas
                 </button>
@@ -34,7 +93,7 @@ export default function ActivitiesMain() {
                 <button className="bg-white flex items-center justify-center gap-1 h-8 w-28 shadow rounded-md cursor-pointer font-medium text-[12px] text-gray-500">
                     <IconShoppingCart size={18} />
                     Consumo
-                </button>
+                </button> */}
             </nav>
             <ActivitiesResumen />
             <LatestActivities />

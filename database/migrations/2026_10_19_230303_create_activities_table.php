@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('activity_category_id')->constrained('activity_categories')->cascadeOnDelete();
             $table->foreignId('emission_factor_id')->constrained('emission_factors')->cascadeOnDelete();
             $table->date('activity_date');
+            $table->string('name', 100);
             $table->string('description', 255)->nullable();
             $table->decimal('quantity', 12, 3);
             $table->foreignId('measurement_unit_id')->constrained('measurement_units')->cascadeOnDelete();

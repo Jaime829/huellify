@@ -14,11 +14,12 @@ class FuelTypesSeeder extends Seeder
     public function run(): void
     {
         DB::table('fuel_types')->insert([
-            ['name' => 'Gasolina', 'created_at'=> now()],
-            ['name' => 'Diésel', 'created_at'=> now()],
-            ['name' => 'Gas natural', 'created_at'=> now()],
-            ['name' => 'Gas licuado de petróleo', 'created_at'=> now()],
-            ['name' => 'Electricidad', 'created_at'=> now()],
+            ['name' => 'Gasolina', 'created_at' => now()],
+            ['name' => 'Diésel', 'created_at' => now()],
+            ['name' => 'Gas natural', 'created_at' => now()],
+            ['name' => 'Gas licuado de petróleo', 'created_at' => now()],
+            ['name' => 'Electricidad', 'created_at' => now()],
+            ['name' => 'Mixta', 'created_at' => now()],
         ]);
     }
 }

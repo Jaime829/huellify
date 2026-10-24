@@ -42,6 +42,13 @@ export default function FormularioTransporte() {
                     "Ingresa la información especifica según el tipo de actividad."
                 }
             />
+            <input
+                type="hidden"
+                name="_token"
+                value={document
+                    .querySelector('meta[name="csrf-token"]')
+                    ?.getAttribute("content")}
+            />
 
             <div className="w-full flex gap-4">
                 <div className="w-1/2 flex flex-col gap-1">
@@ -102,9 +109,16 @@ export default function FormularioTransporte() {
                             >
                                 {fuelTypes.map((type) => {
                                     return (
-                                        <option key={type.id} value={type.id}>
-                                            {type.name}
-                                        </option>
+                                        <>
+                                            {type.name !== "Mixta" && (
+                                                <option
+                                                    key={type.id}
+                                                    value={type.id}
+                                                >
+                                                    {type.name}
+                                                </option>
+                                            )}
+                                        </>
                                     );
                                 })}
                             </select>
@@ -218,28 +232,32 @@ export default function FormularioTransporte() {
                     }
                 />
                 <div className="flex flex-col gap-2">
-                    <label
-                        className="text-gray-500 font-medium"
-                        htmlFor="description"
-                    >
-                        Descripcion{" "}
-                        <span className="text-gray-400 font-light">
-                            (opcional)
-                        </span>
-                    </label>
-                    <textarea
-                        className={` ${errors.description ? "border-red-500" : ""} resize-none h-20 border-2 border-gray-300 rounded-md focus:outline-none p-1 text-gray-600`}
-                        name="description"
-                        id="description"
-                        placeholder="Ejemplo: viaje de ida y vuelta al trabajo, uso de transporte público, etc."
-                        value={data.description}
-                        onChange={(e) => setData("description", e.target.value)}
-                    />
-                    {errors.description && (
-                        <p className="text-red-500 text-[12px]">
-                            {errors.description}
-                        </p>
-                    )}
+                    <div className="flex flex-col gap-2">
+                        <label
+                            className="text-gray-500 font-medium"
+                            htmlFor="description"
+                        >
+                            Descripcion{" "}
+                            <span className="text-gray-400 font-light">
+                                (opcional)
+                            </span>
+                        </label>
+                        <textarea
+                            className={` ${errors.description ? "border-red-500" : ""} resize-none h-20 border-2 border-gray-300 rounded-md focus:outline-none p-1 text-gray-600`}
+                            name="description"
+                            id="description"
+                            placeholder="Ejemplo: viaje de ida y vuelta al trabajo, uso de transporte público, etc."
+                            value={data.description}
+                            onChange={(e) =>
+                                setData("description", e.target.value)
+                            }
+                        />
+                        {errors.description && (
+                            <p className="text-red-500 text-[12px]">
+                                {errors.description}
+                            </p>
+                        )}
+                    </div>
                 </div>
             </div>
 

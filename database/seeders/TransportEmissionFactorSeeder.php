@@ -38,14 +38,14 @@ class TransportEmissionFactorSeeder extends Seeder
 
         DB::table('transport_emission_factors')->insert([
             [
-                'emission_factor_id' => 2,
+                'emission_factor_id' => 1,
                 'transport_type_id' => 1,
                 'fuel_type_id' => 1,
                 'created_at' => now()
 
             ],
             [
-                'emission_factor_id' => 3,
+                'emission_factor_id' => 2,
                 'transport_type_id' => 2,
                 'fuel_type_id' => 6,
                 'created_at' => now()
