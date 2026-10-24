@@ -21,7 +21,7 @@ export default function CardInfo({
                     {sectionName}
                 </p>
                 <p className={`font-bold ${isPrincipal ? "text-xl" : ""}`}>
-                    {value}{" "}
+                    {Number(value).toFixed(2)}{" "}
                     <span
                         className={`${isPrincipal ? "text-[16px]" : "font-medium text-gray-600 text-sm"}`}
                     >
@@ -32,7 +32,10 @@ export default function CardInfo({
                 {!isPrincipal ? (
                     <ProgressBar porcentaje={percentage} color={colorBar} />
                 ) : (
-                    <p className="text-[10px]"> 12% menos que el mes anterior</p>
+                    <p className="text-[10px]">
+                        {" "}
+                        12% menos que el mes anterior
+                    </p>
                 )}
             </div>
         </div>

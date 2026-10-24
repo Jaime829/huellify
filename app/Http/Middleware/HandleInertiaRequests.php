@@ -78,6 +78,17 @@ class HandleInertiaRequests extends Middleware
         }) : null;
 
 
+        $categoriaMasContaminante = DB::table('periods as p')
+            ->join('activities as a', 'p.id', '=', 'a.period_id')
+            ->join('activity_categories as ac', 'a.activity_category_id', '=', 'ac.id')
+            ->join('carbon_footprint_items as cfi', 'a.id', '=', 'cfi.activity_id')
+            ->where('p.user_id', $user->id)
+            ->groupBy('ac.id', 'ac.name')
+            ->select('ac.name', 'ac.slug', DB::raw('SUM(cfi.emissions) as total_emissions'))
+            ->orderByDesc('total_emissions')
+            ->first();
+
+
         $latestPeriod = $user ? Auth::user()->periods()->latest()->first() : null;
 
         $typeFilter = $request->query('category_type');
@@ -93,6 +104,7 @@ class HandleInertiaRequests extends Middleware
                     'fuelTypes' => FuelType::all(),
                     'measurementUnits' => MeasurementUnit::where('measurement_type', '=', 'distance')->get()
                 ],
+                'mostFrequentActivity' => $categoriaMasContaminante,
                 'last_footprint' => $latestPeriod ? $latestPeriod->carbonFootprint : null,
                 'emissions_per_categories' => $latestPeriod ? [
                     'transport' =>  $latestPeriod->carbonFootprint->items->where('category_id', 1)->sum('emissions'),
@@ -101,6 +113,11 @@ class HandleInertiaRequests extends Middleware
                     'waste' => $latestPeriod->carbonFootprint->items->where('category_id', 4)->sum('emissions')
                 ] : null,
                 'periods' => $periodsWithVariation,
+                'periodsGraphic' => [
+                    3 =>    Period::whereDate('start_date', '>=', Carbon::now()->subMonths(3))->where('user_id', '=', $user->id)->join('carbon_footprints as cf', 'periods.id', '=', 'cf.period_id')->select('periods.name as mes', 'cf.total_emissions as emisiones')->get(),
+                    6 =>    Period::whereDate('start_date', '>=', Carbon::now()->subMonths(6))->where('user_id', '=', $user->id)->join('carbon_footprints as cf', 'periods.id', '=', 'cf.period_id')->select('periods.name as mes', 'cf.total_emissions as emisiones')->get(),
+                    12 =>    Period::whereDate('start_date', '>=', Carbon::now()->subMonths(12))->where('user_id', '=', $user->id)->join('carbon_footprints as cf', 'periods.id', '=', 'cf.period_id')->select('periods.name as mes', 'cf.total_emissions as emisiones')->get(),
+                ],
                 'activities' => $user ? DB::table('periods as p')
                     ->join('activities as a', 'p.id', '=', 'a.period_id')
                     ->join('activity_categories as ac', 'a.activity_category_id', '=', 'ac.id')

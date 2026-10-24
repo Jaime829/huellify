@@ -4,6 +4,15 @@ import { authUser } from "@/stores/user-store";
 
 export default function ActivitiesResumen() {
     const last_footprint = authUser().last_footprint;
+    const fecha = new Date();
+    const periodoActual = authUser().periods.filter(
+        (period) =>
+            period.name ===
+            fecha.toLocaleDateString("es-ES", {
+                month: "long",
+                year: "numeric",
+            }),
+    );
     return (
         <div className="bg-green-500/10 p-4 rounded-md flex justify-between items-center">
             <div className="flex gap-3">
@@ -23,7 +32,9 @@ export default function ActivitiesResumen() {
                 </div>
             </div>
             <div>
-                <p className="font-medium text-green-700">Estadistica aqui</p>
+                <p className="font-medium text-green-700">
+                    {periodoActual[0].variation_percentage}%
+                </p>
                 <small className="text-gray-500">vs. periodo anterior</small>
             </div>
             <PeriodoCard isPrincipal={false} />

@@ -14,7 +14,6 @@ export default function DashboardContent() {
     const footPrint = authUser().last_footprint?.total_emissions ?? 0;
     const emissions_per_categories = authUser().emissions_per_categories;
 
-    console.log(emissions_per_categories);
     return (
         <div className="grid grid-cols-3 max-h-full md:grid-cols-4 items-start gap-6 p-4">
             <BienvenidaCard />

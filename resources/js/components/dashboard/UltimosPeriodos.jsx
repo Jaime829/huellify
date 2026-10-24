@@ -47,7 +47,7 @@ export default function UltimosPeriodos() {
                                     {period.name}
                                 </TableCell>
                                 <TableCell className={"font-bold"}>
-                                    {period.total_emissions}
+                                    {Number(period.total_emissions).toFixed(2)}
                                 </TableCell>
                                 <TableCell
                                     className={"font-semibold text-green-800"}

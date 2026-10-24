@@ -1,3 +1,4 @@
+import { authUser } from "@/stores/user-store";
 import { useState } from "react";
 import {
     Area,
@@ -9,40 +10,40 @@ import {
     YAxis,
 } from "recharts";
 
-const datosPorPeriodo = {
-    3: [
-        { mes: "Septiembre", emisiones: 300 },
-        { mes: "Septiembre", emisiones: 300 },
-        { mes: "Septiembre", emisiones: 300 },
-    ],
-    6: [
-        { mes: "Septiembre", emisiones: 300 },
-        { mes: "Septiembre", emisiones: 300 },
-        { mes: "Septiembre", emisiones: 300 },
-        { mes: "Septiembre", emisiones: 300 },
-        { mes: "Septiembre", emisiones: 300 },
-        { mes: "Septiembre", emisiones: 300 },
-    ],
+// const datosPorPeriodo = {
+//     3: [
+//         { mes: "Septiembre", emisiones: 300 },
+//         { mes: "Septiembre", emisiones: 300 },
+//         { mes: "Septiembre", emisiones: 300 },
+//     ],
+//     6: [
+//         { mes: "Septiembre", emisiones: 300 },
+//         { mes: "Septiembre", emisiones: 300 },
+//         { mes: "Septiembre", emisiones: 300 },
+//         { mes: "Septiembre", emisiones: 300 },
+//         { mes: "Septiembre", emisiones: 300 },
+//         { mes: "Septiembre", emisiones: 300 },
+//     ],
 
-    12: [
-        { mes: "Septiembre", emisiones: 300 },
-        { mes: "Septiembre", emisiones: 300 },
-        { mes: "Septiembre", emisiones: 300 },
-        { mes: "Septiembre", emisiones: 300 },
-        { mes: "Septiembre", emisiones: 300 },
-        { mes: "Septiembre", emisiones: 300 },
-        { mes: "Septiembre", emisiones: 300 },
-        { mes: "Septiembre", emisiones: 300 },
-        { mes: "Septiembre", emisiones: 300 },
-        { mes: "Septiembre", emisiones: 300 },
-        { mes: "Septiembre", emisiones: 300 },
-        { mes: "Septiembre", emisiones: 300 },
-    ],
-};
+//     12: [
+//         { mes: "Septiembre", emisiones: 300 },
+//         { mes: "Septiembre", emisiones: 300 },
+//         { mes: "Septiembre", emisiones: 300 },
+//         { mes: "Septiembre", emisiones: 300 },
+//         { mes: "Septiembre", emisiones: 300 },
+//         { mes: "Septiembre", emisiones: 300 },
+//         { mes: "Septiembre", emisiones: 300 },
+//         { mes: "Septiembre", emisiones: 300 },
+//         { mes: "Septiembre", emisiones: 300 },
+//         { mes: "Septiembre", emisiones: 300 },
+//         { mes: "Septiembre", emisiones: 300 },
+//         { mes: "Septiembre", emisiones: 300 },
+//     ],
+// };
 
 export default function GraficoEmisiones() {
     const [periodo, setPeriodo] = useState(3);
-    const datos = datosPorPeriodo[periodo];
+    const datos = authUser().periodsGraphic[periodo];
 
     return (
         <div className="w-full rounded-xl border border-slate-200 bg-white p-4 shadow-sm col-span-2">
@@ -111,8 +112,8 @@ export default function GraficoEmisiones() {
                         />
 
                         <YAxis
-                            domain={[0, 400]}
-                            ticks={[0, 100, 200, 300, 400]}
+                            domain={[0, 300]}
+                            ticks={[0, 50, 100, 150, 200, 250, 300]}
                             tick={{ fill: "#64748b", fontSize: 11 }}
                             axisLine={false}
                             tickLine={false}

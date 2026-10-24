@@ -1,10 +1,10 @@
 import { IconLeafFilled } from "@tabler/icons-react";
-import React from "react";
 import IconItemsDashboard from "./IconItemsDashboard";
 import { authUser } from "@/stores/user-store";
 
 export default function ResumenHuella({ isPrincipal = true }) {
     const last_footprint = authUser().last_footprint;
+
     return (
         <div
             className={`${isPrincipal ? "shadow p-4 rounded-md h-40 max-h-48  bg-white" : ""}  flex flex-col justify-between gap-1`}
@@ -30,9 +30,6 @@ export default function ResumenHuella({ isPrincipal = true }) {
                         Kg CO<sub>2</sub>E
                     </span>
                 </p>
-                <div className={`${isPrincipal ? "" : "order-3"}`}>
-                    <p className="text-green-700 text-[14px]">Estadistica</p>
-                </div>
             </div>
         </div>
     );

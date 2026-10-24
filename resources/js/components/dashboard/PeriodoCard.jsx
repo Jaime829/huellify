@@ -1,5 +1,6 @@
 import { Calendar, ChevronRight } from "lucide-react";
 import IconItemsDashboard from "./IconItemsDashboard";
+import { authUser } from "@/stores/user-store";
 
 export default function PeriodoCard({ isPrincipal = true }) {
     const fecha = new Date();
@@ -8,7 +9,14 @@ export default function PeriodoCard({ isPrincipal = true }) {
     const fechaInicio = new Date(year, mes, 1);
     const fechaFin = new Date(year, mes + 1, 0);
     const opcionesFecha = { day: "2-digit", month: "short", year: "numeric" };
-
+    const periodoActual = authUser().periods.filter(
+        (period) =>
+            period.name ===
+            fecha.toLocaleDateString("es-ES", {
+                month: "long",
+                year: "numeric",
+            }),
+    );
     return (
         <div
             className={`${isPrincipal ? "bg-green-500/10" : ""}  max-h-40 rounded-xl p-4 flex gap-2 relative`}

@@ -1,8 +1,11 @@
 import { Car, ChevronRight } from "lucide-react";
 import IconItemsDashboard from "../dashboard/IconItemsDashboard";
 import { Link } from "@inertiajs/react";
+import { authUser } from "@/stores/user-store";
 
 export default function MostFrequentActivity() {
+    const footPrint = authUser().last_footprint?.total_emissions ?? 0;
+    const mostFrequentActivity = authUser().mostFrequentActivity;
     return (
         <div className="p-4 flex flex-col gap-3 bg-white shadow rounded-md">
             <div className="flex gap-2 items-center">
@@ -22,13 +25,19 @@ export default function MostFrequentActivity() {
                 </div>
                 <div>
                     <p className="font-semibold text-emerald-900 text-[14px]">
-                        Transporte
+                        {mostFrequentActivity.name}
                     </p>
                     <p className="text-gray-500 font-semibold text-[12px]">
-                        61% del total
+                        {(mostFrequentActivity.total_emissions / footPrint) *
+                            100}
+                        % del total
                     </p>
                     <p className="font-semibold text-gray-700 text-[16px]">
-                        150.3 Kg CO<sub>2</sub>e
+                        {Number(mostFrequentActivity.total_emissions).toFixed(
+                            2,
+                        )}{" "}
+                        Kg CO
+                        <sub>2</sub>e
                     </p>
                 </div>
                 <Link>

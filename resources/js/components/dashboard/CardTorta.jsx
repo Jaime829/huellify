@@ -58,7 +58,9 @@ export default function CardTorta({ wrap = false }) {
                 >
                     <Doughnut data={datos} options={opciones} />
                     <div className="absolute top-1/2 right-1/2 -translate-y-1/2 translate-x-1/2 flex flex-col items-center justify-center">
-                        <p className="text-[10px] font-bold">{footPrint}</p>
+                        <p className="text-[10px] font-bold">
+                            {Number(footPrint).toFixed(2)}
+                        </p>
                         <span className="text-[8px] text-gray-500">
                             kg CO<sub>2</sub>E
                         </span>

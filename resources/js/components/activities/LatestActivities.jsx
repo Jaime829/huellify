@@ -145,7 +145,7 @@ export default function LatestActivities() {
                         <Link
                             key={index}
                             href={link.url}
-                            className={`px-4 py-2 border rounded transition-colors ${
+                            className={`px-4 py-2 border rounded transition-colors shadow ${
                                 link.active
                                     ? "bg-emerald-800 text-white border-emerald-800 font-medium"
                                     : "bg-white text-gray-700 hover:bg-gray-100"
