@@ -1,14 +1,14 @@
 import ActivitiesCreateHeader from "./ActivitiesCreateHeader";
 import ActivitiesCreateMain from "./ActivitiesCreateMain";
+import DatoCurioso from "./DatoCurioso";
 
 export default function ActivitiesCreateContent() {
     return (
-        <div className="flex p-4 gap-4">
-            <div className="flex flex-col gap-4 w-[80%]">
+        <div className="flex p-4 gap-4 justify-center">
+            <div className="flex flex-col gap-4 w-full">
                 <ActivitiesCreateHeader />
                 <ActivitiesCreateMain />
             </div>
-            <div className="flex flex-col w-[20%]"></div>
         </div>
     );
 }

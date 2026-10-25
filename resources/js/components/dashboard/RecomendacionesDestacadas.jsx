@@ -3,11 +3,11 @@ import Recomendacion from "./Recomendacion";
 
 export default function RecomendacionesDestacadas() {
     return (
-        <div className="p-4 bg-white shadow rounded-md flex flex-col gap-2">
-            <header className="flex justify-between items-center">
-                <div className="flex gap-2 items-center">
+        <div className="p-4 bg-white shadow rounded-md h-full flex flex-col gap-2 order-4 col-start-3 col-end-4 row-start-2 row-end-3 lg:col-start-auto lg:col-end-auto lg:row-start-auto lg:row-end-auto">
+            <header className="flex justify-between items-center flex-wrap">
+                <div className="flex gap-2 items-center flex-wrap">
                     <Lightbulb />
-                    <p className="font-bold text-[12px]">
+                    <p className="font-bold text-[10px]">
                         Recomendaciones destacadas
                     </p>
                 </div>

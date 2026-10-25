@@ -7,7 +7,7 @@ export default function ResumenHuella({ isPrincipal = true }) {
 
     return (
         <div
-            className={`${isPrincipal ? "shadow p-4 rounded-md h-40 max-h-48  bg-white" : ""}  flex flex-col justify-between gap-1`}
+            className={`${isPrincipal ? "shadow p-4 rounded-md h-full lg:h-40 lg:max-h-48  bg-white" : "hidden"}  lg:flex lg:flex-col lg:justify-between lg:gap-1`}
         >
             {isPrincipal && (
                 <IconItemsDashboard

@@ -108,17 +108,11 @@ export default function FormularioTransporte() {
                                 id="fuel_type_id"
                             >
                                 {fuelTypes.map((type) => {
+                                    if (type.name === "Mixta") return null; // Si es Mixta, no renderiza nada
                                     return (
-                                        <>
-                                            {type.name !== "Mixta" && (
-                                                <option
-                                                    key={type.id}
-                                                    value={type.id}
-                                                >
-                                                    {type.name}
-                                                </option>
-                                            )}
-                                        </>
+                                        <option key={type.id} value={type.id}>
+                                            {type.name}
+                                        </option>
                                     );
                                 })}
                             </select>

@@ -8,7 +8,7 @@ export default function CreateActivity() {
     return (
         <>
             <Head title="Activities" />
-            <main className="flex min-h-screen">
+            <main className="flex min-h-screen pb-20 lg:pb-0">
                 <AsideNav />
                 <section className="flex flex-col flex-1 bg-gray-50">
                     <HeaderDashboard />

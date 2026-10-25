@@ -1,6 +1,20 @@
+import { authUser } from "@/stores/user-store";
 import { IconLeafFilled } from "@tabler/icons-react";
+import { ArrowDown, ArrowUp } from "lucide-react";
+import { Arrow } from "radix-ui/context-menu";
 
 export default function () {
+    const last_footprint = authUser().last_footprint;
+    const fecha = new Date();
+    const periodoActual = authUser().periods.filter(
+        (period) =>
+            period.name ===
+            fecha.toLocaleDateString("es-ES", {
+                month: "long",
+                year: "numeric",
+            }),
+    );
+
     return (
         <div className="bg-white rounded-md shadow flex flex-col gap-3 col-span-2 p-4">
             <div className="flex gap-2 items-center">
@@ -17,16 +31,23 @@ export default function () {
                         Huella de carbono total
                     </p>
                     <p className="font-bold text-2xl text-gray-700">
-                        Valor kg CO<sub>2</sub>e
+                        {Number(periodoActual[0].total_emissions).toFixed(2)} kg
+                        CO<sub>2</sub>e
                     </p>
-                    <p className="text-[16px] font-medium text-green-600">
-                        estadistica
+                    <p
+                        className={`${Number(periodoActual[0].variation_percentage) > 0 ? "text-red-600" : "text-emerald-700"} flex items-center gap-1 text-[16px] font-medium text-green-600`}
+                    >
+                        {periodoActual[0].variation_percentage}%
+                        {Number(periodoActual[0].variation_percentage) > 0 ? (
+                            <ArrowUp size={15} />
+                        ) : (
+                            <ArrowDown size={15} />
+                        )}
                     </p>
                 </div>
                 <div className="w-20 h-20 rounded-full bg-green-600/10 text-emerald-800 flex items-center justify-center">
                     <IconLeafFilled size={45} />
                 </div>
-
             </div>
         </div>
     );

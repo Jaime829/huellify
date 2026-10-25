@@ -16,7 +16,7 @@ export default function PopupUserActions() {
     return (
         <Collapsible className="relative">
             <CollapsibleTrigger
-                className="flex gap-1 items-center"
+                className="flex gap-1 items-center cursor-pointer"
                 onClick={() => {
                     setState(!state);
                 }}
@@ -32,18 +32,20 @@ export default function PopupUserActions() {
                     </>
                 )}
             </CollapsibleTrigger>
-            <CollapsibleContent className="absolute  flex flex-col items-center gap-1 top-10 right-0 w-35  py-4 px-2 bg-white border border-gray-400 shadow-md rounded-md">
-                <UserInfo />
+            <CollapsibleContent className="absolute  flex flex-col items-center animate-fade-in-right animate-duration-250 gap-6 top-10 right-0 w-35 lg:w-52 py-4 px-2 bg-white border border-gray-400 shadow-md rounded-md">
+                <div className="flex flex-col gap-1 w-full">
+                    <UserInfo className="animate-fade-in-right animate-duration-350" />
 
-                <Link
-                    href={route("dashboard.profile")}
-                    className="text-center text-gray-500 flex gap-1 items-center w-full text-[12px] hover:bg-gray-100 rounded-md p-2"
-                >
-                    <Eye className="size-5" /> Ver perfil
-                </Link>
+                    <Link
+                        href={route("dashboard.profile")}
+                        className="animate-fade-in-right animate-duration-350 text-center text-gray-500 flex gap-1 items-center w-full text-[12px] transition-colors ease-in-out delay-75 hover:bg-gray-100 rounded-md p-2"
+                    >
+                        <Eye className="size-5" /> Ver perfil
+                    </Link>
+                </div>
 
                 <form
-                    className="w-full"
+                    className="w-full animate-duration-500 animate-fade-in-right"
                     action={route("auth.logout")}
                     method="post"
                 >
@@ -55,7 +57,7 @@ export default function PopupUserActions() {
                             ?.getAttribute("content")}
                     />
                     <button
-                        className="text-center gap-1 cursor-pointer text-gray-500 flex items-center w-full text-[12px] hover:bg-gray-100 rounded-md p-2"
+                        className="text-center gap-1 cursor-pointer text-red-500 flex items-center w-full text-[12px] transition-colors ease-in-out delay-75 hover:bg-red-500/10 hover: rounded-md p-2"
                         type="submit"
                     >
                         <LogOut className="size-5" /> Cerrar sesion

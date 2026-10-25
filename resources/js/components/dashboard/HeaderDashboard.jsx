@@ -2,7 +2,7 @@ import React from "react";
 import SearchInput from "../SearchInput";
 import NotificationBtn from "../NotificationBtn";
 import Logo from "../Logo";
-import UserNavSection from "../UserNavSection";
+import PopupUserActions from "../PopupUserActions";
 
 export default function HeaderDashboard() {
     return (
@@ -13,7 +13,7 @@ export default function HeaderDashboard() {
 
                 <div className="flex gap-4">
                     <NotificationBtn />
-                    <UserNavSection />
+                    <PopupUserActions />
                 </div>
             </nav>
         </>

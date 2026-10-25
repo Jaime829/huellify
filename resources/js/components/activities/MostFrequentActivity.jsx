@@ -20,9 +20,6 @@ export default function MostFrequentActivity() {
             </div>
 
             <div className="flex items-center justify-between">
-                <div className="flex items-center justify-center text-green-800 bg-green-500/10 rounded-full h-12 w-12">
-                    <Car size={35} />
-                </div>
                 <div>
                     <p className="font-semibold text-emerald-900 text-[14px]">
                         {mostFrequentActivity.name}

@@ -15,7 +15,7 @@ export default function DashboardContent() {
     const emissions_per_categories = authUser().emissions_per_categories;
 
     return (
-        <div className="grid grid-cols-3 max-h-full md:grid-cols-4 items-start gap-6 p-4">
+        <div className="grid grid-cols-3 max-h-full md:grid-cols-4 items-start gap-6 p-4 pb-24 lg:pb-4">
             <BienvenidaCard />
             <PeriodoCard />
             <ResumenHuella />

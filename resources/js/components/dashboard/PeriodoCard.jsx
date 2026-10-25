@@ -19,34 +19,36 @@ export default function PeriodoCard({ isPrincipal = true }) {
     );
     return (
         <div
-            className={`${isPrincipal ? "bg-green-500/10" : ""}  max-h-40 rounded-xl p-4 flex gap-2 relative`}
+            className={`${isPrincipal ? "bg-green-500/10" : ""}  lg:max-h-40 h-full rounded-xl p-4 flex flex-col gap-2 relative`}
         >
-            <IconItemsDashboard
-                icon={Calendar}
-                colorIcon={"text-emerald-900"}
-                bg={"bg-emerald-800/10"}
-            />
-
-            <div className="flex flex-col gap-2">
+            <div className="flex gap-2 flex-wrap">
+                <IconItemsDashboard
+                    icon={Calendar}
+                    colorIcon={"text-emerald-900"}
+                    bg={"bg-emerald-800/10"}
+                />
                 <p className="text-gray-500 text-sm font-medium">
                     Periodo actual
                 </p>
-                <p className="text-emerald-900 font-bold">
-                    {fecha.toLocaleDateString("es-ES", {
-                        month: "long",
-                        year: "numeric",
-                    })}
-                </p>
-                <small className="flex items-center gap-1 text-gray-500">
-                    <Calendar className="size-5" />{" "}
-                    {fechaInicio.toLocaleDateString("es-ES", opcionesFecha)} -{" "}
-                    {fechaFin.toLocaleDateString("es-ES", opcionesFecha)}
-                </small>
+                <a href="#" className="">
+                    <ChevronRight />
+                </a>
             </div>
-
-            <a href="#" className="absolute top-10 right-4">
-                <ChevronRight />
-            </a>
+            <div className="flex flex-col gap-4 px-2">
+                <div className="flex flex-col">
+                    <p className="text-emerald-900 font-bold">
+                        {fecha.toLocaleDateString("es-ES", {
+                            month: "long",
+                            year: "numeric",
+                        })}
+                    </p>
+                    <small className="flex items-center gap-1 text-gray-500">
+                        <Calendar className="size-5" />{" "}
+                        {fechaInicio.toLocaleDateString("es-ES", opcionesFecha)}{" "}
+                        - {fechaFin.toLocaleDateString("es-ES", opcionesFecha)}
+                    </small>
+                </div>
+            </div>
         </div>
     );
 }

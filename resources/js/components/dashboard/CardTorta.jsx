@@ -46,12 +46,12 @@ export default function CardTorta({ wrap = false }) {
 
     return (
         <div
-            className={` ${wrap ? "" : "h-full shadow col-span-2 p-4 gap-4 rounded-md bg-white"}  flex flex-col`}
+            className={` ${wrap ? "flex-row" : "h-full shadow col-span-2 p-4 gap-4 rounded-md bg-white"}  flex flex-col`}
         >
             {!wrap && <p className="font-bold">Emisiones por categoria</p>}
 
             <div
-                className={`flex items-center ${wrap ? "flex-wrap gap-2" : ""}`}
+                className={`flex items-center  ${wrap ? "w-full justify-between lg:flex-wrap  gap-2" : ""}`}
             >
                 <div
                     className={`${wrap ? "w-32 h-32" : "w-56 h-56"} my-0 mx-auto relative`}

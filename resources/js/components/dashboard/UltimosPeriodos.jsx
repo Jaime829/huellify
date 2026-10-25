@@ -1,4 +1,4 @@
-import { ArrowRight, Clock } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUp, Clock } from "lucide-react";
 import {
     Table,
     TableBody,
@@ -14,7 +14,7 @@ export default function UltimosPeriodos() {
     const limitedPeriods = authUser().periods.slice(0, 3);
 
     return (
-        <div className="p-4 col-span-2 bg-white shadow rounded-md flex flex-col gap-2">
+        <div className="p-4 lg:col-span-2 col-span-3 h-full bg-white shadow rounded-md flex flex-col gap-2">
             <header className="flex justify-between items-center">
                 <div className="flex gap-2 items-center">
                     <Clock />
@@ -50,9 +50,14 @@ export default function UltimosPeriodos() {
                                     {Number(period.total_emissions).toFixed(2)}
                                 </TableCell>
                                 <TableCell
-                                    className={"font-semibold text-green-800"}
+                                    className={`font-semibold text-green-800 flex items-center ${Number(period.variation_percentage) > 0 ? "text-red-600" : "text-emerald-700"} `}
                                 >
                                     {period.variation_percentage}%
+                                    {Number(period.variation_percentage) > 0 ? (
+                                        <ArrowUp size={15} />
+                                    ) : (
+                                        <ArrowDown size={15} />
+                                    )}
                                 </TableCell>
                             </TableRow>
                         );

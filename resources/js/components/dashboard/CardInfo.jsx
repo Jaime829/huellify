@@ -12,7 +12,7 @@ export default function CardInfo({
     isPrincipal = false,
 }) {
     return (
-        <div className="shadow p-4 rounded-md flex flex-col justify-between gap-1 h-40 max-h-48 bg-white">
+        <div className="shadow p-4 rounded-md flex flex-col justify-between gap-1 h-full lg:h-40 max-h-48 bg-white">
             <IconItemsDashboard icon={Icon} colorIcon={colorIcon} bg={bgIcon} />
             <div className="flex flex-col gap-1">
                 <p

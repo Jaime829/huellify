@@ -17,11 +17,11 @@ export default function Recomendacion({
 }) {
     const stylesPrioridad = defaultStylePrioridad[prioridad.toLowerCase()];
     return (
-        <div className="flex gap-1 items-center">
+        <div className="flex gap-4 items-center flex-wrap">
             <IconItemsDashboard icon={Icon} bg={bgIcon} colorIcon={colorIcon} />
             <div>
                 <p className="font-medium text-[12px]">{recomendacion}</p>
-                <p className="text-gray-500 text-[10px]">{descripcion}</p>
+                <p className="text-gray-500 text-[10px] max-w-24.5">{descripcion}</p>
             </div>
             <div className={`rounded-xl px-2 text-[12px] ${stylesPrioridad}`}>
                 <p>{prioridad}</p>
