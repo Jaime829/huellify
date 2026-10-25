@@ -24,7 +24,9 @@ export default function ActivitiesResumen() {
                         Total de emisiones (este periodo)
                     </p>
                     <h2 className="text-emerald-900 font-bold text-2xl">
-                        {last_footprint ? last_footprint.total_emissions : 0}{" "}
+                        {last_footprint
+                            ? Number(last_footprint.total_emissions).toFixed(2)
+                            : 0}{" "}
                         <span className="font-medium text-[18px]">
                             kg CO<sub>2</sub>e
                         </span>

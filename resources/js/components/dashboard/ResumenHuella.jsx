@@ -25,7 +25,7 @@ export default function ResumenHuella({ isPrincipal = true }) {
                 <p
                     className={`font-bold text-xl text-gray-800 ${isPrincipal ? "" : "-order-1"}`}
                 >
-                    {last_footprint ? last_footprint.total_emissions : 0}{" "}
+                    {last_footprint ? Number(last_footprint.total_emissions).toFixed(2) : 0}{" "}
                     <span className="text-[16px] font-medium text-gray-600 text-sm">
                         Kg CO<sub>2</sub>E
                     </span>

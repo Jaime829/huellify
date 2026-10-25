@@ -271,8 +271,8 @@ export default function FormularioTransporte() {
                     disabled={processing}
                 >
                     {processing
-                        ? "Registrando actividad"
-                        : "Registrar actividad"}
+                        ? "Calculando..."
+                        : "Calcular huella de carbono"}
                     <ArrowRight size={15} />
                 </button>
             </div>

@@ -15,7 +15,7 @@ export default function ResumenPeriodoActivities() {
                 />
                 <p className="text-emerald-900">Resumen del periodo</p>
             </div>
-            <ResumenHuella isPrincipal={false} value={2432} />
+            <ResumenHuella isPrincipal={false} />
             <CardTorta wrap={true} />
         </div>
     );
