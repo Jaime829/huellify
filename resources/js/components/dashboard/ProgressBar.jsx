@@ -2,7 +2,7 @@ export function ProgressBar({ porcentaje, color }) {
     return (
         <div className="font-sans">
             <div className="text-gray-500/80 text-xs mb-1">
-                {porcentaje}% del total
+                {Number(porcentaje).toFixed()}% del total
             </div>
 
             <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">

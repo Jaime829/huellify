@@ -14,6 +14,8 @@ export default function ActivitiesResumen() {
                 year: "numeric",
             }),
     );
+
+    console.log(periodoActual);
     return (
         <div className="bg-green-500/10 p-4 rounded-md flex flex-col xl:flex-row xl:justify-between xl:items-center shadow">
             <div className="flex gap-4">
@@ -38,16 +40,24 @@ export default function ActivitiesResumen() {
                     </div>
                 </div>
                 <div
-                    className={`${Number(periodoActual[0].variation_percentage) > 0 ? "text-red-600" : "text-emerald-700"}`}
+                    className={`${periodoActual.lenght === 0 ? (Number(periodoActual[0].variation_percentage) > 0 ? "text-red-600" : "text-emerald-700") : ""}`}
                 >
                     <p className="font-medium">
-                        {periodoActual[0].variation_percentage}%
+                        {periodoActual.lenght === 0
+                            ? periodoActual[0].variation_percentage
+                            : ""}
+                        %
                     </p>
                     <small className="flex items-center gap-1">
-                        {Number(periodoActual[0].variation_percentage) > 0 ? (
-                            <ArrowUp size={15} />
+                        {periodoActual.lenght === 0 ? (
+                            Number(periodoActual[0].variation_percentage) >
+                            0 ? (
+                                <ArrowUp size={15} />
+                            ) : (
+                                <ArrowDown size={15} />
+                            )
                         ) : (
-                            <ArrowDown size={15} />
+                            ""
                         )}
                         vs. periodo anterior
                     </small>

@@ -25,9 +25,12 @@ export default function DashboardContent() {
                 colorIcon={"text-green-900"}
                 bgIcon={"bg-green-800/10"}
                 colorBar={"bg-green-800"}
-                value={emissions_per_categories["transport"]}
+                value={emissions_per_categories ? emissions_per_categories["transport"] : null}
                 percentage={
-                    (emissions_per_categories["transport"] / footPrint) * 100
+                    emissions_per_categories
+                        ? (emissions_per_categories["transport"] / footPrint) *
+                          100
+                        : null
                 }
             />
             <CardInfo
@@ -36,9 +39,12 @@ export default function DashboardContent() {
                 colorIcon={"text-blue-600"}
                 bgIcon={"bg-blue-600/10"}
                 colorBar={"bg-blue-600"}
-                value={emissions_per_categories["energy"]}
+                value={emissions_per_categories ? emissions_per_categories["energy"] : null}
                 percentage={
-                    (emissions_per_categories["energy"] / footPrint) * 100
+                   emissions_per_categories
+                        ? (emissions_per_categories["energy"] / footPrint) *
+                          100
+                        : null
                 }
             />
             <CardInfo
@@ -47,9 +53,12 @@ export default function DashboardContent() {
                 colorIcon={"text-purple-700"}
                 bgIcon={"bg-purple-700/10"}
                 colorBar={"bg-purple-700"}
-                value={emissions_per_categories["food"]}
+                value={emissions_per_categories ? emissions_per_categories["food"] : null}
                 percentage={
-                    (emissions_per_categories["food"] / footPrint) * 100
+                   emissions_per_categories
+                        ? (emissions_per_categories["food"] / footPrint) *
+                          100
+                        : null
                 }
             />
 

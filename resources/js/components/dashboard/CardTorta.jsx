@@ -13,7 +13,7 @@ const activityColors = {
 
 export default function CardTorta({ wrap = false }) {
     const footPrint = authUser().last_footprint?.total_emissions ?? 0;
-    const emissions_per_categories = authUser().emissions_per_categories;
+    const emissions_per_categories = authUser().emissions_per_categories ?? {};
 
     const datos = {
         labels: Object.keys(emissions_per_categories),

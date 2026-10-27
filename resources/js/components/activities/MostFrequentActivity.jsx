@@ -22,17 +22,22 @@ export default function MostFrequentActivity() {
             <div className="flex items-center justify-between">
                 <div>
                     <p className="font-semibold text-emerald-900 text-[14px]">
-                        {mostFrequentActivity.name}
+                        {mostFrequentActivity ? mostFrequentActivity.name : ""}
                     </p>
                     <p className="text-gray-500 font-semibold text-[12px]">
-                        {(mostFrequentActivity.total_emissions / footPrint) *
-                            100}
+                        {mostFrequentActivity
+                            ? (mostFrequentActivity.total_emissions /
+                                  footPrint) *
+                              100
+                            : 0}
                         % del total
                     </p>
                     <p className="font-semibold text-gray-700 text-[16px]">
-                        {Number(mostFrequentActivity.total_emissions).toFixed(
-                            2,
-                        )}{" "}
+                        {mostFrequentActivity
+                            ? Number(
+                                  mostFrequentActivity.total_emissions,
+                              ).toFixed(2)
+                            : 0}{" "}
                         Kg CO
                         <sub>2</sub>e
                     </p>
