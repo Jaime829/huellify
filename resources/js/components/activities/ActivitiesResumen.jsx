@@ -14,8 +14,6 @@ export default function ActivitiesResumen() {
                 year: "numeric",
             }),
     );
-
-    console.log(periodoActual);
     return (
         <div className="bg-green-500/10 p-4 rounded-md flex flex-col xl:flex-row xl:justify-between xl:items-center shadow">
             <div className="flex gap-4">

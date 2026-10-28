@@ -1,34 +1,10 @@
-import {
-    IconCarFilled,
-    IconToolsKitchen2Filled,
-    IconBoltFilled,
-    IconTrash,
-    IconShoppingCart,
-    IconLeafFilled,
-} from "@tabler/icons-react";
 import ActivitiesResumen from "./ActivitiesResumen";
 import LatestActivities from "./LatestActivities";
 import { router, usePage } from "@inertiajs/react";
 import { authUser } from "@/stores/user-store";
 import LateralInformation from "./LateralInformation";
+import activityIcon from "../util/ActivityIcon";
 
-const activitiesType = {
-    transporte: {
-        icon: IconCarFilled,
-    },
-    energia: {
-        icon: IconBoltFilled,
-    },
-    habitos: {
-        icon: IconLeafFilled,
-    },
-    alimentacion: {
-        icon: IconToolsKitchen2Filled,
-    },
-    residuos: {
-        icon: IconTrash,
-    },
-};
 
 export default function ActivitiesMain({ lateralController }) {
     const activityCategories = authUser().activitiesCategory;
@@ -58,7 +34,7 @@ export default function ActivitiesMain({ lateralController }) {
                         .toLowerCase()
                         .normalize("NFD")
                         .replace(/[\u0300-\u036f]/g, "");
-                    const IconComponent = activitiesType[nombreActividad].icon;
+                    const IconComponent = activityIcon(nombreActividad);
 
                     return (
                         <button

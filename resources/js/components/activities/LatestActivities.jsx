@@ -1,32 +1,8 @@
-import {
-    IconBoltFilled,
-    IconCarFilled,
-    IconLeafFilled,
-    IconToolsKitchen2Filled,
-    IconTrash,
-} from "@tabler/icons-react";
 import { Table, TableBody, TableCell, TableRow } from "../ui/table";
 import { DropdownMenuActions } from "./DropdownActions";
 import { authUser } from "@/stores/user-store";
 import { Link } from "@inertiajs/react";
-
-const activitiesType = {
-    transporte: {
-        icon: IconCarFilled,
-    },
-    energia: {
-        icon: IconBoltFilled,
-    },
-    habitos: {
-        icon: IconLeafFilled,
-    },
-    alimentacion: {
-        icon: IconToolsKitchen2Filled,
-    },
-    residuos: {
-        icon: IconTrash,
-    },
-};
+import activityIcon from "../util/ActivityIcon";
 
 export default function LatestActivities() {
     const data = authUser().activities;
@@ -67,13 +43,11 @@ export default function LatestActivities() {
                     <Table className={"bg-white rounded-md"}>
                         <TableBody>
                             {activities.map((activity) => {
-                                const Icon =
-                                    activitiesType[
-                                        activity.category_name
-                                            .toLowerCase()
-                                            .normalize("NFD")
-                                            .replace(/[\u0300-\u036f]/g, "")
-                                    ].icon;
+                                const nombreActividad = activity.category_name
+                                    .toLowerCase()
+                                    .normalize("NFD")
+                                    .replace(/[\u0300-\u036f]/g, "");
+                                const Icon = activityIcon(nombreActividad);
 
                                 return (
                                     <TableRow

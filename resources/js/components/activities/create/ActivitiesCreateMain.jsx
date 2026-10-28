@@ -1,34 +1,12 @@
-import {
-    IconBoltFilled,
-    IconCarFilled,
-    IconLeafFilled,
-    IconToolsKitchen2Filled,
-    IconTrash,
-} from "@tabler/icons-react";
+
 import { authUser } from "@/stores/user-store";
 import { useState } from "react";
 import FormularioTransporte from "./FormularioTransporte";
 import FormularioEnergia from "./FormularioEnergia";
 import FormularioResiduos from "./FormularioResiduos";
 import HeadSeccionActivitiesForm from "./HeadSeccionActivitiesForm";
+import activityIcon from "@/components/util/ActivityIcon";
 
-const activitiesType = {
-    transporte: {
-        icon: IconCarFilled,
-    },
-    energia: {
-        icon: IconBoltFilled,
-    },
-    habitos: {
-        icon: IconLeafFilled,
-    },
-    alimentacion: {
-        icon: IconToolsKitchen2Filled,
-    },
-    residuos: {
-        icon: IconTrash,
-    },
-};
 
 export default function ActivitiesCreateMain() {
     const activitiesCategory = authUser().activitiesCategory;
@@ -52,8 +30,7 @@ export default function ActivitiesCreateMain() {
                             .toLowerCase()
                             .normalize("NFD")
                             .replace(/[\u0300-\u036f]/g, "");
-                        const IconComponent =
-                            activitiesType[nombreActividad].icon;
+                        const IconComponent = activityIcon(nombreActividad);
 
                         return (
                             <button

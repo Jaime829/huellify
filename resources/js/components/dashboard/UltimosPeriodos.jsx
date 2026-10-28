@@ -27,43 +27,53 @@ export default function UltimosPeriodos() {
                     <ArrowRight size={20} />
                 </a>
             </header>
-            <Table>
-                <TableHeader>
-                    <TableRow className={"text-gray-500"}>
-                        <TableCell>Periodo</TableCell>
-                        <TableCell>
-                            Total KgCO<sub>2</sub>e
-                        </TableCell>
-                        <TableCell>Variacion</TableCell>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    {limitedPeriods.map((period) => {
-                        return (
-                            <TableRow key={period.id}>
-                                <TableCell
-                                    className={"text-gray-600 font-medium"}
-                                >
-                                    {period.name}
-                                </TableCell>
-                                <TableCell className={"font-bold"}>
-                                    {Number(period.total_emissions).toFixed(2)}
-                                </TableCell>
-                                <TableCell
-                                    className={`font-semibold text-green-800 flex items-center ${Number(period.variation_percentage) > 0 ? "text-red-600" : "text-emerald-700"} `}
-                                >
-                                    {period.variation_percentage}%
-                                    {Number(period.variation_percentage) > 0 ? (
-                                        <ArrowUp size={15} />
-                                    ) : (
-                                        <ArrowDown size={15} />
-                                    )}
-                                </TableCell>
-                            </TableRow>
-                        );
-                    })}
-                </TableBody>
-            </Table>
+
+            {limitedPeriods.length > 0 ? (
+                <Table>
+                    <TableHeader>
+                        <TableRow className={"text-gray-500"}>
+                            <TableCell>Periodo</TableCell>
+                            <TableCell>
+                                Total KgCO<sub>2</sub>e
+                            </TableCell>
+                            <TableCell>Variacion</TableCell>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        {limitedPeriods.map((period) => {
+                            return (
+                                <TableRow key={period.id}>
+                                    <TableCell
+                                        className={"text-gray-600 font-medium"}
+                                    >
+                                        {period.name}
+                                    </TableCell>
+                                    <TableCell className={"font-bold"}>
+                                        {Number(period.total_emissions).toFixed(
+                                            2,
+                                        )}
+                                    </TableCell>
+                                    <TableCell
+                                        className={`font-semibold text-green-800 flex items-center ${Number(period.variation_percentage) > 0 ? "text-red-600" : "text-emerald-700"} `}
+                                    >
+                                        {period.variation_percentage}%
+                                        {Number(period.variation_percentage) >
+                                        0 ? (
+                                            <ArrowUp size={15} />
+                                        ) : (
+                                            <ArrowDown size={15} />
+                                        )}
+                                    </TableCell>
+                                </TableRow>
+                            );
+                        })}
+                    </TableBody>
+                </Table>
+            ) : (
+                <p className="flex justify-center items-center w-full h-full font-bold text-emerald-800">
+                    Aun no tienes registros
+                </p>
+            )}
         </div>
     );
 }
