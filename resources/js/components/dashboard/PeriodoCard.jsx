@@ -19,9 +19,9 @@ export default function PeriodoCard({ isPrincipal = true }) {
     );
     return (
         <div
-            className={`${isPrincipal ? "bg-green-500/10" : ""}  lg:max-h-40 h-full rounded-xl p-4 flex flex-col gap-2 relative`}
+            className={`${isPrincipal ? "bg-green-500/10" : ""}  lg:max-h-40 h-full rounded-xl px-4 py-3 flex flex-col gap-2 relative`}
         >
-            <div className="flex gap-2 flex-wrap">
+            <div className="flex gap-2 items-center flex-wrap">
                 <IconItemsDashboard
                     icon={Calendar}
                     colorIcon={"text-emerald-900"}
@@ -34,9 +34,9 @@ export default function PeriodoCard({ isPrincipal = true }) {
                     <ChevronRight />
                 </a>
             </div>
-            <div className="flex flex-col gap-4 px-2">
-                <div className="flex flex-col">
-                    <p className="text-emerald-900 font-bold">
+            <div className="px-2">
+                <div className="flex gap-2 flex-col">
+                    <p className="text-emerald-900 font-bold text-[15px]">
                         {fecha.toLocaleDateString("es-ES", {
                             month: "long",
                             year: "numeric",

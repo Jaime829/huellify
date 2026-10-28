@@ -16,21 +16,48 @@ class TransportEmissionFactorSeeder extends Seeder
 
         DB::table('emission_factors')->insert([
             [
-                'name' => 'Vehículo liviano nuevo promedio - Colombia 2019 (ciclo NEDC)',
+                'name' => 'Automóvil particular - Gasolina (Valle de Aburrá)',
                 'category_id' => 1,
                 'measurement_unit_id' => 1,
-                'value' => 0.16481,
-                'source' => 'Ministerio de Minas y Energía (2022), línea base de consumo de combustible de vehículos livianos nuevos (GFEI), año 2019: 7.06 lge/100 km, 164.81 gCO2/km, evaluado en ciclo NEDC. https://www.minenergia.gov.co/documents/9957/05102022_AIN_Normativa_de_EE_veh%C3%ADculos_livianos_OARE_V5.pdf',
-                'valid_from' => '2019-01-01',
+                'value' => 0.2700,
+                'source' => 'CO2e estimado. Ríos Bedoya, Marquet y Miralles-Guasch (2016), Revista Transporte y Territorio 15, Cuadro 1: 263 g CO2/km por vehículo (ocupación 1.39 pasajeros) x 1.0266 (aporte de CH4 y N2O móviles de gasolina, FECOC 2016). https://www.redalyc.org/pdf/3330/333047931017.pdf',
+                'valid_from' => '2016-01-01',
                 'created_at' => now()
             ],
             [
-                'name' => 'Motocicleta <200 cc promedio - muestra colombiana',
+                'name' => 'Motocicleta <200 cc promedio - muestra colombiana (Medellín, 1500 msnm)',
                 'category_id' => 1,
                 'measurement_unit_id' => 1,
-                'value' => 0.0474,
-                'source' => 'UPME y Universidad de Antioquia, FECOC+ Fase 3 (2023), Cap. 2, Tabla 2.3. CO2 promedio de 40 motocicletas (<200 cc) medidas en banco de rodillos a 1500 msnm: 47.4 g/km. Solo CO2 tanque-a-rueda. https://docs.upme.gov.co/DemandayEficiencia/Doc_Hemeroteca/FECOC+2-3.pdf',
+                'value' => 0.0487,
+                'source' => 'CO2e estimado. CO2 medido 47.4 g/km (UPME y U. de Antioquia, FECOC+ Fase 3, 2023, Tabla 2.3) x 1.0266 (aporte de CH4 y N2O móviles de la gasolina E10, FECOC 2016 Tablas 5 y 6, GWP 25 y 298). https://docs.upme.gov.co/DemandayEficiencia/Doc_Hemeroteca/FECOC+2-3.pdf',
                 'valid_from' => '2023-01-01',
+                'created_at' => now()
+            ],
+            [
+                'name' => 'Bus urbano 18 pasajeros - Valle de Aburrá (por vehículo-km)',
+                'category_id' => 1,
+                'measurement_unit_id' => 1,
+                'value' => 0.6410,
+                'source' => 'CO2e estimado, por vehículo. Ríos Bedoya, Marquet y Miralles-Guasch (2016), Cuadro 1: bus 630.26 g CO2/km x 1.0170 (aporte de CH4 y N2O móviles del diésel, FECOC 2016). https://www.redalyc.org/pdf/3330/333047931017.pdf',
+                'valid_from' => '2021-01-01',
+                'created_at' => now()
+            ],
+            [
+                'name' => 'Bicicleta - emisiones directas',
+                'category_id' => 1,
+                'measurement_unit_id' => 1,
+                'value' => 0.0000,
+                'source' => 'Ríos Bedoya, Marquet y Miralles-Guasch (2016), Cuadro 1: 0 g CO2/pasajero-km (se asume sin emisiones directas). https://www.redalyc.org/pdf/3330/333047931017.pdf',
+                'valid_from' => '2016-01-01',
+                'created_at' => now()
+            ],
+            [
+                'name' => 'Caminata - emisiones directas',
+                'category_id' => 1,
+                'measurement_unit_id' => 1,
+                'value' => 0.0000,
+                'source' => 'Ríos Bedoya, Marquet y Miralles-Guasch (2016), Cuadro 1: 0 g CO2/pasajero-km (se asume sin emisiones directas). https://www.redalyc.org/pdf/3330/333047931017.pdf',
+                'valid_from' => '2016-01-01',
                 'created_at' => now()
             ],
 
@@ -51,7 +78,27 @@ class TransportEmissionFactorSeeder extends Seeder
                 'created_at' => now()
 
             ],
-        ]);
+            [
+                'emission_factor_id' => 3,
+                'transport_type_id' => 3,
+                'fuel_type_id' => 2,
+                'created_at' => now()
 
+            ],
+            [
+                'emission_factor_id' => 4,
+                'transport_type_id' => 5,
+                'fuel_type_id' => 6,
+                'created_at' => now()
+
+            ],
+            [
+                'emission_factor_id' => 5,
+                'transport_type_id' => 6,
+                'fuel_type_id' => 6,
+                'created_at' => now()
+
+            ],
+        ]);
     }
 }

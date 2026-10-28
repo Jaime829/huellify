@@ -28,7 +28,7 @@ export default function MostFrequentActivity() {
                         {mostFrequentActivity
                             ? (mostFrequentActivity.total_emissions /
                                   footPrint) *
-                              100
+                                  100 || 0
                             : 0}
                         % del total
                     </p>

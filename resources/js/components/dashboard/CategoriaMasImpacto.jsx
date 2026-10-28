@@ -6,11 +6,14 @@ import activityIcon from "../util/ActivityIcon";
 
 export default function CategoriaMasImpacto() {
     const mostFrequentActivity = authUser().mostFrequentActivity;
-    const totalEmissions = Number(authUser().last_footprint.total_emissions);
-    const nombreActividad = mostFrequentActivity.name
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
+    const totalEmissions = Number(
+        authUser().last_footprint?.total_emissions ?? 0,
+    );
+    const nombreActividad =
+        mostFrequentActivity?.name
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "") ?? "";
 
     return (
         <div className="flex flex-col p-4 rounded-md shadow bg-white gap-2 row-start-4 row-end-5 col-start-3 col-end-4 lg:row-start-auto lg:row-end-auto lg:col-start-auto lg:col-end-auto">
@@ -35,7 +38,7 @@ export default function CategoriaMasImpacto() {
                                             mostFrequentActivity.total_emissions,
                                         ) /
                                             totalEmissions) *
-                                        100
+                                            100 || 0
                                     ).toFixed()}
                                     % de tus emisiones totales.
                                 </p>

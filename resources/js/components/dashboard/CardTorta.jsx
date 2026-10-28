@@ -13,25 +13,27 @@ const activityColors = {
 
 export default function CardTorta({ wrap = false }) {
     const footPrint = authUser().last_footprint?.total_emissions ?? 0;
-    const emissions_per_categories = authUser().emissions_per_categories;
+    const emissions_per_categories = authUser()?.emissions_per_categories;
 
-    const datos = {
-        labels: Object.keys(emissions_per_categories),
-        datasets: [
-            {
-                label: "Total emisiones",
-                data: Object.values(emissions_per_categories),
-                backgroundColor: [
-                    "rgba(22, 163, 74, 1)", // Verde
-                    "rgba(96, 165, 250, 1)", // Azul
-                    "rgba(192, 132, 252, 1)", // morado
-                    "rgba(75, 85, 99, 1)", // gris
-                ],
-                borderColor: ["#166534", "#1e40af", "#6b21a8", "#1f2937"],
-                borderWidth: 1,
-            },
-        ],
-    };
+    const datos = emissions_per_categories
+        ? {
+              labels: Object.keys(emissions_per_categories),
+              datasets: [
+                  {
+                      label: "Total emisiones",
+                      data: Object.values(emissions_per_categories),
+                      backgroundColor: [
+                          "rgba(22, 163, 74, 1)", // Verde
+                          "rgba(96, 165, 250, 1)", // Azul
+                          "rgba(192, 132, 252, 1)", // morado
+                          "rgba(75, 85, 99, 1)", // gris
+                      ],
+                      borderColor: ["#166534", "#1e40af", "#6b21a8", "#1f2937"],
+                      borderWidth: 1,
+                  },
+              ],
+          }
+        : {};
 
     const opciones = {
         responsive: true,
@@ -61,7 +63,7 @@ export default function CardTorta({ wrap = false }) {
                             <Doughnut data={datos} options={opciones} />
                             <div className="absolute top-1/2 right-1/2 -translate-y-1/2 translate-x-1/2 flex flex-col items-center justify-center">
                                 <p className="text-[10px] font-bold">
-                                    {Number(footPrint).toFixed(2)}
+                                    {Number(footPrint).toFixed(2) || 0}
                                 </p>
                                 <span className="text-[8px] text-gray-500">
                                     kg CO<sub>2</sub>E
@@ -88,7 +90,7 @@ export default function CardTorta({ wrap = false }) {
                                                 <p className="text-gray-700 text-[10px] font-bold">
                                                     {(
                                                         (value / footPrint) *
-                                                        100
+                                                            100 || 0
                                                     ).toFixed()}
                                                     %
                                                 </p>

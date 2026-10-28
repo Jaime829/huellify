@@ -1,6 +1,5 @@
 import { usePage } from "@inertiajs/react";
-import { IconCircleCheck, IconLeafFilled, IconX } from "@tabler/icons-react";
-import { ClosedCaptionIcon } from "lucide-react";
+import { IconCircleX, IconLeafFilled, IconX } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
 export default function ToastMessage() {
@@ -12,6 +11,12 @@ export default function ToastMessage() {
             setVisible(true);
 
             const timer = setTimeout(() => setVisible(false), 5000);
+            return () => clearTimeout(timer);
+        }
+        if (flash.error) {
+            setVisible(true);
+
+            const timer = setTimeout(() => setVisible(false), 8000);
             return () => clearTimeout(timer);
         }
     }, [setVisible, flash]);
@@ -44,7 +49,28 @@ export default function ToastMessage() {
                     </li>
                 )}
 
-                {flash.errors}
+                {flash.error && (
+                    <li
+                        className={`${visible ? "flex" : "hidden"} relative items-center animate-wobble border-l-8 border-red-500 gap-2 text-xs w-64 h-16 bg-white shadow p-2 rounded-md`}
+                    >
+                        <span className="p-1 text-red-700 rounded-full bg-green-600/10">
+                            <IconCircleX />
+                        </span>
+                        <div>
+                            <p className="font-bold text-red-800">Exito</p>
+                            <p className="text-gray-400 font-[12px]">
+                                {flash.error}
+                            </p>
+                        </div>
+
+                        <button
+                            onClick={() => setVisible(false)}
+                            className="absolute top-1 right-1 cursor-pointer"
+                        >
+                            <IconX size={16} />
+                        </button>
+                    </li>
+                )}
             </ul>
         </>
     );

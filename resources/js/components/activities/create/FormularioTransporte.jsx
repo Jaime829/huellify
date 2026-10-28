@@ -4,6 +4,7 @@ import { authUser } from "@/stores/user-store";
 import { Link, useForm } from "@inertiajs/react";
 import { route } from "ziggy-js";
 import ErrorsList from "./ErrorsList";
+import ToastMessage from "@/components/ToastMessage";
 
 export default function FormularioTransporte() {
     const transportTypes = authUser().transport.types;
@@ -34,6 +35,7 @@ export default function FormularioTransporte() {
     };
     return (
         <form onSubmit={handleSubmit} className="py-4 flex flex-col gap-4">
+            <ToastMessage />
             <ErrorsList errors={errors} />
             <HeadSeccionActivitiesForm
                 number={2}
@@ -86,45 +88,53 @@ export default function FormularioTransporte() {
                         )}
                     </div>
                 </div>
-                <div className="w-1/2 flex flex-col gap-1">
-                    <label
-                        className="text-gray-500 font-medium"
-                        htmlFor="fuel_type"
-                    >
-                        Tipo de combustible
-                    </label>
-                    <div className="flex flex-col">
-                        <div
-                            className={`${errors.fuel_type_id ? "border-red-500" : ""} flex items-center gap-2 border p-2 rounded-md text-gray-500`}
+                {data.transport_type_id == 5 || data.transport_type_id == 6 ? (
+                    <input type="hidden" name="fuel_type_id" value={6} />
+                ) : (
+                    <div className="w-1/2 flex flex-col gap-1">
+                        <label
+                            className="text-gray-500 font-medium"
+                            htmlFor="fuel_type"
                         >
-                            <Fuel />
-                            <select
-                                className="flex-1 focus:outline-none"
-                                value={data.fuel_type_id}
-                                onChange={(e) =>
-                                    setData("fuel_type_id", e.target.value)
-                                }
-                                name="fuel_type_id"
-                                id="fuel_type_id"
+                            Tipo de combustible
+                        </label>
+                        <div className="flex flex-col">
+                            <div
+                                className={`${errors.fuel_type_id ? "border-red-500" : ""} flex items-center gap-2 border p-2 rounded-md text-gray-500`}
                             >
-                                {fuelTypes.map((type) => {
-                                    if (type.name === "Mixta") return null; // Si es Mixta, no renderiza nada
-                                    return (
-                                        <option key={type.id} value={type.id}>
-                                            {type.name}
-                                        </option>
-                                    );
-                                })}
-                            </select>
+                                <Fuel />
+                                <select
+                                    className="flex-1 focus:outline-none"
+                                    value={data.fuel_type_id}
+                                    onChange={(e) =>
+                                        setData("fuel_type_id", e.target.value)
+                                    }
+                                    name="fuel_type_id"
+                                    id="fuel_type_id"
+                                >
+                                    {fuelTypes.map((type) => {
+                                        if (type.name === "Mixta") return null; // Si es Mixta, no renderiza nada
+                                        return (
+                                            <option
+                                                key={type.id}
+                                                value={type.id}
+                                            >
+                                                {type.name}
+                                            </option>
+                                        );
+                                    })}
+                                </select>
+                            </div>
+                            {errors.fuel_type_id && (
+                                <p className="text-red-500 text-[12px]">
+                                    {errors.fuel_type_id}
+                                </p>
+                            )}
                         </div>
-                        {errors.fuel_type_id && (
-                            <p className="text-red-500 text-[12px]">
-                                {errors.fuel_type_id}
-                            </p>
-                        )}
                     </div>
-                </div>
+                )}
             </div>
+
             <div className="w-full flex gap-4 ">
                 <div className="w-1/2 flex flex-col gap-1">
                     <label
