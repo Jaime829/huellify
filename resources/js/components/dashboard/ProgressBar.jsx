@@ -8,7 +8,7 @@ export function ProgressBar({ porcentaje, color }) {
             <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
                 <div
                     className={`h-full ${color} rounded-full transition-all duration-500`}
-                    style={{ width: `${porcentaje}%` }}
+                    style={{ width: `${porcentaje || 0}%` }}
                 />
             </div>
         </div>

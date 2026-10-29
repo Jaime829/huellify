@@ -2,18 +2,13 @@ import { authUser } from "@/stores/user-store";
 import { Link } from "@inertiajs/react";
 import { CircleCheck, CircleX, Edit, Pencil } from "lucide-react";
 import UpdateQuickAction from "./UpdateQuickAction";
+import UserAvatar from "../UserAvatar";
 
 export default function UserResumen() {
     const user = authUser().user;
     return (
-        <div className="flex bg-green-500/10 h-full col-span-3 rounded-md p-4 relative">
-            <div className="w-28 h-28 rounded-full overflow-hidden">
-                <img
-                    className="object-cover w-full h-full"
-                    src="/images/assets/user-avatar.png"
-                    alt=""
-                />
-            </div>
+        <div className="flex bg-green-500/10 h-full col-span-3 gap-2 rounded-md p-4 relative">
+            <UserAvatar size={28} isNav={false} />
 
             <div>
                 <div className="flex flex-col gap-4">

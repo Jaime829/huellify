@@ -5,7 +5,7 @@ import { authUser } from "@/stores/user-store";
 Chart.register(ArcElement, Tooltip, Legend);
 
 const activityColors = {
-    transport: "bg-green-600",
+    transport: "bg-emerald-600",
     energy: "bg-blue-400",
     food: "bg-purple-400",
     waste: "bg-gray-600",
@@ -23,7 +23,7 @@ export default function CardTorta({ wrap = false }) {
                       label: "Total emisiones",
                       data: Object.values(emissions_per_categories),
                       backgroundColor: [
-                          "rgba(22, 163, 74, 1)", // Verde
+                          "rgba(64, 168, 109, 1)", // Verde
                           "rgba(96, 165, 250, 1)", // Azul
                           "rgba(192, 132, 252, 1)", // morado
                           "rgba(75, 85, 99, 1)", // gris

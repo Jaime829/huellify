@@ -51,7 +51,7 @@ export default function ToastMessage() {
 
                 {flash.error && (
                     <li
-                        className={`${visible ? "flex" : "hidden"} relative items-center animate-wobble border-l-8 border-red-500 gap-2 text-xs w-64 h-16 bg-white shadow p-2 rounded-md`}
+                        className={`${visible ? "flex" : "hidden"} relative items-center animate-wobble border-l-8 border-red-500 gap-2 text-xs w-64 h-16 bg-red-600/10 shadow p-2 rounded-md`}
                     >
                         <span className="p-1 text-red-700 rounded-full bg-green-600/10">
                             <IconCircleX />

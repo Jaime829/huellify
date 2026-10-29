@@ -14,7 +14,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.landing.index', [
+        'title' => 'Inicio'
+    ]);
 })->name('landing');
 
 Route::middleware('guest')
@@ -75,5 +77,4 @@ Route::middleware(['auth', 'verified'])
 
 
         Route::post('/create/transport', [TransportActivityController::class, 'store'])->name('transport.store');
-
     });
