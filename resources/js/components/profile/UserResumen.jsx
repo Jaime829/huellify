@@ -8,7 +8,7 @@ export default function UserResumen() {
     const user = authUser().user;
     return (
         <div className="flex bg-green-500/10 h-full col-span-3 gap-2 rounded-md p-4 relative">
-            <UserAvatar size={28} isNav={false} />
+            <UserAvatar size={24} isNav={false} />
 
             <div>
                 <div className="flex flex-col gap-4">

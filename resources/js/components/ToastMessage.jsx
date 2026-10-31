@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 export default function ToastMessage() {
     const { flash } = usePage().props;
     const [visible, setVisible] = useState(false);
+    console.log(flash);
 
     useEffect(() => {
         if (flash.status) {

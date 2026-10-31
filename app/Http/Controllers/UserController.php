@@ -33,7 +33,7 @@ class UserController
 
         $user->update($data);
 
-        return back()->with('succes', 'Perfil actualizado con exito');
+        return back()->with('status', 'Perfil actualizado con exito');
     }
 
     /**
