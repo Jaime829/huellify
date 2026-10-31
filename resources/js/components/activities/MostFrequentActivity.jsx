@@ -26,9 +26,11 @@ export default function MostFrequentActivity() {
                     </p>
                     <p className="text-gray-500 font-semibold text-[12px]">
                         {mostFrequentActivity
-                            ? (mostFrequentActivity.total_emissions /
-                                  footPrint) *
-                                  100 || 0
+                            ? (
+                                  (mostFrequentActivity.total_emissions /
+                                      footPrint) *
+                                      100 || 0
+                              ).toFixed(2)
                             : 0}
                         % del total
                     </p>

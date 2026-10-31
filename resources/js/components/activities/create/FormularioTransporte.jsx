@@ -5,6 +5,7 @@ import { Link, useForm } from "@inertiajs/react";
 import { route } from "ziggy-js";
 import ErrorsList from "./ErrorsList";
 import ToastMessage from "@/components/ToastMessage";
+import FormActivityLabel from "@/components/util/FormActivityLabel";
 
 export default function FormularioTransporte() {
     const transportTypes = authUser().transport.types;
@@ -54,12 +55,9 @@ export default function FormularioTransporte() {
 
             <div className="w-full flex gap-4">
                 <div className="w-1/2 flex flex-col gap-1">
-                    <label
-                        className="text-gray-500 font-medium"
-                        htmlFor="transport"
-                    >
+                    <FormActivityLabel htmlFor="transport">
                         Medio de transporte
-                    </label>
+                    </FormActivityLabel>
                     <div className="flex flex-col">
                         <div className="flex items-center gap-2 border p-2 rounded-md text-gray-500">
                             <Car />
@@ -92,12 +90,9 @@ export default function FormularioTransporte() {
                     <input type="hidden" name="fuel_type_id" value={6} />
                 ) : (
                     <div className="w-1/2 flex flex-col gap-1">
-                        <label
-                            className="text-gray-500 font-medium"
-                            htmlFor="fuel_type"
-                        >
+                        <FormActivityLabel htmlFor="fuel_type">
                             Tipo de combustible
-                        </label>
+                        </FormActivityLabel>
                         <div className="flex flex-col">
                             <div
                                 className={`${errors.fuel_type_id ? "border-red-500" : ""} flex items-center gap-2 border p-2 rounded-md text-gray-500`}
@@ -137,12 +132,10 @@ export default function FormularioTransporte() {
 
             <div className="w-full flex gap-4 ">
                 <div className="w-1/2 flex flex-col gap-1">
-                    <label
-                        className="text-gray-500 font-medium"
-                        htmlFor="transport"
-                    >
+                    <FormActivityLabel htmlFor="quantity">
                         Distancia recorrida
-                    </label>
+                    </FormActivityLabel>
+
                     <div className="flex flex-col">
                         <div
                             className={`${errors.quantity || errors.measurement_unit_id ? "border-red-500" : ""} flex items-center gap-2 border p-2 rounded-md text-gray-500`}
@@ -159,6 +152,7 @@ export default function FormularioTransporte() {
                                     }
                                     min={0}
                                     name="quantity"
+                                    id="quantity"
                                 />
                             </div>
                             <select
@@ -195,12 +189,9 @@ export default function FormularioTransporte() {
                     </div>
                 </div>
                 <div className="w-1/2 flex flex-col gap-1 ">
-                    <label
-                        className="text-gray-500 font-medium"
-                        htmlFor="activity_date"
-                    >
+                    <FormActivityLabel htmlFor="activity_date">
                         Fecha de la actividad
-                    </label>
+                    </FormActivityLabel>
                     <div className="flex flex-col">
                         <div
                             className={`${errors.activity_date ? "border-red-500" : ""} flex items-center gap-2 border p-2 rounded-md text-gray-500`}
@@ -237,15 +228,9 @@ export default function FormularioTransporte() {
                 />
                 <div className="flex flex-col gap-2">
                     <div className="flex flex-col gap-2">
-                        <label
-                            className="text-gray-500 font-medium"
-                            htmlFor="description"
-                        >
-                            Descripcion{" "}
-                            <span className="text-gray-400 font-light">
-                                (opcional)
-                            </span>
-                        </label>
+                        <FormActivityLabel htmlFor="description">
+                            Descripcion (opcional)
+                        </FormActivityLabel>
                         <textarea
                             className={` ${errors.description ? "border-red-500" : ""} resize-none h-20 border-2 border-gray-300 rounded-md focus:outline-none p-1 text-gray-600`}
                             name="description"
@@ -266,7 +251,7 @@ export default function FormularioTransporte() {
             </div>
 
             <div className="flex items-center justify-between">
-                <Link className="py-2 px-4 border border-emerald-600 rounded-md text-[14px] text-gray-600 font-medium">
+                <Link href={route('activities.index')} className="py-2 px-4 border border-emerald-600 rounded-md text-[14px] text-gray-600 font-medium">
                     Cancelar
                 </Link>
                 <button

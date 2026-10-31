@@ -3,7 +3,6 @@ import { authUser } from "@/stores/user-store";
 import { useState } from "react";
 import FormularioTransporte from "./FormularioTransporte";
 import FormularioEnergia from "./FormularioEnergia";
-import FormularioResiduos from "./FormularioResiduos";
 import HeadSeccionActivitiesForm from "./HeadSeccionActivitiesForm";
 import activityIcon from "@/components/util/ActivityIcon";
 
@@ -52,7 +51,6 @@ export default function ActivitiesCreateMain() {
 
             {category === "transporte" && <FormularioTransporte />}
             {category === "energia" && <FormularioEnergia />}
-            {category === "residuos" && <FormularioResiduos />}
         </div>
     );
 }

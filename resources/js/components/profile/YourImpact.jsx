@@ -12,7 +12,6 @@ export default function () {
                 year: "numeric",
             }),
     );
-    console.log(periodoActual[0]);
 
     return (
         <div className="bg-white rounded-md shadow flex flex-col gap-3 col-span-2 p-4">

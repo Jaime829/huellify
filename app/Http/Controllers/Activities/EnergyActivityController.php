@@ -1,46 +1,31 @@
 <?php
 
-namespace App\Http\Controllers\Transport;
+namespace App\Http\Controllers\Activities;
 
-use App\Http\Requests\TransportActivityRequest;
+use App\Http\Requests\EnergyActivityRequest;
 use App\Models\Activity;
 use App\Models\CarbonFootprint;
-use App\Models\EmissionFactor;
+use App\Models\EnergyEmissionFactor;
+use App\Models\EnergySource;
 use App\Models\Period;
-use App\Models\Period as ModelsPeriod;
-use App\Models\TransportActivity;
-use App\Models\TransportEmissionFactor;
-use App\Models\TransportType;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Inertia\Inertia;
 
-class TransportActivityController
+class EnergyActivityController
 {
-
-
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(TransportActivityRequest $request)
+    public function store(EnergyActivityRequest $request)
     {
         $data = $request->validated();
 
-        $fuel_type = $data['transport_type_id'] == 2 || $data['transport_type_id'] == 5 || $data['transport_type_id'] == 6  ? 6 : $data['fuel_type_id'];
-
-        $emission_factor = TransportEmissionFactor::where([
-            'transport_type_id' => $data['transport_type_id'],
-            'fuel_type_id' => $fuel_type
+        $emission_factor = EnergyEmissionFactor::where([
+            'energy_source_id' => $data['energy_source_id'],
         ])->get()->first();
 
         if (!$emission_factor) {
-            return back()->withErrors(['status' => 'Aun no tenemos un factor de emision para ese transporte o combustible']);
+            return back()->withErrors(['status' => 'Aun no tenemos un factor de emision para esa fuente de energia']);
         }
-
-
 
         $period = Period::where('user_id', auth()->id())
             ->whereDate('start_date', '<=', $data['activity_date'])
@@ -68,14 +53,13 @@ class TransportActivityController
             ]);
         }
 
-
         try {
             DB::transaction(function () use ($carbon_footprint, $emission_factor, $data, $period) {
-                $name_activity = TransportType::find($data['transport_type_id'], ['name'])->name;
+                $name_activity = EnergySource::find($data['energy_source_id'], ['name'])->name;
 
                 $activity = Activity::create([
                     'period_id' => $period->id,
-                    'activity_category_id' => 1,
+                    'activity_category_id' => 2,
                     'emission_factor_id' => $emission_factor->emission_factor_id,
                     'activity_date' => $data['activity_date'],
                     'name' => $name_activity,
@@ -84,9 +68,8 @@ class TransportActivityController
                     'measurement_unit_id' => $data['measurement_unit_id']
                 ]);
 
-                $activity->transportDetail()->create([
-                    'transport_type_id' => $data['transport_type_id'],
-                    'fuel_type_id' => $data['fuel_type_id']
+                $activity->energyDetail()->create([
+                    'energy_source_id' => $data['energy_source_id'],
                 ]);
 
                 $emissions =  $data['quantity'] * $emission_factor->emissionFactor->value;
@@ -94,7 +77,7 @@ class TransportActivityController
 
                 $carbon_footprint->items()->create([
                     'activity_id' => $activity->id,
-                    'category_id' => 1,
+                    'category_id' => 2,
                     'activity_description' => $activity->description,
                     'quantity' => $activity->quantity,
                     'measurement_unit_id' => $data['measurement_unit_id'],
@@ -113,37 +96,5 @@ class TransportActivityController
                 'Hubo un error al registrar la actividad: ' . $e->getMessage()
             );
         }
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(TransportActivity $transportActivity)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(TransportActivity $transportActivity)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, TransportActivity $transportActivity)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(TransportActivity $transportActivity)
-    {
-        //
     }
 }

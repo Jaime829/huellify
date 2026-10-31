@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\Activity;
 use App\Models\ActivityCategory;
 use App\Models\CarbonFootprint;
+use App\Models\EnergySource;
 use App\Models\FuelType;
 use App\Models\MeasurementUnit;
 use App\Models\Period;
@@ -103,6 +104,10 @@ class HandleInertiaRequests extends Middleware
                     'types' => TransportType::all(),
                     'fuelTypes' => FuelType::all(),
                     'measurementUnits' => MeasurementUnit::where('measurement_type', '=', 'distance')->get()
+                ],
+                'energy' => [
+                    'measurementUnits' => MeasurementUnit::where('measurement_type', '=', 'energy')->get(),
+                    'energy_sources' => EnergySource::all(),
                 ],
                 'mostFrequentActivity' => $categoriaMasContaminante,
                 'last_footprint' => $latestPeriod ? $latestPeriod->carbonFootprint : null,

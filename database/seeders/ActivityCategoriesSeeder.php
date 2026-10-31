@@ -16,8 +16,6 @@ class ActivityCategoriesSeeder extends Seeder
         DB::table('activity_categories')->insert([
             ['name' => 'Transporte', 'slug' => 'transport', 'created_at' => now()],
             ['name' => 'Energía', 'slug' => 'energy', 'created_at' => now()],
-            ['name' => 'Alimentación', 'slug' => 'food', 'created_at' => now()],
-            ['name' => 'Residuos', 'slug' => 'waste', 'created_at' => now()]
         ]);
     }
 }

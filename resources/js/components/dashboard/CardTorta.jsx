@@ -91,7 +91,7 @@ export default function CardTorta({ wrap = false }) {
                                                     {(
                                                         (value / footPrint) *
                                                             100 || 0
-                                                    ).toFixed()}
+                                                    ).toFixed(2)}
                                                     %
                                                 </p>
                                             </div>

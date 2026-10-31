@@ -1,13 +1,14 @@
 <?php
 
 use App\Events\WelcomeUser;
+use App\Http\Controllers\Activities\EnergyActivityController;
 use App\Http\Controllers\ActivitiesController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Dashboard\DashboardController;
-use App\Http\Controllers\Transport\TransportActivityController;
+use App\Http\Controllers\Activities\TransportActivityController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -77,4 +78,5 @@ Route::middleware(['auth', 'verified'])
 
 
         Route::post('/create/transport', [TransportActivityController::class, 'store'])->name('transport.store');
+        Route::post('/create/energy', [EnergyActivityController::class, 'store'])->name('energy.store');
     });
