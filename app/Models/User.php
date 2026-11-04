@@ -60,6 +60,14 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Recommendation::class, 'user_recommendations');
     }
 
+    public function habits()
+    {
+        return $this->belongsToMany(Habit::class, 'user_habits')
+            ->using(User_habit::class)
+            ->withPivot('status', 'weekly_target', 'adopted_at', 'paused_at', 'abandoned_at')
+            ->withTimestamps();
+    }
+
     /**
      * Get the attributes that should be cast.
      *

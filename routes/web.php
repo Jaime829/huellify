@@ -2,13 +2,14 @@
 
 use App\Events\WelcomeUser;
 use App\Http\Controllers\Activities\EnergyActivityController;
-use App\Http\Controllers\ActivitiesController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Activities\TransportActivityController;
+use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\HabitController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -68,13 +69,15 @@ Route::middleware(['auth', 'verified'])
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
         Route::get('/profile', [UserController::class, 'index'])->name('profile');
+        Route::get('/habits', [HabitController::class, 'index'])->name('habits');
+        Route::get('/habits/explore', [HabitController::class, 'explore'])->name('habits.explore');
     });
 Route::middleware(['auth', 'verified'])
     ->prefix('activities')
     ->name('activities.')
     ->group(function () {
-        Route::get('/', [ActivitiesController::class, 'index'])->name('index');
-        Route::get('/create', [ActivitiesController::class, 'create'])->name('create');
+        Route::get('/', [ActivityController::class, 'index'])->name('index');
+        Route::get('/create', [ActivityController::class, 'create'])->name('create');
 
 
         Route::post('/create/transport', [TransportActivityController::class, 'store'])->name('transport.store');

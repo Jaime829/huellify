@@ -44,7 +44,11 @@ export default function AsideNav() {
                         />
                         <NavEnlace url={"#"} texto={"Transporte"} icon={Car} />
                         <NavEnlace url={"#"} texto={"Energia"} icon={Zap} />
-                        <NavEnlace url={"#"} texto={"Habitos"} icon={Leaf} />
+                        <NavEnlace
+                            url={route("dashboard.habits")}
+                            texto={"Habitos"}
+                            icon={Leaf}
+                        />
                         <NavEnlace
                             url={"#"}
                             texto={"Historial"}

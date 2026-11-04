@@ -6,7 +6,7 @@ use App\Models\ActivityCategory;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class ActivitiesController
+class ActivityController
 {
     public function index()
     {
