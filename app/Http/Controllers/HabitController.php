@@ -10,7 +10,7 @@ class HabitController
     public function index()
     {
 
-        return Inertia::render('Dashboard/Habits/Hibits');
+        return Inertia::render('Dashboard/Habits/Habits');
     }
     public function explore()
     {
