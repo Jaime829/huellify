@@ -5,7 +5,6 @@ import { authUser } from "@/stores/user-store";
 import LateralInformation from "./LateralInformation";
 import activityIcon from "../util/ActivityIcon";
 
-
 export default function ActivitiesMain({ lateralController }) {
     const activityCategories = authUser().activitiesCategory;
 

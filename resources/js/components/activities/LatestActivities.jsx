@@ -1,11 +1,13 @@
 import { Table, TableBody, TableCell, TableRow } from "../ui/table";
 import { DropdownMenuActions } from "./DropdownActions";
 import { authUser } from "@/stores/user-store";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import activityIcon from "../util/ActivityIcon";
 
 export default function LatestActivities() {
-    const data = authUser().activities;
+    const { props } = usePage();
+    const data = props.activities;
+    // const data = authUser().activities;
     const activities = data.data.map((activity) => {
         const fecha = new Date(activity.updated_at);
 

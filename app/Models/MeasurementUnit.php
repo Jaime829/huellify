@@ -10,4 +10,9 @@ class MeasurementUnit extends Model
     {
         return $this->hasMany(Activity::class);
     }
+
+    public function habits()
+    {
+        return $this->hasMany(Habit::class);
+    }
 }

@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 
-class Habit_category extends Model
+#[Fillable('name', 'slug', 'description', 'is_active')]
+class HabitCategory extends Model
 {
     public function habits()
     {

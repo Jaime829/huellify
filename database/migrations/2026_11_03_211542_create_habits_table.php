@@ -17,9 +17,12 @@ return new class extends Migration
             $table->foreignId('measurement_unit_id')->nullable()->constrained('measurement_units')->restrictOnDelete();
             $table->string('name', 150);
             $table->string('slug', 170);
+            $table->decimal('recommended_weekly_target', 10, 2)
+                ->nullable()
+                ->unsigned();
             $table->text('description');
             $table->text('instructions');
-            $table->string('icon', 100);
+            $table->text('icon');
             $table->enum('tracking_type', ['boolean', 'quantity']);
             $table->boolean('is_active')->default(true);
             $table->timestamps();

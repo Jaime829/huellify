@@ -123,18 +123,6 @@ class HandleInertiaRequests extends Middleware
                     6 =>    Period::whereDate('start_date', '>=', Carbon::now()->subMonths(6))->where('user_id', '=', $user->id)->join('carbon_footprints as cf', 'periods.id', '=', 'cf.period_id')->select('periods.name as mes', 'cf.total_emissions as emisiones')->get(),
                     12 =>    Period::whereDate('start_date', '>=', Carbon::now()->subMonths(12))->where('user_id', '=', $user->id)->join('carbon_footprints as cf', 'periods.id', '=', 'cf.period_id')->select('periods.name as mes', 'cf.total_emissions as emisiones')->get(),
                 ] : null,
-                'activities' => $user ? DB::table('periods as p')
-                    ->join('activities as a', 'p.id', '=', 'a.period_id')
-                    ->join('activity_categories as ac', 'a.activity_category_id', '=', 'ac.id')
-                    ->join('carbon_footprint_items as cfi', 'a.id', '=', 'cfi.activity_id')
-                    ->where('p.user_id', $user->id)
-                    ->when($typeFilter && $typeFilter !== 'all', function ($query) use ($typeFilter) {
-                        return $query->where('ac.id', $typeFilter);
-                    })
-                    ->select('a.*', 'ac.name as category_name', 'cfi.emissions')
-                    ->paginate(5)
-                    ->withQueryString()
-                    : null,
 
             ],
             'flash' => [

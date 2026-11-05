@@ -10,7 +10,7 @@ export default function Explore() {
             <Head title="Explorar Habitos" />
             <main className="flex min-h-screen">
                 <AsideNav />
-                <section className="flex flex-col flex-1 bg-gray-50">
+                <section className="flex flex-col flex-1 ">
                     <HeaderDashboard />
                     <ExploreHabitsMain />
                 </section>

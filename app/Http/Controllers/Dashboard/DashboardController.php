@@ -17,6 +17,6 @@ class DashboardController
     public function habits()
     {
 
-        return Inertia::render('Dashboard/Hibits');
+        return Inertia::render('Dashboard/Habits/Habits');
     }
 }

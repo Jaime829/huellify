@@ -23,7 +23,9 @@ class DatabaseSeeder extends Seeder
             EnergySourcesSeeder::class,
             RecommendationsSeeder::class,
             TransportEmissionFactorSeeder::class,
-            EnergyEmissionFactorSeeder::class
+            EnergyEmissionFactorSeeder::class,
+            HabitCategorySeeder::class,
+            HabitSeeder::class
         ]);
     }
 }
