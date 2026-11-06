@@ -4,16 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Models\Habit;
 use App\Models\HabitCategory;
+use App\Models\User_habit;
+use App\Models\UserHabit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
+use function Pest\Laravel\isAuthenticated;
 
 class HabitController
 {
     public function index()
     {
+        $userHabit = Auth::user()->habits;
+        $userHabitFormateado = $userHabit->map(
+            function ($habit) {
+                $habit->habit_category;
+                return $habit;
+            }
+        );
 
-        return Inertia::render('Dashboard/Habits/Habits');
+
+        return Inertia::render(
+            'Dashboard/Habits/Habits',
+            ['userHabits' => $userHabitFormateado]
+        );
     }
     public function explore(Request $request)
     {
@@ -37,5 +52,23 @@ class HabitController
                 'habitCategories' => HabitCategory::all()
             ]
         );
+    }
+
+    public function adopt(Request $request, Habit $habit)
+    {
+        $data = $request->validate([
+            'weekly_target' => ['required', 'numeric']
+        ]);
+
+        $user = $request->user();
+
+        $userHabit =  UserHabit::create([
+            'user_id' => $user->id,
+            'habit_id' => $habit->id,
+            'weekly_target' => $data['weekly_target'],
+            'adopted_at' => now()
+        ]);
+
+        return $userHabit ? redirect()->route('dashboard.habits')->with('status', "Hábito adoptado con exito") : back()->with('error', 'Hubo un error al adoptar hábito');
     }
 }

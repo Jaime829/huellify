@@ -15,6 +15,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Enums\UserRole;
 use Carbon\Carbon;
 use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Support\Facades\Auth;
 use Override;
 
 #[Fillable(['name', 'email', 'password', 'last_login', 'description'])]
@@ -63,9 +64,12 @@ class User extends Authenticatable implements MustVerifyEmail
     public function habits()
     {
         return $this->belongsToMany(Habit::class, 'user_habits')
-            ->using(User_habit::class)
-            ->withPivot('status', 'weekly_target', 'adopted_at', 'paused_at', 'abandoned_at')
-            ->withTimestamps();
+            ->using(UserHabit::class)
+            ->withPivot('paused_at');
+    }
+    public function isAuthenticated()
+    {
+        return  Auth::check();
     }
 
     /**

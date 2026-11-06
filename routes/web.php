@@ -71,6 +71,7 @@ Route::middleware(['auth', 'verified'])
         Route::get('/profile', [UserController::class, 'index'])->name('profile');
         Route::get('/habits', [HabitController::class, 'index'])->name('habits');
         Route::get('/habits/explore', [HabitController::class, 'explore'])->name('habits.explore');
+        Route::post('/habits/{habit}/adopt', [HabitController::class, 'adopt'])->name('habits.adopt');
     });
 Route::middleware(['auth', 'verified'])
     ->prefix('activities')
