@@ -5,28 +5,33 @@ import {
 } from "@tabler/icons-react";
 import HabitCard from "./HabitCard";
 import MyHabitsTable from "./MyHabitsTable";
+import { usePage } from "@inertiajs/react";
+import { authUser } from "@/stores/user-store";
 
 export default function HabitsContent() {
+    const { numberAdoptedHabits, numberActiveHabits, monthActions } =
+        usePage().props;
+
     return (
         <div className="flex flex-col gap-4">
-            <div className="flex gap-2">
+            <div className="flex gap-3">
                 <HabitCard
                     icon={IconLeafFilled}
                     title={"Hábitos adoptados"}
-                    value={5}
-                    text={"de recomendaciones"}
+                    value={numberAdoptedHabits}
+                    text={"En total"}
                 />
                 <HabitCard
                     icon={IconCircleCheckFilled}
                     title={"Hábitos activos"}
-                    value={3}
-                    text={"en seguimiento"}
+                    value={numberActiveHabits}
+                    text={"Actualmente en práctica"}
                 />
                 <HabitCard
                     icon={IconChartBarPopular}
                     title={"Acciones este mes"}
-                    value={12}
-                    text={"registradas"}
+                    value={monthActions}
+                    text={"Registros realizados"}
                 />
             </div>
             <MyHabitsTable />

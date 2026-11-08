@@ -65,7 +65,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Habit::class, 'user_habits')
             ->using(UserHabit::class)
-            ->withPivot('paused_at');
+            ->withPivot('paused_at', 'status', 'weekly_target', 'adopted_at', 'id');
     }
     public function isAuthenticated()
     {

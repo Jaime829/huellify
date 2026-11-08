@@ -1,5 +1,11 @@
-import { usePage } from "@inertiajs/react";
-import { IconCircleX, IconLeafFilled, IconX } from "@tabler/icons-react";
+import { usePage, router } from "@inertiajs/react";
+import {
+    IconCircleX,
+    IconInfoCircle,
+    IconInfoCircleFilled,
+    IconLeafFilled,
+    IconX,
+} from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
 export default function ToastMessage() {
@@ -7,20 +13,15 @@ export default function ToastMessage() {
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
-        if (flash.status) {
+        if (flash.status?.text || flash.error?.text || flash.noChange?.text) {
             setVisible(true);
 
-            const timer = setTimeout(() => setVisible(false), 5000);
+            const tiempo = flash.status ? 4000 : 6000;
+            const timer = setTimeout(() => setVisible(false), tiempo);
+
             return () => clearTimeout(timer);
         }
-        if (flash.error) {
-            setVisible(true);
-
-            const timer = setTimeout(() => setVisible(false), 8000);
-            return () => clearTimeout(timer);
-        }
-    }, [setVisible, flash]);
-
+    }, [flash.status?.time, flash.error?.time, flash.noChange?.time]);
     if (!visible) return null;
 
     return (
@@ -36,7 +37,7 @@ export default function ToastMessage() {
                         <div>
                             <p className="font-bold text-emerald-800">Exito</p>
                             <p className="text-gray-400 font-[12px]">
-                                {flash.status}
+                                {flash.status.text}
                             </p>
                         </div>
 
@@ -51,15 +52,39 @@ export default function ToastMessage() {
 
                 {flash.error && (
                     <li
-                        className={`${visible ? "flex" : "hidden"} relative items-center animate-wobble border-l-8 border-red-500 gap-2 text-xs w-64 h-16 bg-red-600/10 shadow p-2 rounded-md`}
+                        className={`${visible ? "flex" : "hidden"} relative items-center animate-wobble border-l-8 border-red-500 gap-2 text-xs w-64 h-16 bg-white shadow p-2 rounded-md`}
                     >
-                        <span className="p-1 text-red-700 rounded-full bg-green-600/10">
+                        <span className="p-1 text-red-700 rounded-full bg-red-600/10">
                             <IconCircleX />
                         </span>
                         <div>
-                            <p className="font-bold text-red-800">Exito</p>
+                            <p className="font-bold text-red-800">Error</p>
                             <p className="text-gray-400 font-[12px]">
-                                {flash.error}
+                                {flash.error.text}
+                            </p>
+                        </div>
+
+                        <button
+                            onClick={() => setVisible(false)}
+                            className="absolute top-1 right-1 cursor-pointer"
+                        >
+                            <IconX size={16} />
+                        </button>
+                    </li>
+                )}
+                {flash.noChange && (
+                    <li
+                        className={`${visible ? "flex" : "hidden"} relative items-center animate-wobble border-l-8 border-gray-500 gap-2 text-xs w-64 h-fit bg-white shadow p-2 rounded-md`}
+                    >
+                        <span className="p-1 text-gray-700 rounded-full">
+                            <IconInfoCircle />
+                        </span>
+                        <div>
+                            <p className="font-bold text-gray-800">
+                                Sin cambios
+                            </p>
+                            <p className="text-gray-400 font-[12px]">
+                                {flash.noChange.text}
                             </p>
                         </div>
 

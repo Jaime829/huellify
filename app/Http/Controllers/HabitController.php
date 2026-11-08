@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Habit;
 use App\Models\HabitCategory;
+use App\Models\HabitLog;
 use App\Models\User_habit;
 use App\Models\UserHabit;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -14,12 +16,22 @@ use function Pest\Laravel\isAuthenticated;
 
 class HabitController
 {
-    public function index()
+    public function index(Request $request)
     {
-        $userHabit = Auth::user()->habits;
-        $userHabitFormateado = $userHabit->map(
+
+        $user = Auth::user();
+
+        $filter_status = $request->query('status');
+
+        $userHabits = $user->habits()->when($filter_status && $filter_status !== 'all', function ($query) use ($filter_status) {
+            $query->where('user_habits.status', $filter_status);
+        })->get();
+
+        $userHabitsFormateado = $userHabits->map(
             function ($habit) {
                 $habit->habit_category;
+                $habit->pivot->habitLogs;
+                $habit->lastRecord = $habit->pivot->habitLogs()->latest('recorded_at')->first(['created_at']);
                 return $habit;
             }
         );
@@ -27,7 +39,20 @@ class HabitController
 
         return Inertia::render(
             'Dashboard/Habits/Habits',
-            ['userHabits' => $userHabitFormateado]
+            [
+                'userHabits' => $userHabitsFormateado,
+                'numberAdoptedHabits' => UserHabit::where('user_id', '=', $user->id)->count(),
+                'numberActiveHabits' => UserHabit::where([
+                    ['user_id', '=', $user->id],
+                    ['status', '=', 'active']
+                ])->count(),
+                'monthActions' => HabitLog::whereHas('userHabit', function ($query) use ($user) {
+                    return $query->where('user_id', $user->id);
+                })
+                    ->whereMonth('recorded_at', now()->month)
+                    ->whereYear('recorded_at', now()->year)
+                    ->count()
+            ]
         );
     }
     public function explore(Request $request)
@@ -62,13 +87,24 @@ class HabitController
 
         $user = $request->user();
 
-        $userHabit =  UserHabit::create([
-            'user_id' => $user->id,
-            'habit_id' => $habit->id,
-            'weekly_target' => $data['weekly_target'],
-            'adopted_at' => now()
-        ]);
+        try {
+            $userHabit =  UserHabit::create([
+                'user_id' => $user->id,
+                'habit_id' => $habit->id,
+                'weekly_target' => $data['weekly_target'],
+                'adopted_at' => now()
+            ]);
 
-        return $userHabit ? redirect()->route('dashboard.habits')->with('status', "Hábito adoptado con exito") : back()->with('error', 'Hubo un error al adoptar hábito');
+            return $userHabit ? redirect()->route('dashboard.myhabits')->with('status', "Hábito adoptado con exito") : back()->with('error', 'Hubo un error al adoptar hábito');
+        } catch (QueryException $e) {
+            if (
+                $e->getCode() === '23505'
+            ) {
+                return back()->with(
+                    'error',
+                    'Ya adoptaste ese habito, selecciona otro.'
+                );
+            }
+        }
     }
 }

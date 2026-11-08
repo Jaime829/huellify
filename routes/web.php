@@ -11,6 +11,8 @@ use App\Http\Controllers\Activities\TransportActivityController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\HabitController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserHabitController;
+use App\Models\UserHabit;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -69,10 +71,20 @@ Route::middleware(['auth', 'verified'])
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
         Route::get('/profile', [UserController::class, 'index'])->name('profile');
-        Route::get('/habits', [HabitController::class, 'index'])->name('habits');
-        Route::get('/habits/explore', [HabitController::class, 'explore'])->name('habits.explore');
         Route::post('/habits/{habit}/adopt', [HabitController::class, 'adopt'])->name('habits.adopt');
+        Route::get('/habits/explore', [HabitController::class, 'explore'])->name('habits.explore');
+        Route::get('/my-habits', [HabitController::class, 'index'])->name('myhabits');
+        Route::get('/my-habits/{userHabit}/logs', [UserHabitController::class, 'history'])->name('habits.recordProgress');
+        Route::post('/my-habits/{userHabit}/logs', [UserHabitController::class, 'recordProgress'])->name('habits.recordProgress');
+        Route::patch('/my-habits/{userHabit}', [UserHabitController::class, 'update'])->name('myhabit.update');
+        Route::delete('/my-habits/{userHabit}', [UserHabitController::class, 'destroy'])->name('myhabit.destroy');
     });
+
+Route::middleware(['auth', 'verified'])
+    ->prefix('habits')
+    ->name('habits.')
+    ->group(function () {});
+
 Route::middleware(['auth', 'verified'])
     ->prefix('activities')
     ->name('activities.')

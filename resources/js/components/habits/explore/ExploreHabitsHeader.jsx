@@ -1,18 +1,23 @@
-import { IconLeafFilled } from "@tabler/icons-react";
+import { Link } from "@inertiajs/react";
+import { ArrowLeft } from "lucide-react";
+import { route } from "ziggy-js";
 
 export default function ExploreHabitsHeader() {
     return (
         <div className="relative h-52 w-full flex items-center p-4">
+            <Link href={route('dashboard.myhabits')} className="absolute top-2 left-2 z-10 p-2 text-emerald-700 text-[12px] flex items-center gap-1 hover:text-emerald-900">
+                <ArrowLeft size={15} /> Volver a mis hábitos
+            </Link>
             <img
                 className="absolute inset-0 w-full h-full object-cover z-1"
                 src="/images/assets/explore-habit-bg.jpeg"
                 alt=""
             />
-            <div className="absolute z-10 flex gap-2">
+            <div className="absolute z-10 flex gap-2 mt-6">
                 <div className="bg-green-500/15 w-20 h-20  aspect-square rounded-full flex justify-center items-center">
                     <img
                         className="w-[70%] h-[70%]"
-                        src="/images/assets/leaf-asset.png"
+                        src="/images/assets/leaf-asset.webp"
                         alt="Leaf Asset"
                     />
                 </div>

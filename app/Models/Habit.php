@@ -16,10 +16,13 @@ class Habit extends Model
     public function users()
     {
         return $this->belongsToMany(User::class, 'user_habits')
-            ->using(User_habit::class)
+            ->using(UserHabit::class)
             ->withPivot('status', 'weekly_target', 'adopted_at', 'paused_at', 'abandoned_at')
             ->withTimestamps();
     }
+
+
+    // public function
 
     public function measurement_unit()
     {

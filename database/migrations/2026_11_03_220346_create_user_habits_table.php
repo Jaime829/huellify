@@ -20,6 +20,8 @@ return new class extends Migration
             $table->timestamp('adopted_at');
             $table->timestamp('paused_at')->nullable();
             $table->timestamp('abandoned_at')->nullable();
+            $table->unique(['user_id', 'habit_id']);
+
             $table->timestamps();
         });
     }

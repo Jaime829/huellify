@@ -1,4 +1,4 @@
-import { ChevronRight, Pencil, User } from "lucide-react";
+import {  Pencil } from "lucide-react";
 
 import {
     DialogHeader,

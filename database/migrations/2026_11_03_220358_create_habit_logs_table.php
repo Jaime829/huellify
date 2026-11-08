@@ -14,9 +14,15 @@ return new class extends Migration
         Schema::create('habit_logs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_habit_id')->constrained('user_habits')->cascadeOnDelete();
-            $table->timestamp('recorded_at');
+            $table->date('recorded_at');
             $table->decimal('quantity', 10, 2)->nullable();
             $table->text('notes')->nullable();
+
+            $table->unique(
+                ['user_habit_id', 'recorded_at'],
+                'habit_logs_user_habit_date_unique'
+            );
+
             $table->timestamps();
         });
     }

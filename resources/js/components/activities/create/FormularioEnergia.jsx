@@ -19,7 +19,6 @@ export default function FormularioEnergia() {
     const ultimoDia = new Date(anio, mes + 1, 0).toISOString().split("T")[0];
 
     const fechaHoy = hoy.toISOString().split("T")[0];
-    console.log(measurementUnits[0].id);
 
     const { post, errors, processing, data, setData } = useForm({
         energy_source_id: 1,

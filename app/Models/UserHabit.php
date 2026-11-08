@@ -11,4 +11,14 @@ class UserHabit extends Pivot
     protected $primaryKey = 'id';
     public $incrementing = true;
     protected $table = 'user_habits';
+
+    public function habitLogs()
+    {
+        return $this->hasMany(HabitLog::class, 'user_habit_id');
+    }
+
+    public function habit() {
+        return $this->belongsTo(Habit::class);
+    }
+
 }

@@ -15,13 +15,12 @@ import { Button } from "@/components/ui/button";
 import { DialogClose } from "radix-ui/dialog";
 import { useState } from "react";
 import { route } from "ziggy-js";
-import ToastMessage from "@/components/ToastMessage";
 
 export default function ExploreHabitsContent() {
-    const { props } = usePage();
-    const habits = props.habits;
-    const habitCategories = props.habitCategories;
+    const { habits, habitCategories } = usePage().props;
+
     const [selectedHabit, setSelectedHabit] = useState(null);
+
     const { post, data, setData, errors, processing } = useForm({
         weekly_target: null,
     });
@@ -43,12 +42,16 @@ export default function ExploreHabitsContent() {
         e.preventDefault();
         if (!selectedHabit) return;
 
-        post(route("dashboard.habits.adopt", selectedHabit));
+        post(route("dashboard.habits.adopt", selectedHabit), {
+            onSuccess: () => {
+                setSelectedHabit(null);
+            },
+            preserveScroll: true,
+        });
     };
 
     return (
         <div className="p-4 bg-white border-t rounded-t-xl flex flex-col gap-4 h-full">
-            <ToastMessage />
             <header className="flex justify-between">
                 <div className="flex gap-2">
                     <button

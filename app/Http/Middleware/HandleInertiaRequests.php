@@ -7,6 +7,7 @@ use App\Models\ActivityCategory;
 use App\Models\CarbonFootprint;
 use App\Models\EnergySource;
 use App\Models\FuelType;
+use App\Models\HabitLog;
 use App\Models\MeasurementUnit;
 use App\Models\Period;
 use App\Models\TransportType;
@@ -92,8 +93,6 @@ class HandleInertiaRequests extends Middleware
 
         $latestPeriod = $user ? $user->periods()->latest()->first() : null;
 
-        $typeFilter = $request->query('category_type');
-
 
         return array_merge(parent::share($request), [
             'auth' => [
@@ -124,11 +123,21 @@ class HandleInertiaRequests extends Middleware
                     12 =>    Period::whereDate('start_date', '>=', Carbon::now()->subMonths(12))->where('user_id', '=', $user->id)->join('carbon_footprints as cf', 'periods.id', '=', 'cf.period_id')->select('periods.name as mes', 'cf.total_emissions as emisiones')->get(),
                 ] : null,
 
+
             ],
             'flash' => [
-                'status' => fn() => $request->session()->get('status'),
-                'error'   => fn() => $request->session()->get('error'),
+                'status' => $request->session()->get('status')
+                    ? ['text' => $request->session()->get('status'), 'time' => microtime()]
+                    : null,
+
+                'error' => $request->session()->get('error')
+                    ? ['text' => $request->session()->get('error'), 'time' => microtime()]
+                    : null,
+                'noChange' => $request->session()->get('noChange')
+                    ? ['text' => $request->session()->get('noChange'), 'time' => microtime()]
+                    : null,
             ],
+
         ]);
     }
 }
