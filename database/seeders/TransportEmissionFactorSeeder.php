@@ -74,7 +74,7 @@ class TransportEmissionFactorSeeder extends Seeder
             [
                 'emission_factor_id' => 2,
                 'transport_type_id' => 2,
-                'fuel_type_id' => 6,
+                'fuel_type_id' => 1,
                 'created_at' => now()
 
             ],

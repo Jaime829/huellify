@@ -108,7 +108,7 @@ export default function FormularioTransporte() {
                                     id="fuel_type_id"
                                 >
                                     {fuelTypes.map((type) => {
-                                        if (type.name === "Mixta") return null; // Si es Mixta, no renderiza nada
+                                        if (type.name === "None") return null; // Si es Mixta, no renderiza nada
                                         return (
                                             <option
                                                 key={type.id}
@@ -251,7 +251,10 @@ export default function FormularioTransporte() {
             </div>
 
             <div className="flex items-center justify-between">
-                <Link href={route('activities.index')} className="py-2 px-4 border border-emerald-600 rounded-md text-[14px] text-gray-600 font-medium">
+                <Link
+                    href={route("activities.index")}
+                    className="py-2 px-4 border border-emerald-600 rounded-md text-[14px] text-gray-600 font-medium"
+                >
                     Cancelar
                 </Link>
                 <button

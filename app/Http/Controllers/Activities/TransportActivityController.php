@@ -27,7 +27,7 @@ class TransportActivityController
     {
         $data = $request->validated();
 
-        $fuel_type = $data['transport_type_id'] == 2 || $data['transport_type_id'] == 5 || $data['transport_type_id'] == 6  ? 6 : $data['fuel_type_id'];
+        $fuel_type = $data['fuel_type_id'];
 
         $emission_factor = TransportEmissionFactor::where([
             'transport_type_id' => $data['transport_type_id'],

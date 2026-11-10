@@ -19,7 +19,7 @@ class FuelTypesSeeder extends Seeder
             ['name' => 'Gas natural', 'created_at' => now()],
             ['name' => 'Gas licuado de petróleo', 'created_at' => now()],
             ['name' => 'Electricidad', 'created_at' => now()],
-            ['name' => 'Mixta', 'created_at' => now()],
+            ['name' => 'None', 'created_at' => now()],
         ]);
     }
 }

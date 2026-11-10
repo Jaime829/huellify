@@ -5,10 +5,8 @@ import { Link, usePage } from "@inertiajs/react";
 import activityIcon from "../util/ActivityIcon";
 
 export default function LatestActivities() {
-    const { props } = usePage();
-    const data = props.activities;
-    // const data = authUser().activities;
-    const activities = data.data.map((activity) => {
+    const { activities } = usePage().props;
+    const activitiesFormateadas = activities.data.map((activity) => {
         const fecha = new Date(activity.updated_at);
 
         const opcionesFecha = {
@@ -41,10 +39,10 @@ export default function LatestActivities() {
         <div className="flex flex-col gap-2 p-2 shadow rounded-md">
             <h3 className="font-bold text-emerald-900">Últimas actividades</h3>
             <div className="shadow rounded-md">
-                {activities.length > 0 ? (
+                {activitiesFormateadas.length > 0 ? (
                     <Table className={"bg-white rounded-md"}>
                         <TableBody>
-                            {activities.map((activity) => {
+                            {activitiesFormateadas.map((activity) => {
                                 const nombreActividad = activity.category_name
                                     .toLowerCase()
                                     .normalize("NFD")
@@ -104,7 +102,7 @@ export default function LatestActivities() {
                 )}
             </div>
             <div className="flex flex-wrap justify-end gap-1 mt-6">
-                {data.links.map((link, index) => {
+                {activities.links.map((link, index) => {
                     if (!link.url) {
                         return (
                             <span
