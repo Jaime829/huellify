@@ -1,12 +1,12 @@
 import {
     IconCircleCheckFilled,
-    IconCircleFilled,
     IconDots,
+    IconHistory,
     IconPlayerPause,
     IconPlayerPlay,
     IconPlayerPlayFilled,
 } from "@tabler/icons-react";
-import { router, useForm, usePage } from "@inertiajs/react";
+import { Link, router, useForm, usePage } from "@inertiajs/react";
 import SafeDBIcon from "../util/SafeDBIcon";
 
 import {
@@ -34,7 +34,6 @@ import {
     Clock,
     History,
     PencilIcon,
-    Play,
     PlusCircle,
     RotateCcw,
     Target,
@@ -46,14 +45,15 @@ import DoughnutChartHabits from "./DoughnutChartHabits";
 import { useState } from "react";
 import FormActivityLabel from "../util/FormActivityLabel";
 import { route } from "ziggy-js";
-import ModalAdoptHabit from "./ModalAdoptHabit";
 import ModalConfirmation from "./ModalConfirmation";
 import StatusIndicator from "../util/StatusIndicator";
+import ModalAdoptHabitEdit from "./ModalAdoptHabitEdit";
+import CategoryTag from "../util/CategoryTag";
 
 export default function MyHabitsTable() {
     const { userHabits } = usePage().props;
 
-    const { post, data, setData, errors, processing } = useForm({
+    const { post, data, setData, processing } = useForm({
         recorded_at: new Date().toISOString().split("T")[0],
         quantity: null,
         notes: null,
@@ -67,7 +67,6 @@ export default function MyHabitsTable() {
         habit: null,
     });
 
-    console.log(confirmationAction);
     const minDate = selectedHabit
         ? selectedHabit.pivot.adopted_at.split(" ")[0]
         : null;
@@ -89,15 +88,21 @@ export default function MyHabitsTable() {
         e.preventDefault();
         if (!selectedHabit) return;
 
-        post(route("dashboard.habits.recordProgress", selectedHabit.pivot.id), {
-            only: ["flash"],
-            preserveScroll: true,
-            preserveState: false,
-            onSuccess: () => {
-                setSelectedHabit(null);
-                router.reload({ only: ["userHabits", "monthActions"] });
+        post(
+            route(
+                "dashboard.habits.recordProgressStore",
+                selectedHabit.pivot.id,
+            ),
+            {
+                only: ["flash"],
+                preserveScroll: true,
+                preserveState: false,
+                onSuccess: () => {
+                    setSelectedHabit(null);
+                    router.reload({ only: ["userHabits", "monthActions"] });
+                },
             },
-        });
+        );
     };
 
     return (
@@ -146,18 +151,30 @@ export default function MyHabitsTable() {
                                         className="border rounded-lg flex flex-col gap-4 p-4"
                                     >
                                         <div className="flex items-center gap-2 w-full">
-                                            <div
-                                                className={`${habit.habit_category_id == 1 ? "bg-green-500/20 text-emerald-700" : "text-blue-700 bg-blue-500/20"} flex items-center justify-center h-16 aspect-square  rounded-lg`}
+                                            <Link
+                                                href={route(
+                                                    "dashboard.myhabit.show",
+                                                    habit.pivot.id,
+                                                )}
                                             >
-                                                <SafeDBIcon
-                                                    svgRawString={habit.icon}
-                                                />
-                                            </div>
+                                                <div
+                                                    className={`${habit.habit_category_id == 1 ? "bg-green-500/20 text-emerald-700" : "text-blue-700 bg-blue-500/20"} flex items-center justify-center h-16 aspect-square  rounded-lg`}
+                                                >
+                                                    <SafeDBIcon
+                                                        svgRawString={
+                                                            habit.icon
+                                                        }
+                                                    />
+                                                </div>
+                                            </Link>
                                             <div className="flex flex-col gap-2 flex-1">
                                                 <div className="flex gap-2 justify-end">
                                                     <StatusIndicator
                                                         status={
                                                             habit.pivot.status
+                                                        }
+                                                        categoryId={
+                                                            habit.habit_category_id
                                                         }
                                                     />
 
@@ -175,6 +192,21 @@ export default function MyHabitsTable() {
                                                             className={"mr-2"}
                                                         >
                                                             <DropdownMenuGroup>
+                                                                <DropdownMenuItem>
+                                                                    <Link
+                                                                        href={route(
+                                                                            "dashboard.habits.recordProgress",
+                                                                            habit
+                                                                                .pivot
+                                                                                .id,
+                                                                        )}
+                                                                        className="flex gap-1 items-center text-[12px] cursor-pointer"
+                                                                    >
+                                                                        <IconHistory />
+                                                                        Ver
+                                                                        historial
+                                                                    </Link>
+                                                                </DropdownMenuItem>
                                                                 {habit.pivot
                                                                     .status ===
                                                                     "active" && (
@@ -261,15 +293,6 @@ export default function MyHabitsTable() {
                                                                     .status ===
                                                                     "abandoned" && (
                                                                     <>
-                                                                        <DropdownMenuItem
-                                                                            className={
-                                                                                "text-[12px] cursor-pointer"
-                                                                            }
-                                                                        >
-                                                                            <History />
-                                                                            Ver
-                                                                            historial
-                                                                        </DropdownMenuItem>
                                                                         <DropdownMenuItem>
                                                                             <button
                                                                                 className="flex items-center gap-1 cursor-pointer w-fit text-[12px]"
@@ -347,84 +370,102 @@ export default function MyHabitsTable() {
                                                         </DropdownMenuContent>
                                                     </DropdownMenu>
                                                 </div>
-                                                <div className="flex flex-col gap-1">
-                                                    <p className="leading-4 text-[14px] font-bold">
-                                                        {habit.name}
-                                                    </p>
-                                                    <span
-                                                        className={`${habit.habit_category_id == 1 ? "text-emerald-800 bg-green-500/20" : "text-blue-800 bg-blue-500/20"} px-2 py-0.5 rounded-xl w-fit flex items-center justify-center text-[12px] font-semibold`}
-                                                    >
-                                                        {
-                                                            habit.habit_category
-                                                                .name
-                                                        }
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="flex flex-col gap-2">
-                                            <div className="flex flex-col gap-1">
-                                                {habit.pivot.status !==
-                                                    "active" && (
-                                                    <div className="flex gap-1">
-                                                        <Calendar
-                                                            color="#364153"
-                                                            size={20}
+                                                <Link
+                                                    href={route(
+                                                        "dashboard.myhabit.show",
+                                                        habit.pivot.id,
+                                                    )}
+                                                >
+                                                    <div className="flex flex-col gap-1">
+                                                        <p className="leading-4 text-[14px] font-bold">
+                                                            {habit.name}
+                                                        </p>
+                                                        <CategoryTag
+                                                            categoryId={
+                                                                habit.habit_category_id
+                                                            }
+                                                            categoryName={
+                                                                habit
+                                                                    .habit_category
+                                                                    .name
+                                                            }
+                                                            size={12}
                                                         />
-                                                        <div className="flex flex-col">
-                                                            <span className="text-[12px] text-gray-700 font-medium">
-                                                                Último registro
-                                                            </span>
-                                                            <p className="font-bold text-[14px]">
-                                                                {lastRecord ===
-                                                                "Invalid Date"
-                                                                    ? "Sin registros"
-                                                                    : lastRecord}
-                                                            </p>
-                                                        </div>
                                                     </div>
-                                                )}
-
-                                                <div className="flex flex-col gap-1">
-                                                    <span className="flex items-center gap-1 text-[12px] text-gray-700 font-medium">
-                                                        <Target size={15} />{" "}
-                                                        Objetivo semanal
-                                                    </span>
-                                                    <p className="text-gray-800 font-bold text-[18px]">
-                                                        {Number(
-                                                            habit.pivot
-                                                                .weekly_target,
-                                                        )}
-                                                        {habit.tracking_type ===
-                                                        "quantity"
-                                                            ? " Unidad de medida"
-                                                            : " Veces"}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                {habit.pivot.status ===
-                                                    "active" && (
-                                                    <HabitProgressBar
-                                                        color={
-                                                            habit.habit_category_id ==
-                                                            1
-                                                                ? "bg-emerald-600"
-                                                                : "bg-blue-600"
-                                                        }
-                                                        value={
-                                                            habit.pivot
-                                                                .habit_logs
-                                                                .length
-                                                        }
-                                                        total={Number(
-                                                            habit.pivot
-                                                                .weekly_target,
-                                                        )}
-                                                    />
-                                                )}
+                                                </Link>
                                             </div>
                                         </div>
+                                        <Link
+                                            href={route(
+                                                "dashboard.myhabit.show",
+                                                habit.pivot.id,
+                                            )}
+                                        >
+                                            <div className="flex flex-col gap-2">
+                                                <div className="flex flex-col gap-1">
+                                                    {habit.pivot.status !==
+                                                        "active" && (
+                                                        <div className="flex gap-1">
+                                                            <Calendar
+                                                                color="#364153"
+                                                                size={20}
+                                                            />
+                                                            <div className="flex flex-col">
+                                                                <span className="text-[12px] text-gray-700 font-medium">
+                                                                    Último
+                                                                    registro
+                                                                </span>
+                                                                <p className="font-bold text-[14px]">
+                                                                    {lastRecord ===
+                                                                    "Invalid Date"
+                                                                        ? "Sin registros"
+                                                                        : lastRecord}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    )}
+
+                                                    <div className="flex flex-col gap-1">
+                                                        <span className="flex items-center gap-1 text-[12px] text-gray-700 font-medium">
+                                                            <Target size={15} />{" "}
+                                                            Objetivo semanal
+                                                        </span>
+                                                        <p className="text-gray-800 font-bold text-[18px]">
+                                                            {Number(
+                                                                habit.pivot
+                                                                    .weekly_target,
+                                                            )}
+                                                            {habit.tracking_type ===
+                                                            "quantity"
+                                                                ? " Unidad de medida"
+                                                                : " Veces"}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    {habit.pivot.status ===
+                                                        "active" && (
+                                                        <HabitProgressBar
+                                                            color={
+                                                                habit.habit_category_id ==
+                                                                1
+                                                                    ? "bg-emerald-600"
+                                                                    : "bg-blue-600"
+                                                            }
+                                                            value={
+                                                                habit.pivot
+                                                                    .habit_logs
+                                                                    .length
+                                                            }
+                                                            total={Number(
+                                                                habit.pivot
+                                                                    .weekly_target,
+                                                            )}
+                                                        />
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </Link>
                                         {habit.pivot.status === "active" && (
                                             <button
                                                 className={`${habit.habit_category_id == 1 ? "bg-emerald-700" : "bg-blue-700"} cursor-pointer border bg- flex items-center justify-center gap-1 text-[14px] p-2 text-white font-medium rounded-lg`}
@@ -486,7 +527,9 @@ export default function MyHabitsTable() {
                                                     "flex gap-2 items-center font-bold text-gray-800 text-[18px]"
                                                 }
                                             >
-                                                <div className="w-14 h-14 aspect-square bg-green-500/20 text-emerald-700 flex items-center justify-center rounded-full">
+                                                <div
+                                                    className={` ${selectedHabit.habit_category_id !== 1 ? "bg-blue-500/20 text-blue-700" : "bg-green-500/20  text-emerald-700"} w-14 h-14 aspect-square flex items-center justify-center rounded-full`}
+                                                >
                                                     <SafeDBIcon
                                                         svgRawString={
                                                             selectedHabit.icon
@@ -504,7 +547,7 @@ export default function MyHabitsTable() {
                                                     {selectedHabit.name}
                                                 </span>
                                                 <span
-                                                    className={`${selectedHabit.habit_category_id !== 1 ? "bg-blue-400/20 text-blue-700" : "bg-green-400/20  text-emerald-700"} py-1 max-w-20 text-center rounded-xl font-medium`}
+                                                    className={`${selectedHabit.habit_category_id !== 1 ? "bg-blue-400/20 text-blue-700" : "bg-green-400/20  text-emerald-700"} py-1 px-2 w-fit text-center text rounded-xl font-medium`}
                                                 >
                                                     {
                                                         selectedHabit
@@ -517,7 +560,9 @@ export default function MyHabitsTable() {
                                                         : "Registra cada vez que realizas este hábito."}
                                                 </span>
                                             </DialogDescription>
-                                            <div className="flex items-center justify-between shadow rounded-lg bg-green-500/10 p-2">
+                                            <div
+                                                className={`${selectedHabit.habit_category_id !== 1 ? "bg-blue-400/20" : "bg-green-500/20"} flex items-center justify-between shadow rounded-lg p-2`}
+                                            >
                                                 <div className="flex gap-1 pr-2 border-r text-gray-700">
                                                     <Target size={20} />
                                                     <div>
@@ -542,7 +587,7 @@ export default function MyHabitsTable() {
                                                         <div className="flex gap-1">
                                                             <IconCircleCheckFilled
                                                                 size={20}
-                                                                color="#14c01d"
+                                                                color={`${selectedHabit.habit_category_id !== 1 ? "#1447e6" : "#14c01d"} `}
                                                             />
                                                             <div className="flex flex-col">
                                                                 <p className="leading-3 font-medium text-gray-700 text-[12px]">
@@ -581,14 +626,19 @@ export default function MyHabitsTable() {
                                                                     .pivot
                                                                     .weekly_target,
                                                             )}
+                                                            colorRGBA={`${selectedHabit.habit_category_id !== 1 ? "rgba(20, 71, 230, 1)" : "rgba(20, 192, 29, 1)"} `}
                                                         />
                                                     </div>
                                                 </div>
                                             </div>
                                             <p className="flex gap-1 px-1 py-1.5 bg-gray-50 items-center text-[12px] rounded-xl w-fit text-gray-700">
-                                                <Clock color="#007a55" />
+                                                <Clock
+                                                    color={`${selectedHabit.habit_category_id !== 1 ? "#1447e6" : "#007a55"} `}
+                                                />
                                                 Te faltan{" "}
-                                                <span className="text-emerald-700 font-bold">
+                                                <span
+                                                    className={`${selectedHabit.habit_category_id !== 1 ? "text-blue-700" : "text-emerald-700"} font-bold`}
+                                                >
                                                     {selectedHabit.tracking_type ===
                                                     "quantity"
                                                         ? "calculo"
@@ -699,9 +749,7 @@ export default function MyHabitsTable() {
                                                 </DialogClose>
                                                 <button
                                                     disabled={processing}
-                                                    className={
-                                                        "cursor-pointer bg-emerald-700 text-white hover:bg-emerald-900 h-8 gap-1.5 px-2.5 rounded-md"
-                                                    }
+                                                    className={`${selectedHabit.habit_category_id !== 1 ? "bg-blue-700 hover:bg-blue-900" : "bg-emerald-700 hover:bg-emerald-900"} cursor-pointer text-white  h-8 gap-1.5 px-2.5 rounded-md`}
                                                     type="submit"
                                                 >
                                                     {processing ? (
@@ -716,10 +764,9 @@ export default function MyHabitsTable() {
                                 </Dialog>
                             )}
 
-                            <ModalAdoptHabit
+                            <ModalAdoptHabitEdit
                                 selectedHabit={selectedHabitEdit}
                                 setSelectedHabit={setSelectedHabitEdit}
-                                isEdit={true}
                             />
                             <ModalConfirmation
                                 confirmationAction={confirmationAction}

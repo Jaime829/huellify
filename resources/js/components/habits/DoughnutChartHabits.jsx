@@ -3,7 +3,7 @@ import { Doughnut } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function DoughnutChartHabits({ value, total }) {
+export default function DoughnutChartHabits({ value, total, colorRGBA }) {
     const porcentajeActual = Math.round((value / total) * 100);
     const porcentajeRestante = 100 - porcentajeActual;
 
@@ -16,14 +16,10 @@ export default function DoughnutChartHabits({ value, total }) {
             {
                 data: [porcentajeActual, porcentajeRestante],
                 backgroundColor: [
-                    "rgba(2, 119, 46, 1)", // Color para el valor a destacar (Verde/Azul)
-                    "rgba(185, 247, 210, 1)",
-                    // "rgba(201, 203, 207, 0.4)", // Color gris neutro para el fondo/resto
+                    colorRGBA, // Color para el valor a destacar (Verde/Azul)
+                    "rgba(201, 203, 207, 0.4)", // Color gris neutro para el fondo/resto
                 ],
-                borderColor: [
-                    "rgba(75, 192, 192, 1)",
-                    "rgba(201, 203, 207, 1)",
-                ],
+                borderColor: [colorRGBA, "rgba(201, 203, 207, 1)"],
                 borderWidth: 1,
             },
         ],

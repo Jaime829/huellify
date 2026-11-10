@@ -12,38 +12,13 @@ use Inertia\Inertia;
 
 class UserHabitController
 {
-    public function recordProgress(Request $request, UserHabit $userHabit)
+
+    public function show(UserHabit $userHabit)
     {
-
-        $minDate = explode(' ', $userHabit->adopted_at)[0];
-
-
-        $data = $userHabit->habit->tracking_type === 'boolean' ? $request->validate(
-            [
-                'recorded_at' => ['date', 'required', "after_or_equal:{$minDate}", 'before_or_equal:today'],
-                'notes' => ['string', 'nullable']
-            ]
-        ) : $request->validate([
-            'recorded_at' => ['date', 'required', "after_or_equal:{$minDate}", 'before_or_equal:today'],
-            'quantity' => ['required', 'numeric'],
-            'notes' => ['string', 'nullable']
+        $userHabit->load(['habit', 'habit.habit_category', 'habitLogs']);
+        return Inertia::render('Dashboard/Habits/ShowMyHabit', [
+            'userHabit' => $userHabit
         ]);
-
-
-        try {
-            $userHabit->habitLogs()->create($data);
-            return  redirect()->route('dashboard.myhabits')->with('status', "Avance registrado con exito");
-        } catch (QueryException $e) {
-            if (
-                $e->getCode() === '23505' &&
-                str_contains($e->getMessage(), 'habit_logs_user_habit_date_unique')
-            ) {
-                return back()->with(
-                    'error',
-                    'Ya registraste un avance para este hábito en la fecha seleccionada.',
-                );
-            }
-        }
     }
 
     public function update(Request $request, UserHabit $userHabit)
@@ -118,37 +93,6 @@ class UserHabitController
                     return back()->with('error', 'Accion no válida.');
             }
         }
-    }
-
-    public function history(UserHabit $userHabit)
-    {
-        Gate::authorize('viewHistory', $userHabit);
-        $user = Auth::user();
-        $userHabit->load(['habit.habit_category']);
-
-        $userHabitActions = HabitLog::where('user_habit_id', '=', $userHabit->id)->whereHas('userHabit', function ($query) use ($user) {
-            return $query->where('user_id', $user->id);
-        })
-            ->latest()->with(['userHabit.habit'])->paginate(3);
-
-
-
-        return Inertia::render('Dashboard/Habits/UserHabitHistory', [
-            'userHabit' => $userHabit,
-            'userHabitActions' => $userHabitActions,
-            'monthActions' => HabitLog::whereHas('userHabit', function ($query) use ($user) {
-                return $query->where('user_id', $user->id);
-            })
-                ->where('user_habit_id', '=', $userHabit->id)
-                ->whereMonth('recorded_at', now()->month)
-                ->whereYear('recorded_at', now()->year)
-                ->count(),
-            'totalActions' => HabitLog::whereHas('userHabit', function ($query) use ($user) {
-                return $query->where('user_id', $user->id);
-            })->where('user_habit_id', '=', $userHabit->id)->count(),
-            'dateLastAction' => HabitLog::where('user_habit_id', '=', $userHabit->id)->latest()->first(['recorded_at']),
-            'dateFirstAction' => HabitLog::where('user_habit_id', '=', $userHabit->id)->oldest()->first(['recorded_at'])
-        ]);
     }
 
     public function destroy(UserHabit $userHabit)

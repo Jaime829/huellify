@@ -10,6 +10,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Activities\TransportActivityController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\HabitController;
+use App\Http\Controllers\HabitLogController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserHabitController;
 use App\Models\UserHabit;
@@ -74,8 +75,15 @@ Route::middleware(['auth', 'verified'])
         Route::post('/habits/{habit}/adopt', [HabitController::class, 'adopt'])->name('habits.adopt');
         Route::get('/habits/explore', [HabitController::class, 'explore'])->name('habits.explore');
         Route::get('/my-habits', [HabitController::class, 'index'])->name('myhabits');
-        Route::get('/my-habits/{userHabit}/logs', [UserHabitController::class, 'history'])->name('habits.recordProgress');
-        Route::post('/my-habits/{userHabit}/logs', [UserHabitController::class, 'recordProgress'])->name('habits.recordProgress');
+        Route::get('/my-habits/{userHabit}/logs', [HabitLogController::class, 'index'])->name('habits.recordProgress');
+        Route::post('/my-habits/{userHabit}/logs', [HabitLogController::class, 'store'])->name('habits.recordProgressStore');
+
+        Route::scopeBindings()->group(function () {
+            Route::put('/my-habits/{userHabit}/logs/{habitLog}', [HabitLogController::class, 'update'])->name('habits.updateLog');
+            Route::delete('/my-habits/{userHabit}/logs/{habitLog}', [HabitLogController::class, 'destroy'])->name('habits.destroyLog');
+        });
+
+        Route::get('/my-habits/{userHabit}', [UserHabitController::class, 'show'])->name('myhabit.show');
         Route::patch('/my-habits/{userHabit}', [UserHabitController::class, 'update'])->name('myhabit.update');
         Route::delete('/my-habits/{userHabit}', [UserHabitController::class, 'destroy'])->name('myhabit.destroy');
     });

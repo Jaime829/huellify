@@ -113,8 +113,6 @@ class HandleInertiaRequests extends Middleware
                 'emissions_per_categories' => $latestPeriod ? [
                     'transport' =>  $latestPeriod->carbonFootprint->items->where('category_id', 1)->sum('emissions'),
                     'energy' => $latestPeriod->carbonFootprint->items->where('category_id', 2)->sum('emissions'),
-                    'food' => $latestPeriod->carbonFootprint->items->where('category_id', 3)->sum('emissions'),
-                    'waste' => $latestPeriod->carbonFootprint->items->where('category_id', 4)->sum('emissions')
                 ] : null,
                 'periods' => $periodsWithVariation,
                 'periodsGraphic' => $user ? [

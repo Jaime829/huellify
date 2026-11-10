@@ -16,6 +16,12 @@ class UserHabitPolicy
         return $user->id === $userHabit->user_id;
     }
 
+
+    public function createLog(User $user, UserHabit $userHabit)
+    {
+        return $user->id === $userHabit->user_id;
+    }
+
     public function update(User $user, UserHabit $userHabit): bool
     {
         return $user->id === $userHabit->user_id;

@@ -17,6 +17,7 @@ import { route } from "ziggy-js";
 export default function ModalConfirmation({
     confirmationAction,
     setConfirmationAction,
+    userHabitId = null,
 }) {
     if (!confirmationAction.habit) return null;
 
@@ -32,7 +33,9 @@ export default function ModalConfirmation({
         patch(
             route(
                 "dashboard.myhabit.update",
-                confirmationAction.habit.pivot.id,
+                confirmationAction.habit.pivot?.id
+                    ? confirmationAction.habit.pivot?.id
+                    : userHabitId,
             ),
             {
                 onSuccess: () => {
@@ -50,7 +53,9 @@ export default function ModalConfirmation({
         destroy(
             route(
                 "dashboard.myhabit.destroy",
-                confirmationAction.habit.pivot.id,
+                confirmationAction.habit.pivot?.id
+                    ? confirmationAction.habit.pivot?.id
+                    : userHabitId,
             ),
             {
                 onSuccess: () => {
@@ -124,7 +129,7 @@ export default function ModalConfirmation({
                         </span>
                         <span className="rounded-xl text-gray-700 font-medium">
                             {confirmationAction.action === "resume" &&
-                                "¿Reanudar este hábito?"}
+                                "Al reactivar el hábito, podrás registrar tus avances de nuevo. Se continuará con el historial guardado antes de pausarlo."}
                             {confirmationAction.action === "pause" &&
                                 "Dejarás de registrar avances mientras el hábito esté pausado. Podrás retomarlo cuando quieras."}
                             {confirmationAction.action === "abandon" &&
@@ -136,6 +141,7 @@ export default function ModalConfirmation({
                         </span>
                     </DialogDescription>
                 </DialogHeader>
+
                 <form onSubmit={handleSubmit}>
                     <input
                         type="hidden"
@@ -169,7 +175,7 @@ export default function ModalConfirmation({
                             }
                         >
                             {confirmationAction.action === "resume" &&
-                                "¿Reanudar este hábito?"}
+                                "Reanudar hábito"}
                             {confirmationAction.action === "pause" &&
                                 (processing ? (
                                     <>
