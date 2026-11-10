@@ -45,6 +45,8 @@ export default function GraficoEmisiones() {
     const [periodo, setPeriodo] = useState(3);
     const datos = authUser().periodsGraphic[periodo];
 
+    console.log(datos);
+
     return (
         <div className="w-full rounded-xl border border-slate-200 bg-white p-4 shadow-sm col-span-3 lg:col-span-2">
             <div className="mb-4 flex flex-wrap items-center justify-between gap-3">

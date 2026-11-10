@@ -19,6 +19,7 @@ import { route } from "ziggy-js";
 export default function ExploreHabitsContent() {
     const { habits, habitCategories } = usePage().props;
 
+    console.log(habits);
     const [selectedHabit, setSelectedHabit] = useState(null);
 
     const { post, data, setData, errors, processing } = useForm({

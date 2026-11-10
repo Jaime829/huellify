@@ -6,7 +6,6 @@ import {
 import HabitCard from "./HabitCard";
 import MyHabitsTable from "./MyHabitsTable";
 import { usePage } from "@inertiajs/react";
-import { authUser } from "@/stores/user-store";
 
 export default function HabitsContent() {
     const { numberAdoptedHabits, numberActiveHabits, monthActions } =

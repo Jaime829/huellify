@@ -98,15 +98,15 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $user,
                 'dias_activos' => $user?->diasActivos() ?? 0,
-                'activitiesCategory' => ActivityCategory::all(),
+                'activitiesCategory' => fn() => ActivityCategory::all(),
                 'transport' => [
-                    'types' => TransportType::all(),
-                    'fuelTypes' => FuelType::all(),
+                    'types' => fn() => TransportType::all(),
+                    'fuelTypes' => fn() => FuelType::all(),
                     'measurementUnits' => MeasurementUnit::where('measurement_type', '=', 'distance')->get()
                 ],
                 'energy' => [
                     'measurementUnits' => MeasurementUnit::where('measurement_type', '=', 'energy')->get(),
-                    'energy_sources' => EnergySource::all(),
+                    'energy_sources' => fn() => EnergySource::all(),
                 ],
                 'mostFrequentActivity' => $categoriaMasContaminante,
                 'last_footprint' => $latestPeriod ? $latestPeriod->carbonFootprint : null,

@@ -38,17 +38,17 @@ import ModalAdoptHabitEdit from "../ModalAdoptHabitEdit";
 import ModalConfirmation from "../ModalConfirmation";
 import HabitProgressBar from "../HabitProgressBar";
 import { route } from "ziggy-js";
+import ModalRegistrarAvance from "../ModalRegistrarAvance";
 
 export default function ShowMyHabitMain() {
-    const { userHabit } = usePage().props;
+    const { userHabit, habitLogs, progress } = usePage().props;
     const [selectedHabitEdit, setSelectedHabitEdit] = useState(null);
+    const [selectedHabit, setSelectedHabit] = useState(null);
     const [confirmationAction, setConfirmationAction] = useState({
         isOpen: false,
         action: null,
         habit: null,
     });
-
-    const habitLogs = userHabit.habit_logs.slice(0, 3);
 
     return (
         <>
@@ -265,6 +265,7 @@ export default function ShowMyHabitMain() {
                             </h2>
                         </div>
                         <button
+                            onClick={() => setSelectedHabit(userHabit.habit)}
                             className={`${userHabit.habit.habit_category_id !== 1 ? "bg-blue-700" : "bg-emerald-700"} flex items-center p-2 text-white  rounded-xl cursor-pointer`}
                         >
                             <PlusCircle /> Registrar avance
@@ -308,14 +309,15 @@ export default function ShowMyHabitMain() {
                                             : "Veces registradas"}
                                     </small>
                                     <p className="font-semibold text-[18px]">
-                                        {userHabit.habit.tracking_type ===
+                                        {progress}
+                                        {/* {userHabit.habit.tracking_type ===
                                         "quantity"
                                             ? userHabit.habit_logs.reduce(
                                                   (acumulador, log) =>
                                                       acumulador + log.quantity,
                                                   0,
                                               )
-                                            : userHabit.habit_logs.length}
+                                            : habitLogs.length} */}
                                     </p>
                                 </div>
                             </div>
@@ -326,10 +328,10 @@ export default function ShowMyHabitMain() {
                                 <HabitProgressBar
                                     color={
                                         userHabit.habit.habit_category_id !== 1
-                                            ? "bg-blue-600 "
-                                            : "bg-emerald-600"
+                                            ? "blue-600 "
+                                            : "emerald-600"
                                     }
-                                    value={userHabit.habit_logs.length}
+                                    value={progress}
                                     total={Number(
                                         userHabit.weekly_target,
                                     ).toFixed()}
@@ -519,6 +521,16 @@ export default function ShowMyHabitMain() {
                 setConfirmationAction={setConfirmationAction}
                 userHabitId={userHabit.id}
             />
+            {selectedHabit && (
+                <ModalRegistrarAvance
+                    selectedHabit={selectedHabit}
+                    setSelectedHabit={setSelectedHabit}
+                    weekly_target={userHabit.weekly_target}
+                    progress={progress}
+                    adopted_at={userHabit.adopted_at}
+                    userHabitId={userHabit.id}
+                />
+            )}
         </>
     );
 }

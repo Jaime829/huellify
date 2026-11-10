@@ -7,12 +7,12 @@ use App\Models\HabitCategory;
 use App\Models\HabitLog;
 use App\Models\User_habit;
 use App\Models\UserHabit;
+use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
-use function Pest\Laravel\isAuthenticated;
 
 class HabitController
 {
@@ -20,6 +20,8 @@ class HabitController
     {
 
         $user = Auth::user();
+        $startOfWeek = now()->startOfWeek(Carbon::MONDAY);
+        $endOfWeek = now()->endOfWeek(Carbon::SUNDAY);
 
         $filter_status = $request->query('status');
 
@@ -28,9 +30,18 @@ class HabitController
         })->get();
 
         $userHabitsFormateado = $userHabits->map(
-            function ($habit) {
+            function ($habit) use ($startOfWeek, $endOfWeek) {
                 $habit->habit_category;
-                $habit->pivot->habitLogs;
+                $habit->progress = $habit->tracking_type === 'quantity' ? $habit->pivot->habitLogs()->whereBetween('recorded_at', [
+                    $startOfWeek->toDateString(),
+                    $endOfWeek->toDateString()
+                ])
+                    ->sum('quantity') : $habit->pivot->habitLogs()
+                    ->whereBetween('recorded_at', [
+                        $startOfWeek->toDateString(),
+                        $endOfWeek->toDateString()
+                    ])->count();
+
                 $habit->lastRecord = $habit->pivot->habitLogs()->latest('recorded_at')->first(['created_at']);
                 return $habit;
             }
@@ -40,13 +51,13 @@ class HabitController
         return Inertia::render(
             'Dashboard/Habits/Habits',
             [
-                'userHabits' => $userHabitsFormateado,
-                'numberAdoptedHabits' => UserHabit::where('user_id', '=', $user->id)->count(),
-                'numberActiveHabits' => UserHabit::where([
+                'userHabits' => fn() => $userHabitsFormateado,
+                'numberAdoptedHabits' => fn() => UserHabit::where('user_id', '=', $user->id)->count(),
+                'numberActiveHabits' => fn() => UserHabit::where([
                     ['user_id', '=', $user->id],
                     ['status', '=', 'active']
                 ])->count(),
-                'monthActions' => HabitLog::whereHas('userHabit', function ($query) use ($user) {
+                'monthActions' => fn() => HabitLog::whereHas('userHabit', function ($query) use ($user) {
                     return $query->where('user_id', $user->id);
                 })
                     ->whereMonth('recorded_at', now()->month)
@@ -64,7 +75,7 @@ class HabitController
         return Inertia::render(
             'Dashboard/Habits/Explore',
             [
-                'habits' => DB::table('habits as h')
+                'habits' => fn() => DB::table('habits as h')
                     ->join('habit_categories as hc', 'h.habit_category_id', '=', 'hc.id')
                     ->when($filter_type && $filter_type !== 'all', function ($query) use ($filter_type) {
                         return $query->where('hc.id', $filter_type);
@@ -74,7 +85,7 @@ class HabitController
                     })
                     ->select('h.*', 'hc.name as habit_category_name', 'hc.slug as habit_category_slug')
                     ->get(),
-                'habitCategories' => HabitCategory::all()
+                'habitCategories' => fn() => HabitCategory::all()
             ]
         );
     }

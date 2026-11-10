@@ -27,7 +27,7 @@ class HabitLogController
 
         return Inertia::render('Dashboard/Habits/UserHabitHistory', [
             'userHabit' => $userHabit,
-            'userHabitActions' => $userHabitActions,
+            'userHabitActions' => fn() => $userHabitActions,
             'monthActions' => HabitLog::whereHas('userHabit', function ($query) use ($user) {
                 return $query->where('user_id', $user->id);
             })
@@ -62,16 +62,10 @@ class HabitLogController
             'notes' => ['string', 'nullable']
         ]);
 
-
-        if ($numberActions >= $userHabit->weekly_target) {
-            return back()->with('noChange', 'Ya haz alcanzado tu objetivo semanal.');
-        }
-
-
         try {
             $userHabit->habitLogs()->create($data);
 
-            return  redirect()->route('dashboard.myhabits')->with('status', "Avance registrado con exito");
+            return  redirect()->back()->with('status', "Avance registrado con exito");
         } catch (QueryException $e) {
             if (
                 $e->getCode() === '23505' &&

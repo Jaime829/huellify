@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\HabitLog;
 use App\Models\UserHabit;
+use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,9 +16,30 @@ class UserHabitController
 
     public function show(UserHabit $userHabit)
     {
-        $userHabit->load(['habit', 'habit.habit_category', 'habitLogs']);
+        $startOfWeek = now()->startOfWeek(Carbon::MONDAY);
+        $endOfWeek = now()->endOfWeek(Carbon::SUNDAY);
+        $userHabit->load(['habit', 'habit.habit_category']);
+
+        $progress = $userHabit->habit->tracking_type === 'quantity' ? $userHabit->habitLogs()
+            ->whereBetween('recorded_at', [
+                $startOfWeek->toDateString(),
+                $endOfWeek->toDateString()
+            ])
+            ->sum('quantity') : $userHabit->habitLogs()
+            ->whereBetween('recorded_at', [
+                $startOfWeek->toDateString(),
+                $endOfWeek->toDateString()
+            ])->count();
+
         return Inertia::render('Dashboard/Habits/ShowMyHabit', [
-            'userHabit' => $userHabit
+            'userHabit' => $userHabit,
+            'habitLogs' => fn() => $userHabit->habitLogs()
+                ->whereBetween('recorded_at', [
+                    $startOfWeek->toDateString(),
+                    $endOfWeek->toDateString()
+                ])
+                ->get(),
+            'progress' => fn() => $progress
         ]);
     }
 
