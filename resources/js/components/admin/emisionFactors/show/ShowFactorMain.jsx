@@ -46,7 +46,7 @@ export default function ShowFactorMain() {
 
     return (
         <div className="flex flex-col gap-4 px-4 pt-4 pb-8">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:justify-between">
                 <div className="flex flex-col gap-2">
                     <p className="flex items-center gap-1 text-[14px]">
                         <Link
@@ -94,7 +94,7 @@ export default function ShowFactorMain() {
             </div>
             <div className="flex flex-col gap-4">
                 <div
-                    className={`flex justify-between items-center p-4 ${emissionFactor.category_id === 1 ? "bg-green-400/10 border-emerald-200" : "bg-blue-500/10 border-blue-200"}  rounded-lg border `}
+                    className={`flex flex-wrap gap-2 justify-between items-center p-4 ${emissionFactor.category_id === 1 ? "bg-green-400/10 border-emerald-200" : "bg-blue-500/10 border-blue-200"}  rounded-lg border `}
                 >
                     <div
                         className={`${emissionFactor.category_id === 1 ? "bg-green-500/20 text-emerald-700" : "bg-blue-500/20 text-blue-700"} h-20 w-20 rounded-full flex items-center justify-center`}
@@ -162,7 +162,7 @@ export default function ShowFactorMain() {
                         />
                         Información general
                     </p>
-                    <div className="grid grid-cols-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2">
                         <div className="flex flex-col gap-4">
                             <div className="flex gap-2">
                                 <div
@@ -343,7 +343,7 @@ export default function ShowFactorMain() {
                     </div>
                 </div>
 
-                <div className="p-4 flex items-center gap-4 text-blue-800 bg-blue-500/10 rounded-lg border border-blue-400">
+                <div className="p-4 flex flex-col sm:flex-row sm:items-center gap-4 text-blue-800 bg-blue-500/10 rounded-lg border border-blue-400">
                     <IconInfoCircleFilled size={35} />
                     <p className="font-medium text-[14px]">
                         Este factor se utiliza en los nuevos cálculos de huella

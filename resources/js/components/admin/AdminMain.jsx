@@ -55,7 +55,7 @@ export default function AdminMain() {
                     recomendaciones de sostenibilidad en Huellify.
                 </p>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <AdminCardInfo
                     mainText={totalEmissionsFactor}
                     description={"Total de factores registrados"}
@@ -73,7 +73,7 @@ export default function AdminMain() {
                 />
             </div>
             <div className="flex flex-col gap-4 p-4 bg-white border rounded-lg">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-wrap gap-2 items-center justify-between">
                     <h2 className="font-semibold text-[18px]">
                         Factores de emisión recientes
                     </h2>

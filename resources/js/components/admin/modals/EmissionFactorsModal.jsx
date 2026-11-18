@@ -113,7 +113,7 @@ export default function EmissionFactorsModal({
                         });
                 }}
             >
-                <DialogContent className={"p-6 w-fit sm:max-w-3xl"}>
+                <DialogContent className={"p-6 w-full sm:w-fit sm:max-w-3xl"}>
                     <DialogHeader className={"flex flex-col gap-4"}>
                         <DialogTitle
                             className={
@@ -149,7 +149,7 @@ export default function EmissionFactorsModal({
                                 .querySelector('meta[name="csrf-token"]')
                                 ?.getAttribute("content")}
                         />
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div className="flex flex-col gap-2">
                                 <FormActivityLabel
                                     htmlFor="name"
@@ -489,7 +489,7 @@ export default function EmissionFactorsModal({
                     });
             }}
         >
-            <DialogContent className={"p-6 w-fit sm:max-w-3xl"}>
+            <DialogContent className={"p-6 w-full sm:w-fit sm:max-w-3xl"}>
                 <DialogHeader className={"flex flex-col gap-4"}>
                     <DialogTitle
                         className={
@@ -508,7 +508,7 @@ export default function EmissionFactorsModal({
                             .querySelector('meta[name="csrf-token"]')
                             ?.getAttribute("content")}
                     />
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div className="flex flex-col gap-2">
                             <FormActivityLabel htmlFor="name" isRequired={true}>
                                 Nombre del factor

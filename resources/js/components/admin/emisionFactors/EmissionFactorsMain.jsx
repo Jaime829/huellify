@@ -38,7 +38,7 @@ export default function EmissionFactorsMain() {
 
     return (
         <div className="flex flex-col gap-4 p-4">
-            <div className="flex justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="flex flex-col">
                     <h1 className="text-2xl font-bold">Factores de emisión</h1>
                     <p className="text-gray-700">
@@ -59,8 +59,8 @@ export default function EmissionFactorsMain() {
                 </button>
             </div>
             <div className="flex flex-col gap-4 p-4 ">
-                <div className="flex items-center gap-4 ">
-                    <div className="border bg-white rounded-lg flex items-center gap-2 p-2 text-gray-600">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                    <div className="border bg-white rounded-lg flex items-center gap-2 p-2 text-gray-600 w-full sm:w-auto">
                         <Search size={20} />
                         <input
                             value={activeFilters.nameEmission}
@@ -85,7 +85,7 @@ export default function EmissionFactorsMain() {
                                 );
                             }}
                             type="text"
-                            className="focus:outline-none text-[14px]"
+                            className="focus:outline-none text-[14px] w-full"
                             placeholder="Buscar por nombre..."
                         />
                     </div>
@@ -93,7 +93,7 @@ export default function EmissionFactorsMain() {
                         name=""
                         id=""
                         value={activeFilters.categoryEmission}
-                        className="bg-white p-2 border rounded-lg text-[14px]"
+                        className="bg-white p-2 border rounded-lg text-base sm:text-[14px] w-full sm:w-auto"
                         onChange={(e) => {
                             setActiveFilters({
                                 categoryEmission: e.target.value,
@@ -274,13 +274,13 @@ export default function EmissionFactorsMain() {
                 ) : (
                     <p>No hay factores de emision disponibles.</p>
                 )}
-                <div className="flex items-center gap-2 justify-end">
+                <div className="flex flex-wrap items-center gap-2 justify-end">
                     {emissionFactors.links.map((link, index) => {
                         if (!link.url) {
                             return (
                                 <span
                                     key={index}
-                                    className="p-1 w-10 h-10 flex items-center justify-center bg-gray-200 font-medium rounded shadow border transition-all"
+                                    className="p-1 w-11 h-11 sm:w-10 sm:h-10 flex items-center justify-center bg-gray-200 font-medium rounded shadow border transition-all"
                                     dangerouslySetInnerHTML={{
                                         __html: link.label,
                                     }}
@@ -292,7 +292,7 @@ export default function EmissionFactorsMain() {
                             <Link
                                 key={index}
                                 href={link.url}
-                                className={`${link.active ? "bg-emerald-700 text-white" : "bg-white"} transition-all p-1 w-10 h-10 flex items-center justify-center font-medium rounded shadow border`}
+                                className={`${link.active ? "bg-emerald-700 text-white" : "bg-white"} transition-all p-1 w-11 h-11 sm:w-10 sm:h-10 flex items-center justify-center font-medium rounded shadow border`}
                                 dangerouslySetInnerHTML={{
                                     __html: link.label,
                                 }}

@@ -69,7 +69,7 @@ export default function RecommendationsMetricsMain() {
 
     return (
         <div className="flex flex-col gap-4 px-4 pt-4 pb-8">
-            <div className="flex justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="flex flex-col">
                     <h1 className="text-2xl font-bold">
                         Métricas de recomedaciones
@@ -87,7 +87,7 @@ export default function RecommendationsMetricsMain() {
                     <span>Volver al dashboard</span>
                 </Link>
             </div>
-            <div className="flex gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
                 <AdminCardInfo
                     icon={IconBulbFilled}
                     title={"Total de recomendaciones"}
@@ -123,12 +123,12 @@ export default function RecommendationsMetricsMain() {
             </div>
 
             <div className="bg-white border p-4 rounded-lg h-80 w-full flex flex-col gap-4">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
                     <p className="flex items-center gap-4 font-bold">
                         <IconChartBarPopular color="#00523e" stroke={2} />{" "}
                         <span>Adopcion por categoría</span>
                     </p>
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                         {Object.entries(labels).map(([key, val]) => {
                             console.log(`${key}: ${val}`);
                             return (
@@ -200,18 +200,18 @@ export default function RecommendationsMetricsMain() {
             </div>
 
             <div className="flex flex-col gap-4 p-4 rounded-lg border bg-white">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
                     <p className="flex items-center gap-4 font-bold">
                         <IconStarFilled color="#00523e" />{" "}
                         <span>Recomendaciones más adoptadas</span>
                     </p>
-                    <div className="flex items-center gap-4">
+                    <div className="flex flex-wrap items-center gap-2">
                         <div className="flex items-center gap-2">
                             <label className="text-[12px]" htmlFor="category">
                                 Categoría:
                             </label>
                             <select
-                                className="p-2 text-[14px] bg-white border rounded-lg"
+                                className="p-2 text-base sm:text-[14px] bg-white border rounded-lg"
                                 name="category_id"
                                 id="category"
                                 onChange={(e) => {
@@ -257,7 +257,7 @@ export default function RecommendationsMetricsMain() {
                                 Periodo:
                             </label>
                             <select
-                                className="p-2 text-[14px] bg-white border rounded-lg"
+                                className="p-2 text-base sm:text-[14px] bg-white border rounded-lg"
                                 name="period"
                                 id="period"
                                 onChange={(e) => {
