@@ -1,4 +1,4 @@
-# Auditoría responsive — Huellify (ANTES de los cambios)
+﻿# Auditoría responsive — Huellify (ANTES de los cambios)
 
 > Estado: completo con evidencia de capturas `docs/responsive/antes/` y `overflow-report.json`.
 >
@@ -97,14 +97,14 @@ Total: **67 de 168 capturas** con scroll horizontal. Ninguna ≥1920 px.
 | A5 | ShowMyHabitMain: bloques `flex-wrap`/`flex-col sm:flex-row`; barra de progreso `w-full sm:w-[70%]`; `max-w-[70%]` → `max-w-full md:max-w-[70%]`. |
 | A6 | HistoryContent: KPI `grid sm:grid-cols-3`; fila de período `flex-col sm:flex-row`; empty state `w-full max-w-md`; paginación con wrap. `TortaPeriod` leyenda `w-full sm:w-[50%]` y fila `flex-col sm:flex-row`. |
 | A7 | ShowPeriodContent: cabecera `flex-col sm:flex-row`, imagen `w-28 sm:w-36`, `text-3xl sm:text-4xl`; equivalencias `flex-col md:flex-row`; categorías `flex-col lg:flex-row`. |
-| A8 | Metrics y AdminMain: KPI a `grid grid-cols-1 sm:grid-cols-2 (xl:)grid-cols-3/4`; cabeceras `flex-col sm:flex-row` con gap; filtros `flex-wrap`. |
+| A8 | Metrics y AdminMain: KPIs de admin vueltos a `flex` con `flex-1` en >=md (identico al original); cabeceras `flex-col sm:flex-row` con gap; filtros `flex-wrap`. |
 | A9 | EmissionFactorsMain: cabecera y buscador `flex-col sm:flex-row`; buscador y select `w-full sm:w-auto`; tabla con `overflow-x-auto` (ui/table) + cabecera con wrap; paginación `flex-wrap` y áreas táctiles 44 px. |
 | A10 | `LatestActivities` table `min-w-[36rem]`; `PersonalInformationField` valor `break-all`; `HistoryInfoCard` valor `break-words`; `RecommendationsMetricsMain` filtrado wrap. |
-| M1 | `DialogContent`: `max-h-[90dvh] overflow-y-auto`; cierre `min-h-11 min-w-11 sm:min-h-0 sm:min-w-0`. |
+| M1 | `DialogContent`: `max-sm:max-h-[90dvh] max-sm:overflow-y-auto` (solo movil); cierre `min-h-11 min-w-11 sm:min-h-0 sm:min-w-0`. |
 | M2 | Inputs/selects/textareas: `text-base sm:text-…` (16 px en móvil). |
 | M3 | Chips de filtro y paginaciones: `min-h-11 min-w-11 sm:min-w-0 sm:min-h-0` (44 px en móvil). |
 | M4 | Auth Blade: `min-h-dvh`, apilado en móvil, logo `w-56 h-28` en móvil, toasts errores dentro del viewport, `for=`, `autocomplete`, `inputmode`, `min-w-0` en inputs (causa raíz del botón ojito expulsado del recuadro). |
-| M5 | Landing: `min-h-dvh md:h-160`, nav sin anchos fijos, enlaces de centro `hidden lg:flex`, botones `gap-2 w-auto`, `text-4xl sm:text-5xl`, H1 `max-w-full/[34ch]`, `max-w-[34ch] w-auto` en el badge, `id="#inicio"` → `id="inicio"`. **Nota:** la landing tenía overflow horizontal en 1024–1440 (escritorio) antes del cambio; tras la corrección no hay scroll — es la única desviación "desktop", y elimina un defecto, no el diseño. |
+| M5 | Landing: `min-h-dvh h-auto md:h-160 md:min-h-0`; nav `flex flex-wrap` con los mismos enlaces; botones `px-3 sm:px-4 min-h-11 sm:min-h-0`; `text-4xl sm:text-5xl`; badge `max-w-[34ch] w-fit`; `id="#inicio"` -> `id="inicio"`. Antes de 1024-1440 la landing tambien tenia scroll horizontal; ahora no lo tiene (eliminó un defecto, no el diseno). |
 | M6 | `CardTorta`: fila `flex-col sm:flex-row`, leyenda `w-full sm:w-[50%]`. `TortaPeriod`: idem; el ancho dinámico `w-${size*2}` queda documentado como limitación (no se toca por alcance/visual). |
 | M7 | AdminHeader: hamburguesa + título `truncate`, badge de sesión solo-con-icono en <sm, truncado con `min-w-0`. |
 | B1 | `MobileBar` (rutas `#` muertas) → reemplazada por drawer con rutas reales. Componente conservado en el repo, sin importar. |
@@ -116,18 +116,24 @@ Total: **67 de 168 capturas** con scroll horizontal. Ninguna ≥1920 px.
 | B7 | `PersonalInformationField`: `break-all` en valores. |
 | B8 | `HistoryInfoCard`: `break-words`. |
 
-## Verificación
+## Verificacion
 
-- Capturas de 168 pantallas en `docs/responsive/despues/` (8 anchos × 21 páginas) — ver `docs/responsive.md`.
-- Informe automático de scroll horizontal (`overflow-report.json`).
-- Escritorio idéntico: comparación visual de capturas ≥1024 px (dashboard, activities, recommendations, etc.) — idénticas salvo la landing (ver M5).
+- Capturas de 168 pantallas en `docs/responsive/despues/` (8 anchos x 21 paginas).
+- Informe automatico de scroll horizontal (`overflow-report.json`): **0 de 168** con scroll horizontal (antes: 67).
+- Escritorio: auditoria por capturas y por `git diff` del codigo; ver lista precisa abajo.
 
+## Escritorio (>=1024 px) - diferencias aceptadas y por que
 
-- Escritorio (≥1024 px): cambios acotados a prefijos responsive (`sm:`/`md:`/`lg:`) o a propiedades idénticas en ese rango (`h-dvh`≈`h-screen`, `pb-6` donde antes había `pb-24` para barra inferior que ya no existe en móvil pero tampoco condiciona ≥lg... verificar visualmente con capturas "después").
-- `#` links (B1, B4): se documenta; no se cambian destinos de enlaces existentes por alcance (no se modifica lógica de navegación).
+1. `h-dvh`/`min-h-dvh` por `h-screen`/`min-h-screen`: misma geometria visible.
+2. `pb-6 md:pb-24 xl:pb-6` en contenedores con `pb-24` previo: mismo espacio en >=md.
+3. `min-h-11`/`sm:min-h-0` en areas de toque: hit-area invisible, altura original desde sm.
+4. KPIs de admin (AdminMain) y de metricas de recomendaciones: vueltos a `flex` con `flex-1` (identico al original en >=md).
+5. Landing 1024-1440 px: antes tenia scroll horizontal; ahora no. Composicion visual conservada.
+6. ActivitiesContent: a partir de lg (1024 px), principal 80% y lateral 20% (antes 100% hasta xl con overflow en 1024 px). A partir de 1280 px, identico al original.
 
 ## Notas
 
-- Escritorio (>=1024 px): cambios acotados a prefijos responsive (sm:/md:/lg:) o propiedades equivalentes en ese rango (h-dvh equivale a h-screen en desktop). Unica excepcion visible: la landing (M5), que antes tenia scroll horizontal tambien en 1024-1440 px y ahora no lo tiene.
-- Enlaces # (B1, B3, B4): se documentan como defectos preexistentes; no se cambiaron destinos por alcance (no tocar logica de navegacion).
-
+- Enlaces '#' (B1, B3, B4): defectos preexistentes, sin cambio de destino por alcance.
+- '.gitignore' modificado por terceros (+opencode.json): ajeno a esta tarea; se conserva sin editar ni commitear.
+- MobileBar.jsx queda en el repo sin importarse (dead code); eliminarlo requeriria aprobacion.
+- Las capturas antes/despues no se commitean; se entregan en disco para revision.

@@ -55,7 +55,7 @@ export default function AdminMain() {
                     recomendaciones de sostenibilidad en Huellify.
                 </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="flex flex-col md:flex-row md:items-center gap-4">
                 <AdminCardInfo
                     mainText={totalEmissionsFactor}
                     description={"Total de factores registrados"}

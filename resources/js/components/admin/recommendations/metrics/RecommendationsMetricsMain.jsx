@@ -87,7 +87,7 @@ export default function RecommendationsMetricsMain() {
                     <span>Volver al dashboard</span>
                 </Link>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+            <div className="flex flex-col sm:grid sm:grid-cols-2 md:flex md:flex-row md:gap-2 gap-2">
                 <AdminCardInfo
                     icon={IconBulbFilled}
                     title={"Total de recomendaciones"}

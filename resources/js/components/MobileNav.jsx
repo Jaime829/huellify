@@ -3,7 +3,7 @@ import { router } from "@inertiajs/react";
 import { Menu, X } from "lucide-react";
 import {
     Leaf,
-    History,
+    RotateCcwClock,
     House,
     Calendar,
     Lightbulb,
@@ -138,7 +138,7 @@ export default function MobileNav() {
                             <NavEnlace
                                 url={route("dashboard.history")}
                                 texto={"Historial"}
-                                icon={History}
+                                icon={RotateCcwClock}
                             />
                             <NavEnlace
                                 url={route("dashboard.recommendations")}

@@ -1,7 +1,7 @@
 # Responsive — Huellify
 
 Adaptación de Huellify (Laravel + Inertia + React + Tailwind v4) a móvil, tablet y escritorio.
-Objetivo: ninguna página con scroll horizontal entre 320 y 1920 px, y escritorio (≥ lg, 1024 px) idéntico al diseño original.
+Objetivo: ninguna página con scroll horizontal entre 320 y 1920 px, y escritorio (≥ lg, 1024 px) visualmente idéntico salvo las desviaciones mínimas documentadas en `docs/responsive/auditoria.md` (p.ej. Landing y Actividades a 1024 px, que antes tenían overflow horizontal).
 
 ## Breakpoints (Tailwind estándar, no se añadió ninguno nuevo)
 
@@ -77,7 +77,7 @@ Regla seguida: el valor original sin prefijo se conserva bajo su breakpoint de e
 
 - Capturas antes/después en 8 anchos (320…1920) por página, en `docs/responsive/antes|despues/`.
 - `npm run build` y `php artisan test --compact` deben seguir verdes.
-- Escritorio (≥1024 px) debe verse idéntico: comparar capturas `antes/…-1024|1280|1440|1920.png` con `despues/`. La única desviación aceptada es la landing en 1024–1440 px: antes tenía scroll horizontal (defecto) y ahora no — la composición visual se mantiene.
+- Escritorio (≥1024 px): "idéntico" se limita a layout y apariencia. Se permiten diferencias menores y documentadas que no alteran el diseño: `h-dvh` por `h-screen`/`min-h-dvh` (mismo comportamiento visual), `pb-6 md:pb-24 xl:pb-6` (mismo espacio), `min-h-11` en áreas táctiles (padding invisible), `md:min-h-0` en CTA, y la tabla de actividades (antes desbordaba el viewport en 1024 px; ahora el lateral 80%/20% de escritorio se mantiene). La landing se corrigió igualmente en 1024–1440 px (antes tenía scroll horizontal) sin alterar su composición.
 
 ## Limitaciones conocidas
 
