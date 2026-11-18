@@ -27,10 +27,10 @@ export default function ToastMessage() {
 
     return (
         <>
-            <ul className="flex flex-col gap-2 fixed top-20 right-8 z-1000">
+            <ul className="flex flex-col gap-2 fixed top-20 left-2 right-2 sm:left-auto sm:right-8 sm:w-64 z-1000">
                 {flash.status && (
                     <li
-                        className={`${visible ? "flex" : "hidden"} relative items-center animate-wobble border-l-8 border-green-500 gap-2 text-xs w-64 h-16 bg-white shadow p-2 rounded-md`}
+                        className={`${visible ? "flex" : "hidden"} relative items-center animate-wobble border-l-8 border-green-500 gap-2 text-xs w-full sm:w-64 h-16 bg-white shadow p-2 rounded-md`}
                     >
                         <span className="p-1 text-green-700 rounded-full bg-green-600/10">
                             <IconLeafFilled />
@@ -44,7 +44,7 @@ export default function ToastMessage() {
 
                         <button
                             onClick={() => setVisible(false)}
-                            className="absolute top-1 right-1 cursor-pointer"
+                            className="absolute top-1 right-1 p-2 cursor-pointer" aria-label="Cerrar"
                         >
                             <IconX size={16} />
                         </button>
@@ -53,7 +53,7 @@ export default function ToastMessage() {
 
                 {flash.error && (
                     <li
-                        className={`${visible ? "flex" : "hidden"} relative items-center animate-wobble border-l-8 border-red-500 gap-2 text-xs w-64 h-16 bg-white shadow p-2 rounded-md`}
+                        className={`${visible ? "flex" : "hidden"} relative items-center animate-wobble border-l-8 border-red-500 gap-2 text-xs w-full sm:w-64 h-16 bg-white shadow p-2 rounded-md`}
                     >
                         <span className="p-1 text-red-700 rounded-full bg-red-600/10">
                             <IconCircleX />
@@ -67,7 +67,7 @@ export default function ToastMessage() {
 
                         <button
                             onClick={() => setVisible(false)}
-                            className="absolute top-1 right-1 cursor-pointer"
+                            className="absolute top-1 right-1 p-2 cursor-pointer" aria-label="Cerrar"
                         >
                             <IconX size={16} />
                         </button>
@@ -75,7 +75,7 @@ export default function ToastMessage() {
                 )}
                 {flash.noChange && (
                     <li
-                        className={`${visible ? "flex" : "hidden"} relative items-center animate-wobble border-l-8 border-gray-500 gap-2 text-xs w-64 h-fit bg-white shadow p-2 rounded-md`}
+                        className={`${visible ? "flex" : "hidden"} relative items-center animate-wobble border-l-8 border-gray-500 gap-2 text-xs w-full sm:w-64 h-fit bg-white shadow p-2 rounded-md`}
                     >
                         <span className="p-1 text-gray-700 rounded-full">
                             <IconInfoCircle />
@@ -91,7 +91,7 @@ export default function ToastMessage() {
 
                         <button
                             onClick={() => setVisible(false)}
-                            className="absolute top-1 right-1 cursor-pointer"
+                            className="absolute top-1 right-1 p-2 cursor-pointer" aria-label="Cerrar"
                         >
                             <IconX size={16} />
                         </button>
