@@ -27,7 +27,7 @@
                             <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" />
                             <path d="M8 11v-4a4 4 0 1 1 8 0v4" />
                         </svg>
-                        <input class="text-gray-500 flex-1 focus:outline-none" type="password" name="password"
+                        <input class="text-gray-500 flex-1 min-w-0 focus:outline-none" type="password" autocomplete="new-password" name="password"
                             id="password" placeholder="********">
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                             <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" />
                             <path d="M8 11v-4a4 4 0 1 1 8 0v4" />
                         </svg>
-                        <input class="text-gray-500 flex-1 focus:outline-none" type="password" name="password_confirmation"
+                        <input class="text-gray-500 flex-1 min-w-0 focus:outline-none" type="password" autocomplete="new-password" name="password_confirmation"
                             placeholder="********" id="password_confirmation">
                     </div>
                 </div>

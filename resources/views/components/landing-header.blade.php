@@ -1,4 +1,4 @@
-<header class="w-full h-160 relative px-6" id="#inicio">
+<header class="w-full min-h-dvh h-auto md:h-160 md:min-h-0 relative px-4 sm:px-6 py-2 md:py-0" id="inicio">
     <img width="400" height="400" class="object-cover w-full h-full absolute -z-2 inset-0"
         src="{{ asset('images/bg-landing.webp') }}" alt="Header Background Image" loading="lazy">
 
@@ -6,12 +6,12 @@
         <div class="absolute inset-y-0 left-0 w-[60%] bg-linear-to-r from-white to-transparent"></div>
 
     </div>
-    <nav class="flex justify-between items-center ">
-        <div class="flex items-center gap-12 w-[50%]">
-            <div class="w-40 h-24 flex items-center">
+    <nav class="flex flex-wrap justify-between items-center gap-y-2">
+        <div class="w-full sm:w-auto lg:w-[50%] flex items-center gap-4 lg:gap-12">
+            <div class="w-32 h-20 sm:w-40 sm:h-24 flex items-center">
                 <img src="{{ asset('images/logo.png') }}" alt="">
             </div>
-            <div class="flex gap-4">
+            <div class="flex flex-wrap gap-2 md:gap-4">
                 <a class="text-[14px] text-gray-600 font-medium border-b-2 border-transparent pb-2 transition-all ease-in delay-75 hover:border-green-600 hover:scale-105"
                     href="#inicio">Inicio</a>
                 <a class="text-[14px] text-gray-600 font-medium border-b-2 border-transparent pb-2 transition-all ease-in delay-75 hover:border-green-600 hover:scale-105"
@@ -23,15 +23,15 @@
             </div>
 
         </div>
-        <div class="flex items-center gap-4 w-[10%]">
+        <div class="flex items-center gap-2 sm:gap-4 w-auto justify-end lg:w-[10%]">
             @auth
-                <a class="text-[14px] px-4 py-2 bg-emerald-600 text-white rounded-md transition-colors ease-in-out hover:bg-emerald-700"
+                <a class="text-[14px] px-3 sm:px-4 py-2 min-h-11 sm:min-h-0 inline-flex items-center text-white bg-emerald-600 rounded-md transition-colors ease-in-out hover:bg-emerald-700 whitespace-nowrap"
                     href="{{ route('dashboard.index') }}">Dashboard</a>
             @else
-                <a class="text-[14px] px-4 py-2 border border-green-600 bg-white text-green-600 rounded-md"
+                <a class="text-[14px] px-3 sm:px-4 py-2 min-h-11 sm:min-h-0 inline-flex items-center border border-green-600 bg-white text-green-600 rounded-md whitespace-nowrap"
                     href="{{ route('auth.login') }}">Iniciar
                     sesión</a>
-                <a class="text-[14px] px-4 py-2 bg-green-600 text-white rounded-md transition-colors ease-in-out hover:bg-green-700"
+                <a class="text-[14px] px-3 sm:px-4 py-2 min-h-11 sm:min-h-0 inline-flex items-center bg-green-600 text-white rounded-md transition-colors ease-in-out hover:bg-green-700 whitespace-nowrap"
                     href="{{ route('auth.register') }}">Crear
                     cuenta</a>
             @endauth
@@ -44,7 +44,7 @@
         <div class="flex flex-col gap-6">
             <div class="flex flex-col gap-2">
                 <p
-                    class="flex items-center gap-1 font-medium w-[34ch] bg-emerald-50 text-green-700 p-2 rounded-2xl text-[12px]">
+                    class="flex items-center gap-1 font-medium max-w-[34ch] w-fit bg-emerald-50 text-green-700 p-2 rounded-2xl text-[12px]">
                     <span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-leaf">
@@ -55,7 +55,7 @@
                     </span> Un planeta más verde empieza contigo
                 </p>
 
-                <h1 class="text-5xl font-bold text-gray-800">Tu huella de carbono,<br /> en tus manos</h1>
+                <h1 class="text-4xl sm:text-5xl font-bold text-gray-800">Tu huella de carbono,<br /> en tus manos</h1>
                 <p class="max-w-[45ch] text-gray-600">Huellify te ayuda a medir, entender y reducir tu impacto ambiental
                     con
                     un enfoque simple, educativo y
@@ -65,7 +65,7 @@
             <div class="flex flex-col gap-8">
                 <div class="flex">
                     @auth
-                        <a class="flex gap-1 items-center text-[14px] text-white bg-emerald-600 rounded-xl py-2 px-4"
+                        <a class="flex gap-1 items-center text-[14px] text-white bg-emerald-600 rounded-xl py-2 px-4 min-h-11 sm:min-h-0"
                             href="{{ route('dashboard.index') }}">Comienza ahora
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -80,7 +80,7 @@
                             </span>
                         </a>
                     @else
-                        <a class="flex gap-1 items-center text-[14px] text-white bg-emerald-600 rounded-xl py-2 px-4"
+                        <a class="flex gap-1 items-center text-[14px] text-white bg-emerald-600 rounded-xl py-2 px-4 min-h-11 sm:min-h-0"
                             href="{{ route('auth.register') }}">Comienza ahora
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -97,7 +97,7 @@
                     @endauth
 
                 </div>
-                <ul class="flex gap-2 text-[12px]">
+                <ul class="flex flex-wrap gap-2 text-[12px]">
                     <li class="text-gray-600  flex flex-col gap-1 px-2 font-medium">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"

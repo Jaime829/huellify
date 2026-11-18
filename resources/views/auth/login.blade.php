@@ -15,7 +15,7 @@
 
             <div class="flex flex-col gap-6">
                 <div class="flex flex-col gap-1">
-                    <label class="text-emerald-900 text-sm font-medium" for="">Correo electrónico</label>
+                    <label class="text-emerald-900 text-sm font-medium" for="email">Correo electrónico</label>
                     <div class="flex border border-gray-300 p-2 rounded-lg gap-2 items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
                             fill="none" stroke="#004e3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -24,12 +24,12 @@
                             <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10" />
                             <path d="M3 7l9 6l9 -6" />
                         </svg>
-                        <input class="text-gray-500 flex-1 focus:outline-none" type="email" name="email"
+                        <input class="text-gray-500 flex-1 min-w-0 focus:outline-none" id="email" type="email" inputmode="email" autocomplete="email" name="email"
                             value="{{ old('email') }}" placeholder="ejemplo@correo.com">
                     </div>
                 </div>
                 <div class="flex flex-col gap-1">
-                    <label class="text-emerald-900 text-sm font-medium" for="">Contraseña</label>
+                    <label class="text-emerald-900 text-sm font-medium" for="password">Contraseña</label>
                     <div class="flex border border-gray-300 p-2 rounded-lg gap-2 items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="#004e3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -39,7 +39,7 @@
                             <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" />
                             <path d="M8 11v-4a4 4 0 1 1 8 0v4" />
                         </svg>
-                        <input class="text-gray-500 flex-1 focus:outline-none" type="password" name="password"
+                        <input class="text-gray-500 flex-1 min-w-0 focus:outline-none" id="password" type="password" autocomplete="current-password" name="password"
                             placeholder="********">
                         <button id="password-show" type="button" class="cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"

@@ -1,15 +1,15 @@
 @extends('layouts.base')
 
 @section('content')
-    <main class="flex flex-col w-screen h-screen sm:flex-row relative">
-        <section class="h-[50%] w-screen sm:w-[50%] relative sm:h-full">
+    <main class="flex flex-col w-full min-h-dvh sm:h-screen sm:flex-row relative">
+        <section class="h-56 sm:h-full w-full sm:w-[50%] relative shrink-0 overflow-hidden">
             <img class="size-full absolute z-1 object-cover object-center" src="{{ asset('images/bg-auth.jpg') }}"
                 alt="Fondo autenticacion">
 
 
             <div
-                class="flex flex-col z-10 border-amber-600 relative h-full px-25 gap-2 items-start">
-                <div class="sm:w-60 sm:h-32 flex justify-center items-center">
+                class="flex flex-col z-10 border-amber-600 relative h-full px-6 sm:px-16 lg:px-25 py-2 gap-2 items-start justify-center">
+                <div class="w-56 h-28 sm:w-60 sm:h-32 flex justify-center items-center">
                     <img class="w-full h-full" src="{{ asset('images/logo.png') }}" alt="Logo Huellify">
                 </div>
                 <div class="flex flex-col gap-4">
@@ -104,11 +104,11 @@
         </section>
 
         @if ($errors->any())
-            <div class="fixed top-20 right-8 z-1000">
+            <div class="fixed top-20 left-2 right-2 sm:left-auto sm:right-8 z-1000 sm:w-auto w-[calc(100%-1rem)]">
                 <ul class="flex flex-col gap-2">
                     @foreach ($errors->all() as $error)
                         <li
-                            class="flex items-center animate-wobble text-white gap-1 h-auto text-xs max-w-46 bg-red-500/70 p-2 rounded-xl">
+                            class="flex items-center animate-wobble text-white gap-1 h-auto text-xs max-w-full sm:max-w-46 bg-red-500/70 p-2 rounded-xl">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -127,10 +127,10 @@
             </div>
         @endif
         @if (session('status'))
-            <div class="fixed top-20 right-8 z-1000">
+            <div class="fixed top-20 left-2 right-2 sm:left-auto sm:right-8 z-1000 sm:w-auto w-[calc(100%-1rem)]">
                 <ul class="flex flex-col gap-2">
                     <li
-                        class="flex items-center animate-wobble text-white gap-1 h-auto text-xs max-w-46 bg-green-500/70 p-2 rounded-xl">
+                        class="flex items-center animate-wobble text-white gap-1 h-auto text-xs max-w-full sm:max-w-46 bg-green-500/70 p-2 rounded-xl">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -148,7 +148,7 @@
             </div>
         @endif
         <section
-            class="bg-gray-100 w-screen h-[50%] sm:w-[50%] sm:h-full flex sm:flex-col flex-col-reverse items-center sm:justify-center  sm:pt-2 z-100">
+            class="bg-gray-100 w-full flex-1 sm:flex-none sm:w-[50%] sm:h-full flex sm:flex-col flex-col-reverse items-center justify-center py-6 sm:py-0 sm:pt-2 z-100 overflow-y-auto">
             @yield('auth-content')
         </section>
     </main>

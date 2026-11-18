@@ -24,7 +24,7 @@
                             <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
                             <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                         </svg>
-                        <input class="text-gray-500 flex-1 focus:outline-none" type="text" name="name" id="name"
+                        <input class="text-gray-500 flex-1 min-w-0 focus:outline-none" type="text" autocomplete="name" name="name" id="name"
                             value="{{ old('name') }}" placeholder="Nombre">
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                             <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10" />
                             <path d="M3 7l9 6l9 -6" />
                         </svg>
-                        <input class="text-gray-500 flex-1 focus:outline-none" type="email" name="email" id="email"
+                        <input class="text-gray-500 flex-1 min-w-0 focus:outline-none" type="email" inputmode="email" autocomplete="email" name="email" id="email"
                             value="{{ old('email') }}" placeholder="ejemplo@correo.com">
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                             <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" />
                             <path d="M8 11v-4a4 4 0 1 1 8 0v4" />
                         </svg>
-                        <input class="text-gray-500 flex-1 focus:outline-none" type="password" name="password"
+                        <input class="text-gray-500 flex-1 min-w-0 focus:outline-none" type="password" autocomplete="new-password" name="password"
                             id="password" placeholder="********">
                         <button id="password-show" type="button" class="cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -81,8 +81,8 @@
                             <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" />
                             <path d="M8 11v-4a4 4 0 1 1 8 0v4" />
                         </svg>
-                        <input class="text-gray-500 flex-1 focus:outline-none" type="password"
-                            name="password_confirmation" placeholder="********" id="password_confirmation">
+                        <input class="text-gray-500 flex-1 min-w-0 focus:outline-none" type="password"
+                            autocomplete="new-password" name="password_confirmation" placeholder="********" id="password_confirmation">
 
                         <button id="password-show" type="button" class="cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
