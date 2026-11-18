@@ -87,7 +87,7 @@ export default function FormularioEnergia() {
                             value={data.quantity}
                             step={0.001}
                             name="quantity"
-                            className="appearance-none focus:outline-none flex-1"
+                            className="appearance-none focus:outline-none flex-1 min-w-0"
                             onChange={(e) => {
                                 setData("quantity", e.target.value);
                             }}

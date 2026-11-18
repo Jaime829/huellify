@@ -92,7 +92,7 @@ export default function MyHabitsTable() {
     return (
         <>
             <div className="flex flex-col gap-4 py-4">
-                <div className={"flex items-center gap-2 px-4"}>
+                <div className={"flex flex-wrap items-center gap-2 px-4"}>
                     <button
                         className={`${activeFilter === "all" ? "bg-emerald-700 text-white" : "bg-gray-100 text-gray-500"} inline-flex items-center min-h-11 sm:min-h-0 py-1 px-2 rounded-xl font-medium cursor-pointer`}
                         onClick={() => filtrarPorStatus("all")}

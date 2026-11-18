@@ -140,10 +140,10 @@ export default function FormularioTransporte() {
                         <div
                             className={`${errors.quantity || errors.measurement_unit_id ? "border-red-500" : ""} flex items-center gap-2 border p-2 rounded-md text-gray-500`}
                         >
-                            <div className="flex flex-1 gap-2 items-center">
+                            <div className="flex flex-1 min-w-0 gap-2 items-center">
                                 <MapPin />
                                 <input
-                                    className="focus:outline-none flex-1"
+                                    className="focus:outline-none flex-1 min-w-0"
                                     type="number"
                                     step={0.001}
                                     value={data.quantity}
