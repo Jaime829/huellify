@@ -6,7 +6,7 @@ import { ChevronLeft } from "lucide-react";
 export default function ShowPeriodMain() {
     const { name } = usePage().props.period;
     return (
-        <div className="flex flex-col gap-4 px-6 pt-6 pb-24 xl:pb-6">
+        <div className="flex flex-col gap-4 px-6 pt-6 pb-6 md:pb-24 xl:pb-6">
             <Link
                 className="flex gap-1 items-center w-fit text-[14px] font-medium"
                 href={route("dashboard.history")}

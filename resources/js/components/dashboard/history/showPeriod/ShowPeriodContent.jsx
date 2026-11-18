@@ -22,8 +22,8 @@ export default function ShowPeriodContent() {
         usePage().props;
     return (
         <div className="flex flex-col gap-4">
-            <div className="border bg-green-500/10 flex gap-4 rounded-lg items-center p-4">
-                <div className="w-36 h-36 rounded-full bg-green-600/15 aspect-square flex items-end justify-center">
+            <div className="border bg-green-500/10 flex flex-col sm:flex-row gap-4 rounded-lg items-center p-4">
+                <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-green-600/15 aspect-square flex items-end justify-center">
                     <img
                         className="max-w-[90%]"
                         src="/images/assets/asset-foot-leafs.webp"
@@ -32,7 +32,7 @@ export default function ShowPeriodContent() {
                 </div>
                 <div>
                     <p className="font-semibold">Huella de carbono total</p>
-                    <p className="font-bold text-emerald-900 text-4xl">
+                    <p className="font-bold text-emerald-900 text-3xl sm:text-4xl">
                         {Number(
                             period.carbon_footprint.total_emissions,
                         ).toFixed(2)}
@@ -57,7 +57,7 @@ export default function ShowPeriodContent() {
                         algunas equivalencias ambientales.
                     </p>
                 </div>
-                <div className="flex items-center gap-2 h-fit">
+                <div className="flex flex-col md:flex-row md:items-center gap-2 h-fit">
                     {equivalenceFactors.map((equivalence) => {
                         const totalEquivalence = Number(
                             period.carbon_footprint.total_emissions /
@@ -99,8 +99,8 @@ export default function ShowPeriodContent() {
                         Emisiones por categoría
                     </span>
                 </p>
-                <div className="flex gap-6 justify-between items-center">
-                    <div className="flex-1 flex items-center h-full border-r">
+                <div className="flex flex-col lg:flex-row gap-6 justify-between lg:items-center">
+                    <div className="flex-1 flex items-center h-full border-b lg:border-b-0 lg:border-r pb-4 lg:pb-0">
                         <TortaPeriod
                             size={32}
                             emissions_per_categories={emissions_per_categories}
@@ -234,13 +234,13 @@ export default function ShowPeriodContent() {
                         )}
                     </TableBody>
                 </Table>
-                <div className="flex items-center gap-2 justify-end">
+                <div className="flex flex-wrap items-center gap-2 justify-end">
                     {activities.links.map((link, index) => {
                         if (!link.url) {
                             return (
                                 <span
                                     key={index}
-                                    className="px-3 py-1 rounded text-gray-400 bg-gray-50 cursor-not-allowed"
+                                    className="min-h-11 sm:min-h-0 inline-flex items-center px-3 py-1 rounded text-gray-400 bg-gray-50 cursor-not-allowed"
                                     dangerouslySetInnerHTML={{
                                         __html: link.label,
                                     }}
@@ -252,7 +252,7 @@ export default function ShowPeriodContent() {
                             <Link
                                 key={index}
                                 href={link.url}
-                                className={`px-3 py-1 border rounded transition-colors shadow ${
+                                className={`min-h-11 sm:min-h-0 inline-flex items-center px-3 py-1 border rounded transition-colors shadow ${
                                     link.active
                                         ? "bg-emerald-800 text-white border-emerald-800 font-medium"
                                         : "bg-white text-gray-700 hover:bg-gray-100"

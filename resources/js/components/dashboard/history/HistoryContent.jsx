@@ -12,7 +12,7 @@ export default function HistoryContent() {
 
     if (!periods || periods.data.length === 0) {
         return (
-            <div className="p-4 rounded-lg border flex flex-col gap-4 items-center h-fit w-2/3 mx-auto my-0">
+            <div className="p-4 rounded-lg border flex flex-col gap-4 items-center h-fit w-full max-w-md md:w-2/3 md:max-w-none mx-auto my-0">
                 <div className="h-[40%]">
                     <img
                         className="w-full h-full object-cover"
@@ -40,7 +40,7 @@ export default function HistoryContent() {
 
     return (
         <div className="flex flex-col gap-4">
-            <div className="flex gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <HistoryInfoCard
                     icon={Calendar}
                     value={periods.data.length}
@@ -70,7 +70,7 @@ export default function HistoryContent() {
                         return (
                             <div
                                 key={period.id}
-                                className="border rounded-lg bg-white p-4 flex items-center justify-between"
+                                className="border rounded-lg bg-white p-4 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-0 sm:justify-between"
                             >
                                 <div>
                                     <small className="text-gray-600 font-medium">
@@ -105,7 +105,7 @@ export default function HistoryContent() {
                         );
                     })}
                 </div>
-                <div className="flex items-center justify-end gap-2">
+                <div className="flex flex-wrap items-center justify-end gap-2">
                     {periods.links.map((link, index) => {
                         if (!link.url) {
                             return (

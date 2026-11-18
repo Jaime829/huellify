@@ -45,13 +45,13 @@ export default function TortaPeriod({ emissions_per_categories, size = 20 }) {
         <div className={`flex flex-col`}>
             {emissions_per_categories ? (
                 <>
-                    <div className={`flex items-center `}>
+                    <div className={`flex flex-col sm:flex-row items-center gap-2 sm:gap-0`}>
                         <div
                             className={` my-0 mx-auto w-${size * 2} h-${size}`}
                         >
                             <Doughnut data={datos} options={opciones} />
                         </div>
-                        <div className="w-[50%] flex flex-col">
+                        <div className="w-full sm:w-[50%] flex flex-col">
                             {Object.entries(emissions_per_categories).map(
                                 ([key, value]) => {
                                     return (
