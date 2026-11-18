@@ -3,7 +3,7 @@
         src="{{ asset('images/bg-landing.webp') }}" alt="Header Background Image" loading="lazy">
 
     <div class="absolute inset-0 pointer-events-none -z-1">
-        <div class="absolute inset-y-0 left-0 w-[60%] bg-linear-to-r from-white to-transparent"></div>
+        <div class="absolute inset-y-0 left-0 w-full sm:w-[60%] bg-white/85 sm:bg-linear-to-r sm:from-white sm:to-transparent"></div>
 
     </div>
     <nav class="flex flex-wrap justify-between items-center gap-y-2">
@@ -40,8 +40,8 @@
 
 
     </nav>
-    <div class="flex pt-4 h-full">
-        <div class="flex flex-col gap-6">
+    <div class="flex pt-4 h-full w-full">
+        <div class="flex flex-col gap-6 w-full min-w-0">
             <div class="flex flex-col gap-2">
                 <p
                     class="flex items-center gap-1 font-medium max-w-[34ch] w-fit bg-emerald-50 text-green-700 p-2 rounded-2xl text-[12px]">
