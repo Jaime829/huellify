@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('recommendations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained('activity_categories')->cascadeOnDelete();
+            $table->foreignId('category_id')->nullable()->constrained('activity_categories')->cascadeOnDelete();
             $table->string('title', 150);
             $table->text('description');
-            $table->enum('priority', ['low', 'medium', 'high']);
+            $table->decimal('estimated_savings', 10, 2)->nullable();
+            $table->boolean('is_active')->default(true);
+            $table->enum('priority', ['low', 'medium', 'high'])->default('medium');
+            $table->text('icon')->nullable();
             $table->timestamps();
         });
     }

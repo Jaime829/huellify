@@ -30,7 +30,7 @@ export default function FormularioEnergia() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post(route("activities.energy.store"));
+        post(route("dashboard.activities.energy.store"));
     };
     return (
         <form className="py-4 flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -164,7 +164,7 @@ export default function FormularioEnergia() {
 
             <div className="flex items-center justify-between">
                 <Link
-                    href={route("activities.index")}
+                    href={route("dashboard.activities.index")}
                     className="py-2 px-4 border border-emerald-600 rounded-md text-[14px] text-gray-600 font-medium"
                 >
                     Cancelar

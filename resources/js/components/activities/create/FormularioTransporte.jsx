@@ -32,7 +32,7 @@ export default function FormularioTransporte() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post(route("activities.transport.store"));
+        post(route("dashboard.activities.transport.store"));
     };
     return (
         <form onSubmit={handleSubmit} className="py-4 flex flex-col gap-4">
@@ -143,7 +143,7 @@ export default function FormularioTransporte() {
                             <div className="flex flex-1 gap-2 items-center">
                                 <MapPin />
                                 <input
-                                    className="focus:outline-none"
+                                    className="focus:outline-none flex-1"
                                     type="number"
                                     step={0.001}
                                     value={data.quantity}
@@ -252,7 +252,7 @@ export default function FormularioTransporte() {
 
             <div className="flex items-center justify-between">
                 <Link
-                    href={route("activities.index")}
+                    href={route("dashboard.activities.index")}
                     className="py-2 px-4 border border-emerald-600 rounded-md text-[14px] text-gray-600 font-medium"
                 >
                     Cancelar

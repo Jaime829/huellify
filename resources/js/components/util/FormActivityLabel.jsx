@@ -9,7 +9,7 @@ export default function FormActivityLabel({
     return (
         <label
             htmlFor={htmlFor}
-            className={`${className ? className : "text-gray-500 font-medium"} `}
+            className={`${className ? className : "text-gray-500 font-medium"} w-fit `}
         >
             {children} {isRequired && <span className="text-red-500">*</span>}
         </label>

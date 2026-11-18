@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('emission_factor_id')->unique()->constrained('emission_factors')->cascadeOnDelete();
             $table->foreignId('energy_source_id')->constrained('energy_sources')->cascadeOnDelete();
+            $table->unique('energy_source_id');
             $table->timestamps();
         });
     }

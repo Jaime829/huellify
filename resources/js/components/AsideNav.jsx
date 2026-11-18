@@ -38,24 +38,22 @@ export default function AsideNav() {
                             icon={House}
                         />
                         <NavEnlace
-                            url={route("activities.index")}
+                            url={route("dashboard.activities.index")}
                             texto={"Actividades"}
                             icon={Calendar}
                         />
-                        <NavEnlace url={"#"} texto={"Transporte"} icon={Car} />
-                        <NavEnlace url={"#"} texto={"Energia"} icon={Zap} />
                         <NavEnlace
                             url={route("dashboard.myhabits")}
                             texto={"Habitos"}
                             icon={Leaf}
                         />
                         <NavEnlace
-                            url={"#"}
+                            url={route("dashboard.history")}
                             texto={"Historial"}
                             icon={RotateCcwClock}
                         />
                         <NavEnlace
-                            url={"#"}
+                            url={route("dashboard.recommendations")}
                             texto={"Recomendaciones"}
                             icon={Lightbulb}
                         />

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('emission_factor_id')->unique()->constrained('emission_factors')->cascadeOnDelete();
             $table->foreignId('transport_type_id')->constrained('transport_types')->cascadeOnDelete();
             $table->foreignId('fuel_type_id')->constrained('fuel_types')->cascadeOnDelete();
+            $table->unique(['transport_type_id', 'fuel_type_id']);
             $table->timestamps();
         });
     }

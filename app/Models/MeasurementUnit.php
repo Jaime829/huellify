@@ -15,4 +15,9 @@ class MeasurementUnit extends Model
     {
         return $this->hasMany(Habit::class);
     }
+
+    public function EmissionFactors()
+    {
+        return $this->belongsTo(EmissionFactor::class, 'measurement_unit_id', 'id');
+    }
 }

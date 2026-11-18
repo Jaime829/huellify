@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class TransportActivityController
 {
@@ -29,13 +30,16 @@ class TransportActivityController
 
         $fuel_type = $data['fuel_type_id'];
 
-        $emission_factor = TransportEmissionFactor::where([
+        $emission_factor = TransportEmissionFactor::with(['emissionFactor'])->where([
             'transport_type_id' => $data['transport_type_id'],
-            'fuel_type_id' => $fuel_type
-        ])->get()->first();
+            'fuel_type_id' => $fuel_type,
+
+        ])->whereHas('emissionFactor', function ($query) {
+            $query->where('active', true);
+        })->get()->first();
 
         if (!$emission_factor) {
-            return back()->withErrors(['status' => 'Aun no tenemos un factor de emision para ese transporte o combustible']);
+            return back()->with('error', 'Aun no tenemos un factor de emision para ese transporte o combustible');
         }
 
 
@@ -48,7 +52,7 @@ class TransportActivityController
         if (!$period) {
             $start_date = Carbon::parse($data['activity_date'])->startOfMonth()->toDateString();
             $end_date = Carbon::parse($data['activity_date'])->endOfMonth()->toDateString();
-            $name_period = Carbon::parse($data['activity_date'])->locale('es')->translatedFormat('F \d\e Y');
+            $name_period = Str::ucfirst(Carbon::parse($data['activity_date'])->locale('es')->translatedFormat('F \d\e Y'));
 
             $period = Auth::user()->periods()->create([
                 'name' => $name_period,
@@ -104,11 +108,11 @@ class TransportActivityController
                     'total_emissions' => $carbon_footprint->total_emissions + $emissions
                 ]);
             });
-            return redirect()->route('activities.index')->with('status', 'Registro creado con exito');
+            return redirect()->route('dashboard.activities.index')->with('status', 'Registro creado con exito');
         } catch (\Exception $e) {
             return back()->with(
                 'error',
-                'Hubo un error al registrar la actividad: ' . $e->getMessage()
+                'Hubo un error al registrar la actividad'
             );
         }
     }
@@ -132,16 +136,83 @@ class TransportActivityController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, TransportActivity $transportActivity)
+    public function update(TransportActivityRequest $request, Activity $activity)
     {
-        //
+        $data = $request->validated();
+        $emission_factor = TransportEmissionFactor::with(['emissionFactor'])->where([
+            'transport_type_id' => $data['transport_type_id'],
+            'fuel_type_id' => $data['fuel_type_id'],
+
+        ])->whereHas('emissionFactor', function ($query) {
+            $query->where('active', true);
+        })->get()->first();
+        if (!$emission_factor) {
+            return back()->with('error', 'Aun no tenemos un factor de emision para ese transporte o combustible');
+        }
+        $name_activity = TransportType::find($data['transport_type_id'], ['name'])->name;
+
+        try {
+            DB::transaction(function () use ($name_activity, $data, $emission_factor, $activity,) {
+                $activity->update([
+                    'activity_date' => $data['activity_date'],
+                    'name' => $name_activity,
+                    'emission_factor_id' => $emission_factor->id,
+                    'description' => $data['description'],
+                    'quantity' => $data['quantity']
+
+                ]);
+
+                $activity->transportDetail()->update([
+                    'transport_type_id' => $data['transport_type_id'],
+                    'fuel_type_id' => $data['fuel_type_id']
+                ]);
+
+
+                $emissions = (float) $data['quantity'] * (float)$emission_factor->emissionFactor->value;
+
+                $total_emisions = (float)$activity->carbonFootprintItem->carbonFootprint->total_emissions - (float)$activity->carbonFootprintItem->emissions;
+
+                $activity->carbonFootprintItem()->update([
+                    'emissions' => $emissions,
+                    'quantity' => $data['quantity'],
+                ]);
+                $total_emisions = $total_emisions + $emissions;
+                $activity->carbonFootprintItem->carbonFootprint()->update([
+                    'total_emissions' => $total_emisions,
+                ]);
+            });
+            return back()->with('status', 'Registro actualizado con exito');
+        } catch (\Exception $e) {
+            return back()->with(
+                'error',
+                'Hubo un error al actualizar la actividad'
+            );
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TransportActivity $transportActivity)
+    public function destroy(Activity $activity)
     {
-        //
+
+        try {
+            DB::transaction(function () use ($activity) {
+                $total_emisions = (float)$activity->carbonFootprintItem->carbonFootprint->total_emissions - (float)$activity->carbonFootprintItem->emissions;
+
+                $activity->carbonFootprintItem->carbonFootprint()->update([
+                    'total_emissions' => $total_emisions
+                ]);
+
+                $activity->delete();
+            });
+
+            return back()->with('status', 'Registro eliminado con exito');
+        } catch (\Exception $e) {
+            return back()->with(
+                'error',
+                'Hubo un error al eliminar la actividad'
+            );
+        }
     }
 }

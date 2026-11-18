@@ -5,10 +5,8 @@ import { authUser } from "@/stores/user-store";
 Chart.register(ArcElement, Tooltip, Legend);
 
 const activityColors = {
-    transport: "bg-emerald-600",
-    energy: "bg-blue-400",
-    food: "bg-purple-400",
-    waste: "bg-gray-600",
+    Transporte: "bg-emerald-600",
+    Energía: "bg-blue-400",
 };
 
 export default function CardTorta({ wrap = false }) {

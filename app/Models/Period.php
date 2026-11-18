@@ -23,4 +23,11 @@ class Period extends Model
     {
         return $this->hasOne(CarbonFootprint::class);
     }
+    public function items()
+    {
+        return $this->hasManyThrough(
+            CarbonFootprintItem::class, // Modelo final
+            CarbonFootprint::class      // Modelo puente
+        );
+    }
 }

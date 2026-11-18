@@ -10,12 +10,12 @@ use Illuminate\Database\Eloquent\Model;
 class Activity extends Model
 {
 
-    public function scopeByCategory(Builder $query, ?int $categoryId): void
-    {
-        if ($categoryId) {
-            $query->where('activity_category_id', $categoryId);
-        }
-    }
+    // public function scopeByCategory(Builder $query, ?int $categoryId): void
+    // {
+    //     if ($categoryId) {
+    //         $query->where('activity_category_id', $categoryId);
+    //     }
+    // }
 
     public function period()
     {
@@ -40,6 +40,11 @@ class Activity extends Model
     public function energyDetail()
     {
         return $this->hasOne(EnergyDetail::class);
+    }
+
+    public function carbonFootprintItem()
+    {
+        return $this->hasOne(CarbonFootprintItem::class);
     }
 
 

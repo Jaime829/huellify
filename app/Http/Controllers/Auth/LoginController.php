@@ -25,7 +25,9 @@ class LoginController
         if (Auth::attempt($data, $request->boolean('remember'))) {
 
             $request->session()->regenerate();
-
+            if ($request->user()->isAdmin()) {
+                return redirect()->route('admin.index');
+            }
             return redirect()->route('dashboard.index');
         }
 

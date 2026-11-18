@@ -7,8 +7,8 @@ export default function ActivitiesHeader() {
     return (
         <header className="flex justify-between items-center pb-4 pt-2 max-w-full">
             <div className="flex gap-2 items-center">
-                <div className="flex items-center justify-center rounded-full bg-green-600/10 text-emerald-800 w-12 h-12">
-                    <IconLeafFilled size={30} />
+                <div className="flex items-center justify-center rounded-full bg-green-600/10 text-emerald-800 w-20 h-20 aspect-square">
+                    <IconLeafFilled size={45} />
                 </div>
                 <div>
                     <h1 className="text-green-900 font-bold leading-7  text-3xl">
@@ -21,7 +21,7 @@ export default function ActivitiesHeader() {
                 </div>
             </div>
             <Link
-                href={route("activities.create")}
+                href={route("dashboard.activities.create")}
                 className="text-white bg-emerald-700 flex font-medium items-center gap-1 text-[10px] lg:text-[12px] p-2 rounded-md transition-colors ease-in-out delay-75 cursor-pointer hover:bg-emerald-900"
             >
                 <Plus /> Registrar actividadad

@@ -24,8 +24,8 @@ class UserUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string'],
-            'description' => ['string', 'max:80']
+            'name' => ['required', 'string', 'max:80'],
+            'description' => ['string', 'max:80', 'nullable']
         ];
     }
 
@@ -33,9 +33,11 @@ class UserUpdateRequest extends FormRequest
     public function messages()
     {
         return [
+            'name.max' => "El maximo de caracteres del nombre es :max",
             'name.required' => "El nombre es obligatorio",
             'name.string' => "El nombre de ser una cadena de texto",
-            'description.max' => "El maximo de caracteres de la descripcion es :max"
+            'description.max' => "El maximo de caracteres de la descripcion es :max",
+            'description.string' => "La descripcion debe ser una cadena de caracteres."
         ];
     }
 }

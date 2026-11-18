@@ -12,7 +12,7 @@ export default function CardInfo({
     isPrincipal = false,
 }) {
     return (
-        <div className="shadow p-4 rounded-md flex flex-col justify-between gap-1 h-full lg:h-40 max-h-48 bg-white">
+        <div className="shadow p-4 rounded-md flex flex-col gap-2 h-full lg:h-40 max-h-48 bg-white">
             <IconItemsDashboard icon={Icon} colorIcon={colorIcon} bg={bgIcon} />
             <div className="flex flex-col gap-1">
                 <p
@@ -21,21 +21,18 @@ export default function CardInfo({
                     {sectionName}
                 </p>
                 <p className={`font-bold ${isPrincipal ? "text-xl" : ""}`}>
-                    {Number(value).toFixed(2)}{" "}
-                    <span
-                        className={`${isPrincipal ? "text-[16px]" : "font-medium text-gray-600 text-sm"}`}
-                    >
-                        Kg CO<sub>2</sub>E
-                    </span>
+                    {Number(value).toFixed(!isPrincipal ? 2 : 0)}{" "}
+                    {!isPrincipal && (
+                        <span
+                            className={`${isPrincipal ? "text-[16px]" : "font-medium text-gray-600 text-sm"}`}
+                        >
+                            Kg CO<sub>2</sub>E
+                        </span>
+                    )}
                 </p>
 
-                {!isPrincipal ? (
+                {!isPrincipal && (
                     <ProgressBar porcentaje={percentage} color={colorBar} />
-                ) : (
-                    <p className="text-[10px]">
-                        {" "}
-                        12% menos que el mes anterior
-                    </p>
                 )}
             </div>
         </div>

@@ -11,6 +11,10 @@ class UserHabitPolicy
 
 
 
+    public function view(User $user, UserHabit $userHabit): bool
+    {
+        return $user->id === $userHabit->user_id;
+    }
     public function viewHistory(User $user, UserHabit $userHabit): bool
     {
         return $user->id === $userHabit->user_id;

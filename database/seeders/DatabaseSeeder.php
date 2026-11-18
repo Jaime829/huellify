@@ -21,11 +21,12 @@ class DatabaseSeeder extends Seeder
             TransportTypesSeeder::class,
             FuelTypesSeeder::class,
             EnergySourcesSeeder::class,
-            RecommendationsSeeder::class,
             TransportEmissionFactorSeeder::class,
             EnergyEmissionFactorSeeder::class,
             HabitCategorySeeder::class,
-            HabitSeeder::class
+            HabitSeeder::class,
+            RecommendationSeeder::class,
+            EquivalenceFactorSeeder::class
         ]);
     }
 }

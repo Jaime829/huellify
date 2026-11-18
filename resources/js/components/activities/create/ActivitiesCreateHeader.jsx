@@ -6,7 +6,7 @@ import { route } from "ziggy-js";
 export default function ActivitiesCreateHeader() {
     return (
         <div className="flex flex-col">
-            <Link href={route('activities.index')} className="pl-2 flex gap-1 items-center text-green-700 font-semibold text-[14px]">
+            <Link href={route('dashboard.activities.index')} className="pl-2 flex gap-1 items-center text-green-700 font-semibold text-[14px]">
                 <ArrowLeft size={15} /> Volver a actividades
             </Link>
             <div className="flex items-center gap-1">

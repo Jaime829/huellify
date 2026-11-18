@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 #[Fillable('category_id', 'name', 'measurement_unit_id', 'value', 'source', 'valid_from', 'valid_until', 'active')]
 class EmissionFactor extends Model
 {
-    public function activities()
+
+    public function activityCategory()
     {
-        return $this->hasMany(Activity::class);
+        return $this->hasOne(ActivityCategory::class, 'id', 'category_id');
     }
 
     public function transportEmissionFactor()
@@ -20,5 +21,10 @@ class EmissionFactor extends Model
     public function energyEmissionFactor()
     {
         return $this->hasOne(EnergyEmissionFactor::class);
+    }
+
+    public function measurementUnit()
+    {
+        return $this->hasOne(MeasurementUnit::class, 'id', 'measurement_unit_id');
     }
 }

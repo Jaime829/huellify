@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserDeleteRequest;
 use App\Http\Requests\UserUpdateRequest;
+use App\Models\Period;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +19,12 @@ class UserController
      */
     public function index()
     {
-        return Inertia::render('Dashboard/Profile');
+        $user = Auth::user();
+        $actualPeriod = Period::with(['carbonFootprint'])->where('user_id', '=', $user->id)->latest()->first();
+
+        return Inertia::render('Dashboard/Profile', [
+            'actualPeriod' => $actualPeriod
+        ]);
     }
 
 
@@ -31,9 +37,7 @@ class UserController
 
         $data = $request->validated();
 
-        $user->update($data);
-
-        return back()->with('status', 'Perfil actualizado con exito');
+        return $user->update($data) ? back()->with('status', 'Perfil actualizado con exito') : back()->with('error', 'Hubo un error al actualizar tu perfil.');
     }
 
     /**
@@ -48,8 +52,9 @@ class UserController
         $status = $user->delete();
 
         return $status ? Inertia::location(route('auth.login')) :
-            back()->withErrors([
-                'password' => 'Password incorrecta'
-            ]);
+            back()->with(
+                'error',
+                'Password incorrecta'
+            );
     }
 }

@@ -21,7 +21,7 @@ class HabitLogController
         $userHabitActions = HabitLog::where('user_habit_id', '=', $userHabit->id)->whereHas('userHabit', function ($query) use ($user) {
             return $query->where('user_id', $user->id);
         })
-            ->latest()->with(['userHabit.habit'])->paginate(3);
+            ->latest()->with(['userHabit.habit'])->paginate(3)->onEachSide(1);
 
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Override;
@@ -23,11 +24,19 @@ class EnergyActivityRequest extends FormRequest
      */
     public function rules(): array
     {
+        $inicioMes = Carbon::now()->startOfMonth()->toDateString();
+        $finMes = Carbon::now()->endOfMonth()->toDateString();
+
         return [
             'energy_source_id' => ['exists:energy_sources,id', 'required'],
             'quantity' => ['numeric', 'required', 'min:1'],
             'measurement_unit_id' => ['exists:measurement_units,id', 'required'],
-            'activity_date' => ['date', 'required'],
+            'activity_date' => [
+                'date',
+                'required',
+                "after_or_equal:{$inicioMes}",
+                "before_or_equal:{$finMes}",
+            ],
             'description' => 'max:255'
         ];
     }

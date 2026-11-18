@@ -23,7 +23,6 @@ export default function ModalRegistrarAvance({
     adopted_at = null,
     userHabitId = null,
 }) {
-    console.log(selectedHabit);
 
     const { post, data, setData, processing } = useForm({
         recorded_at: new Date().toISOString().split("T")[0],

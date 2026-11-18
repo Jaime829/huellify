@@ -97,6 +97,7 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             'auth' => [
                 'user' => $user,
+                'userHabitsAdopted' => $user ? $user->habits()->count() : null,
                 'dias_activos' => $user?->diasActivos() ?? 0,
                 'activitiesCategory' => fn() => ActivityCategory::all(),
                 'transport' => [
@@ -111,8 +112,8 @@ class HandleInertiaRequests extends Middleware
                 'mostFrequentActivity' => $categoriaMasContaminante,
                 'last_footprint' => $latestPeriod ? $latestPeriod->carbonFootprint : null,
                 'emissions_per_categories' => $latestPeriod ? [
-                    'transport' =>  $latestPeriod->carbonFootprint->items->where('category_id', 1)->sum('emissions'),
-                    'energy' => $latestPeriod->carbonFootprint->items->where('category_id', 2)->sum('emissions'),
+                    'Transporte' =>  $latestPeriod->carbonFootprint->items->where('category_id', 1)->sum('emissions'),
+                    'Energía' => $latestPeriod->carbonFootprint->items->where('category_id', 2)->sum('emissions'),
                 ] : null,
                 'periods' => $periodsWithVariation,
                 'periodsGraphic' => $user ? [

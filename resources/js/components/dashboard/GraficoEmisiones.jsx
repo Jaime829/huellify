@@ -41,11 +41,9 @@ import {
 //     ],
 // };
 
-export default function GraficoEmisiones() {
+export default function GraficoEmisiones({ size = 56 }) {
     const [periodo, setPeriodo] = useState(3);
     const datos = authUser().periodsGraphic[periodo];
-
-    console.log(datos);
 
     return (
         <div className="w-full rounded-xl border border-slate-200 bg-white p-4 shadow-sm col-span-3 lg:col-span-2">
@@ -74,7 +72,7 @@ export default function GraficoEmisiones() {
 
             {datos.length > 0 ? (
                 <>
-                    <div className="h-56 w-full">
+                    <div className={`h-${size} w-full`}>
                         <ResponsiveContainer width="100%" height="100%">
                             <AreaChart
                                 data={datos}

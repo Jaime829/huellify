@@ -12,4 +12,9 @@ class ActivityCategory extends Model
     {
         return $this->hasMany(Activity::class);
     }
+
+    public function emissionFactors()
+    {
+        return $this->belongsTo(EmissionFactor::class);
+    }
 }

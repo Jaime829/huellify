@@ -1,10 +1,4 @@
-import {
-    IconBoltFilled,
-    IconCarFilled,
-    IconLeafFilled,
-    IconToolsKitchen2Filled,
-    IconTrash,
-} from "@tabler/icons-react";
+import { IconBoltFilled, IconCarFilled } from "@tabler/icons-react";
 
 const activitiesType = {
     transporte: {
@@ -12,15 +6,6 @@ const activitiesType = {
     },
     energia: {
         icon: IconBoltFilled,
-    },
-    habitos: {
-        icon: IconLeafFilled,
-    },
-    alimentacion: {
-        icon: IconToolsKitchen2Filled,
-    },
-    residuos: {
-        icon: IconTrash,
     },
 };
 

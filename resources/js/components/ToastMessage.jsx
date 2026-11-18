@@ -12,6 +12,7 @@ export default function ToastMessage() {
     const { flash } = usePage().props;
     const [visible, setVisible] = useState(false);
 
+
     useEffect(() => {
         if (flash.status?.text || flash.error?.text || flash.noChange?.text) {
             setVisible(true);

@@ -81,7 +81,7 @@ class HabitController
                         return $query->where('hc.id', $filter_type);
                     })
                     ->when($filter_name, function ($query) use ($filter_name) {
-                        return $query->where('h.name', 'ILIKE', '%' . $filter_name . '%');;
+                        return $query->where('h.name', 'ILIKE', '%' . $filter_name . '%');
                     })
                     ->select('h.*', 'hc.name as habit_category_name', 'hc.slug as habit_category_slug')
                     ->get(),

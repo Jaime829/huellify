@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('recommendation_id')->constrained('recommendations')->cascadeOnDelete();
-            $table->enum('status', ['pending', 'adopted', 'dismissed']);
+            $table->enum('status', ['pending', 'adopted']);
             $table->timestamp('adopted_at')->nullable();
+            $table->unique(['user_id', 'recommendation_id']);
             $table->timestamps();
         });
     }

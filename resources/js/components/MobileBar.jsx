@@ -15,7 +15,7 @@ export default function MobileBar() {
             <MobileNavEnlace
                 icon={Leaf}
                 text={"Actividades"}
-                url={route("activities.index")}
+                url={route("dashboard.activities.index")}
             />
             <MobileNavEnlace icon={IconChartBar} text={"Historial"} url={"#"} />
             <MobileNavEnlace icon={StarIcon} text={"Recomendacion"} url={"#"} />

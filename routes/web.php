@@ -9,11 +9,14 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Activities\TransportActivityController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EmissionFactorController;
 use App\Http\Controllers\HabitController;
 use App\Http\Controllers\HabitLogController;
+use App\Http\Controllers\PeriodController;
+use App\Http\Controllers\RecommendationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserHabitController;
-use App\Models\UserHabit;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -72,6 +75,22 @@ Route::middleware(['auth', 'verified'])
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
         Route::get('/profile', [UserController::class, 'index'])->name('profile');
+
+
+        Route::get('/history', [PeriodController::class, 'index'])->name('history');
+        Route::get('/history/{period}', [PeriodController::class, 'show'])->name('history.show');
+
+        Route::get('/activities', [ActivityController::class, 'index'])->name('activities.index');
+        Route::get('/activities/create', [ActivityController::class, 'create'])->name('activities.create');
+
+
+        Route::post('/activities/create/transport', [TransportActivityController::class, 'store'])->name('activities.transport.store');
+        Route::put('/activities/{activity}/update/transport', [TransportActivityController::class, 'update'])->name('activities.transport.update');
+        Route::delete('/activities/{activity}/delete/transport', [TransportActivityController::class, 'destroy'])->name('activities.transport.destroy');
+        Route::post('/activities/create/energy', [EnergyActivityController::class, 'store'])->name('activities.energy.store');
+        Route::put('/activities/{activity}/update/energy', [EnergyActivityController::class, 'update'])->name('activities.energy.update');
+        Route::delete('/activities/{activity}/delete/energy', [EnergyActivityController::class, 'destroy'])->name('activities.energy.destroy');
+
         Route::post('/habits/{habit}/adopt', [HabitController::class, 'adopt'])->name('habits.adopt');
         Route::get('/habits/explore', [HabitController::class, 'explore'])->name('habits.explore');
         Route::get('/my-habits', [HabitController::class, 'index'])->name('myhabits');
@@ -86,21 +105,36 @@ Route::middleware(['auth', 'verified'])
         Route::get('/my-habits/{userHabit}', [UserHabitController::class, 'show'])->name('myhabit.show');
         Route::patch('/my-habits/{userHabit}', [UserHabitController::class, 'update'])->name('myhabit.update');
         Route::delete('/my-habits/{userHabit}', [UserHabitController::class, 'destroy'])->name('myhabit.destroy');
+
+        Route::get('/recommendations', [RecommendationController::class, 'index'])->name('recommendations');
+        Route::patch('/recommendations/{recommendation}/status', [RecommendationController::class, 'updateStatus'])->name('recommendations.updateStatus');
     });
 
-Route::middleware(['auth', 'verified'])
-    ->prefix('habits')
-    ->name('habits.')
-    ->group(function () {});
 
-Route::middleware(['auth', 'verified'])
-    ->prefix('activities')
-    ->name('activities.')
+Route::middleware(['auth', 'admin'])
+    ->prefix('admin')
+    ->name('admin.')
     ->group(function () {
-        Route::get('/', [ActivityController::class, 'index'])->name('index');
-        Route::get('/create', [ActivityController::class, 'create'])->name('create');
+        Route::get('/', [AdminController::class, 'index'])->name('index');
+
+        Route::get('/emission-factors', [EmissionFactorController::class, 'index'])->name('emissions.index');
+        Route::post('/emission-factors', [EmissionFactorController::class, 'store'])->name('emissions.store');
+        Route::put('/emission-factors/{emissionFactor}', [EmissionFactorController::class, 'update'])->name('emissions.update');
+        Route::get('/emission-factors/{emissionFactor}', [EmissionFactorController::class, 'show'])->name('emissions.show');
 
 
-        Route::post('/create/transport', [TransportActivityController::class, 'store'])->name('transport.store');
-        Route::post('/create/energy', [EnergyActivityController::class, 'store'])->name('energy.store');
+        Route::get('/recommendations/metrics', [AdminController::class, 'recommendationsMetrics'])->name('recommendations.metrics');
     });
+
+
+// Route::middleware(['auth', 'verified'])
+//     ->prefix('activities')
+//     ->name('activities.')
+//     ->group(function () {
+//         Route::get('/', [ActivityController::class, 'index'])->name('index');
+//         Route::get('/create', [ActivityController::class, 'create'])->name('create');
+
+
+//         Route::post('/create/transport', [TransportActivityController::class, 'store'])->name('transport.store');
+//         Route::post('/create/energy', [EnergyActivityController::class, 'store'])->name('energy.store');
+//     });

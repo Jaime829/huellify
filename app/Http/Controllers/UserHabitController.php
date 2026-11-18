@@ -16,6 +16,8 @@ class UserHabitController
 
     public function show(UserHabit $userHabit)
     {
+        Gate::authorize('view', $userHabit);
+
         $startOfWeek = now()->startOfWeek(Carbon::MONDAY);
         $endOfWeek = now()->endOfWeek(Carbon::SUNDAY);
         $userHabit->load(['habit', 'habit.habit_category']);

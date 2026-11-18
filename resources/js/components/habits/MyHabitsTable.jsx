@@ -79,12 +79,11 @@ export default function MyHabitsTable() {
                 selectedHabit.pivot.id,
             ),
             {
-                only: ["flash"],
+                only: ["flash", "userHabits", "monthActions"],
                 preserveScroll: true,
                 preserveState: false,
                 onSuccess: () => {
                     setSelectedHabit(null);
-                    router.reload({ only: ["userHabits", "monthActions"] });
                 },
             },
         );
@@ -130,7 +129,6 @@ export default function MyHabitsTable() {
                                     month: "long",
                                     year: "numeric",
                                 });
-                                console.log(habit);
                                 return (
                                     <div
                                         key={habit.id}
@@ -144,7 +142,7 @@ export default function MyHabitsTable() {
                                                 )}
                                             >
                                                 <div
-                                                className={`${habit.habit_category_id == 1 ? "bg-green-500/20 text-emerald-700" : "text-blue-700 bg-blue-500/20"} flex items-center justify-center h-16 aspect-square  rounded-lg`}
+                                                    className={`${habit.habit_category_id == 1 ? "bg-green-500/20 text-emerald-700" : "text-blue-700 bg-blue-500/20"} flex items-center justify-center h-16 aspect-square  rounded-lg`}
                                                 >
                                                     <SafeDBIcon
                                                         svgRawString={

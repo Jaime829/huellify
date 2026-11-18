@@ -19,9 +19,11 @@ class EnergyActivityController
     {
         $data = $request->validated();
 
-        $emission_factor = EnergyEmissionFactor::where([
+        $emission_factor = EnergyEmissionFactor::with(['emissionFactor'])->where([
             'energy_source_id' => $data['energy_source_id'],
-        ])->get()->first();
+        ])->whereHas('emissionFactor', function ($query) {
+            $query->where('active', true);
+        })->get()->first();
 
         if (!$emission_factor) {
             return back()->withErrors(['status' => 'Aun no tenemos un factor de emision para esa fuente de energia']);
@@ -89,11 +91,84 @@ class EnergyActivityController
                     'total_emissions' => $carbon_footprint->total_emissions + $emissions
                 ]);
             });
-            return redirect()->route('activities.index')->with('status', 'Registro creado con exito');
+            return redirect()->route('dashboard.activities.index')->with('status', 'Registro creado con exito');
         } catch (\Exception $e) {
             return back()->with(
                 'error',
                 'Hubo un error al registrar la actividad: ' . $e->getMessage()
+            );
+        }
+    }
+    public function update(EnergyActivityRequest $request, Activity $activity)
+    {
+        $data = $request->validated();
+        $emission_factor = EnergyEmissionFactor::where([
+            'energy_source_id' => $data['energy_source_id'],
+        ])->whereHas('emissionFactor', function ($query) {
+            $query->where('active', true);
+        })->get()->first();
+        if (!$emission_factor) {
+            return back()->with('error', 'Aun no tenemos un factor de emision para ese transporte o combustible');
+        }
+
+        try {
+            DB::transaction(function () use ($data, $emission_factor, $activity,) {
+                $name_activity = EnergySource::find($data['energy_source_id'], ['name'])->name;
+                $activity->update([
+                    'activity_date' => $data['activity_date'],
+                    'name' => $name_activity,
+                    'emission_factor_id' => $emission_factor->id,
+                    'description' => $data['description'],
+                    'quantity' => $data['quantity']
+
+                ]);
+
+                $activity->energyDetail()->update([
+                    'energy_source_id' => $data['energy_source_id'],
+                ]);
+
+
+                $emissions = (float) $data['quantity'] * (float)$emission_factor->emissionFactor->value;
+
+                $total_emisions = (float)$activity->carbonFootprintItem->carbonFootprint->total_emissions - (float)$activity->carbonFootprintItem->emissions;
+
+                $activity->carbonFootprintItem()->update([
+                    'emissions' => $emissions,
+                    'quantity' => $data['quantity'],
+                ]);
+                $total_emisions = $total_emisions + $emissions;
+                $activity->carbonFootprintItem->carbonFootprint()->update([
+                    'total_emissions' => $total_emisions,
+                ]);
+            });
+            return back()->with('status', 'Registro actualizado con exito');
+        } catch (\Exception $e) {
+            return back()->with(
+                'error',
+                'Hubo un error al actualizar la actividad'
+            );
+        }
+    }
+
+    public function destroy(Activity $activity)
+    {
+
+        try {
+            DB::transaction(function () use ($activity) {
+                $total_emisions = (float)$activity->carbonFootprintItem->carbonFootprint->total_emissions - (float)$activity->carbonFootprintItem->emissions;
+
+                $activity->carbonFootprintItem->carbonFootprint()->update([
+                    'total_emissions' => $total_emisions
+                ]);
+
+                $activity->delete();
+            });
+
+            return back()->with('status', 'Registro eliminado con exito');
+        } catch (\Exception $e) {
+            return back()->with(
+                'error',
+                'Hubo un error al eliminar la actividad'
             );
         }
     }

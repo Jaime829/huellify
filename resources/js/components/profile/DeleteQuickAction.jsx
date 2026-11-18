@@ -102,7 +102,12 @@ export default function DeleteQuickAction() {
                         </div>
                         <DialogFooter>
                             <DialogClose asChild>
-                                <Button className={'cursor-pointer'} variant="outline">Cancelar</Button>
+                                <Button
+                                    className={"cursor-pointer"}
+                                    variant="outline"
+                                >
+                                    Cancelar
+                                </Button>
                             </DialogClose>
                             <button
                                 disabled={processing}

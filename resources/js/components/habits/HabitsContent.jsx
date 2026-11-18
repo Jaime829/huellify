@@ -13,7 +13,7 @@ export default function HabitsContent() {
 
     return (
         <div className="flex flex-col gap-4">
-            <div className="flex gap-3">
+            <div className="flex flex-col lg:flex-row gap-3">
                 <HabitCard
                     icon={IconLeafFilled}
                     title={"Hábitos adoptados"}

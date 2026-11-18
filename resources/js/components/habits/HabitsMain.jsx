@@ -4,7 +4,7 @@ import HabitsHeader from "./HabitsHeader";
 
 export default function HabitsMain() {
     return (
-        <div className="p-4 pb-24 xl:pb-4 flex flex-col gap-4">
+        <div className="px-6 pt-6 pb-24 xl:pb-6 flex flex-col gap-4">
             <ToastMessage />
             <HabitsHeader />
             <HabitsContent />

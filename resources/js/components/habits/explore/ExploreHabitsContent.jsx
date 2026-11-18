@@ -19,7 +19,6 @@ import { route } from "ziggy-js";
 export default function ExploreHabitsContent() {
     const { habits, habitCategories } = usePage().props;
 
-    console.log(habits);
     const [selectedHabit, setSelectedHabit] = useState(null);
 
     const { post, data, setData, errors, processing } = useForm({
@@ -52,7 +51,7 @@ export default function ExploreHabitsContent() {
     };
 
     return (
-        <div className="p-4 bg-white border-t rounded-t-xl flex flex-col gap-4 h-full">
+        <div className="p-6 bg-white border-t rounded-t-xl flex flex-col gap-4 h-full">
             <header className="flex justify-between">
                 <div className="flex gap-2">
                     <button

@@ -1,17 +1,11 @@
 import { authUser } from "@/stores/user-store";
+import { usePage } from "@inertiajs/react";
 import { IconLeafFilled } from "@tabler/icons-react";
 import { ArrowDown, ArrowUp } from "lucide-react";
 
 export default function () {
-    const fecha = new Date();
-    const periodoActual = authUser().periods.filter(
-        (period) =>
-            period.name ===
-            fecha.toLocaleDateString("es-ES", {
-                month: "long",
-                year: "numeric",
-            }),
-    );
+    const { actualPeriod } = usePage().props;
+
 
     return (
         <div className="bg-white rounded-md shadow flex flex-col gap-3 col-span-2 p-4">
@@ -28,24 +22,14 @@ export default function () {
                     <p className="font-bold text-[16px] text-gray-700">
                         Huella de carbono total
                     </p>
-                    {periodoActual[0] ? (
+                    {actualPeriod ? (
                         <>
                             <p className="font-bold text-2xl text-gray-700">
                                 {Number(
-                                    periodoActual[0].total_emissions,
+                                    actualPeriod.carbon_footprint
+                                        .total_emissions,
                                 ).toFixed(2)}{" "}
                                 kg CO<sub>2</sub>e
-                            </p>
-                            <p
-                                className={`${Number(periodoActual[0].variation_percentage) > 0 ? "text-red-600" : "text-emerald-700"} flex items-center gap-1 text-[16px] font-medium text-green-600`}
-                            >
-                                {periodoActual[0].variation_percentage}%
-                                {Number(periodoActual[0].variation_percentage) >
-                                0 ? (
-                                    <ArrowUp size={15} />
-                                ) : (
-                                    <ArrowDown size={15} />
-                                )}
                             </p>
                         </>
                     ) : (

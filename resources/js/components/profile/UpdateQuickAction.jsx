@@ -1,4 +1,4 @@
-import {  Pencil } from "lucide-react";
+import { Pencil } from "lucide-react";
 
 import {
     DialogHeader,
@@ -19,14 +19,14 @@ import { useState } from "react";
 export default function UpdateQuickAction() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const user = authUser().user;
-    const { data, setData, put, processing } = useForm({
-        name: user.name,
+    const { data, setData, put, processing, errors } = useForm({
+        name: user?.name,
         description: user?.description,
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        put(route("user.update", user.id), {
+        put(route("user.update", user), {
             onSuccess: () => {
                 setIsModalOpen(false);
             },
@@ -49,7 +49,10 @@ export default function UpdateQuickAction() {
                             guardar cuando hayas terminado.
                         </DialogDescription>
                     </DialogHeader>
-                    <form onSubmit={handleSubmit}>
+                    <form
+                        onSubmit={handleSubmit}
+                        className="flex flex-col gap-2"
+                    >
                         <input
                             type="hidden"
                             name="_token"
@@ -58,12 +61,12 @@ export default function UpdateQuickAction() {
                                 ?.getAttribute("content")}
                         />
                         <div className="flex flex-col gap-1">
-                            <div className="w-full max-w-sm">
+                            <div className="w-full max-w-sm flex flex-col">
                                 <label htmlFor="name" className="text-gray-700">
                                     Nombre
                                 </label>
                                 <input
-                                    className="w-full px-3 py-2 text-gray-700 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-green-700 transition duration-200"
+                                    className={`${errors.name ? "border-red-500 border-2 focus:ring-red-500 focus:border-red-500" : "border-gray-300 focus:ring-green-700 focus:border-green-700"} w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:ring-2 transition-all`}
                                     type="text"
                                     name="name"
                                     id="name"
@@ -72,9 +75,14 @@ export default function UpdateQuickAction() {
                                         setData("name", e.target.value)
                                     }
                                 />
+                                {errors.name && (
+                                    <small className="text-red-600 font-medium">
+                                        {errors.name}
+                                    </small>
+                                )}
                             </div>
                         </div>
-                        <div className="w-full max-w-sm">
+                        <div className="w-full max-w-sm flex flex-col">
                             <label
                                 htmlFor="description"
                                 className="block text-sm font-medium text-gray-700 mb-1"
@@ -85,7 +93,7 @@ export default function UpdateQuickAction() {
                                 id="description"
                                 name="description"
                                 rows="4"
-                                className="w-full h-37.5 resize-none px-3 py-2 text-gray-700 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-green-700 transition duration-200"
+                                className={`${errors.description ? "border-red-500 border-2 focus:ring-red-500 focus:border-red-500" : "border-gray-300 focus:ring-green-700 focus:border-green-700"} w-full h-37.5 resize-none px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:ring-2  transition duration-200`}
                                 placeholder="Escribe algo aquí..."
                                 onChange={(e) =>
                                     setData("description", e.target.value)
@@ -93,6 +101,11 @@ export default function UpdateQuickAction() {
                             >
                                 {data.description}
                             </textarea>
+                            {errors.description && (
+                                <small className="text-red-600 font-medium">
+                                    {errors.description}
+                                </small>
+                            )}
                         </div>
 
                         <DialogFooter>

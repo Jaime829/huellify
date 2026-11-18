@@ -1,11 +1,31 @@
 import { Table, TableBody, TableCell, TableRow } from "../ui/table";
-import { DropdownMenuActions } from "./DropdownActions";
-import { authUser } from "@/stores/user-store";
+import { Dot, PencilIcon, ShareIcon, TrashIcon } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
 import { Link, usePage } from "@inertiajs/react";
 import activityIcon from "../util/ActivityIcon";
+import { useState } from "react";
+import { IconDotsVertical } from "@tabler/icons-react";
+import ModalActionsActivities from "./ModalActionsActivities";
+import ToastMessage from "../ToastMessage";
 
 export default function LatestActivities() {
     const { activities } = usePage().props;
+    const [actionActivity, setActionActivity] = useState({
+        isOpen: false,
+        activity: null,
+        action: null,
+    });
+
     const activitiesFormateadas = activities.data.map((activity) => {
         const fecha = new Date(activity.updated_at);
 
@@ -37,7 +57,7 @@ export default function LatestActivities() {
     });
     return (
         <div className="flex flex-col gap-2 p-2 shadow rounded-md">
-            <h3 className="font-bold text-emerald-900">Últimas actividades</h3>
+            <ToastMessage />
             <div className="shadow rounded-md">
                 {activitiesFormateadas.length > 0 ? (
                     <Table className={"bg-white rounded-md"}>
@@ -88,7 +108,58 @@ export default function LatestActivities() {
                                             </p>
                                         </TableCell>
                                         <TableCell className={"my-0 mx-auto"}>
-                                            <DropdownMenuActions />
+                                            <DropdownMenu>
+                                                <DropdownMenuTrigger asChild>
+                                                    <button className="cursor-pointer flex items-center justify-center focus:outline-none">
+                                                        <IconDotsVertical />
+                                                    </button>
+                                                </DropdownMenuTrigger>
+                                                <DropdownMenuContent
+                                                    className={"mr-2"}
+                                                >
+                                                    <DropdownMenuGroup>
+                                                        <DropdownMenuItem>
+                                                            <button
+                                                                onClick={() =>
+                                                                    setActionActivity(
+                                                                        {
+                                                                            isOpen: true,
+                                                                            activity:
+                                                                                activity,
+                                                                            action: "edit",
+                                                                        },
+                                                                    )
+                                                                }
+                                                                className="flex items-center gap-2 cursor-pointer"
+                                                            >
+                                                                <PencilIcon />
+                                                                Editar
+                                                            </button>
+                                                        </DropdownMenuItem>
+                                                    </DropdownMenuGroup>
+                                                    <DropdownMenuSeparator />
+                                                    <DropdownMenuGroup>
+                                                        <DropdownMenuItem variant="destructive">
+                                                            <button
+                                                                onClick={() =>
+                                                                    setActionActivity(
+                                                                        {
+                                                                            isOpen: true,
+                                                                            activity:
+                                                                                activity,
+                                                                            action: "delete",
+                                                                        },
+                                                                    )
+                                                                }
+                                                                className="flex items-center gap-2 cursor-pointer"
+                                                            >
+                                                                <TrashIcon />
+                                                                Eliminar
+                                                            </button>
+                                                        </DropdownMenuItem>
+                                                    </DropdownMenuGroup>
+                                                </DropdownMenuContent>
+                                            </DropdownMenu>
                                         </TableCell>
                                     </TableRow>
                                 );
@@ -129,6 +200,11 @@ export default function LatestActivities() {
                     );
                 })}
             </div>
+            <ModalActionsActivities
+                key={actionActivity.activity?.id || "modal-closed"}
+                actionActivity={actionActivity}
+                setActionActivity={setActionActivity}
+            />
         </div>
     );
 }

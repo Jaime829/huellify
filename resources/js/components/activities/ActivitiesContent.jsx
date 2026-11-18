@@ -25,7 +25,7 @@ export default function ActivitiesContent() {
         };
     }, []);
     return (
-        <div className="flex-col flex lg:flex-row lg:p-4 lg:gap-4 px-4  pb-24 lg:pb-4 w-full">
+        <div className="flex-col flex lg:flex-row lg:gap-4 p-6  pb-24 lg:pb-4 w-full">
             <ToastMessage />
             <div className="flex flex-col w-full xl:w-[80%]">
                 <ActivitiesHeader />
