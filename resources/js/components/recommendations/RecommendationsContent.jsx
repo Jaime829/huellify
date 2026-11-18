@@ -53,7 +53,7 @@ export default function RecommendationsContent() {
                         return (
                             <div
                                 key={recommendation.id}
-                                className="flex flex-1 gap-2 bg-white rounded-lg border p-4 transition-all"
+                                className="flex flex-1 min-w-0 w-full basis-full md:basis-auto lg:min-w-[28rem] gap-2 bg-white rounded-lg border p-4 transition-all"
                             >
                                 <div
                                     className={`h-16 w-16 aspect-square rounded-full flex items-center justify-center bg-green-500/20 text-green-700`}
@@ -65,7 +65,7 @@ export default function RecommendationsContent() {
                                         }}
                                     />
                                 </div>
-                                <div className="flex flex-col justify-between gap-2">
+                                <div className="flex flex-col justify-between gap-2 min-w-0 flex-1">
                                     <span
                                         className={`${recommendation.priority === "low" && "bg-green-500/20 text-emerald-800"} ${
                                             recommendation.priority ===
@@ -97,14 +97,14 @@ export default function RecommendationsContent() {
                                     {recommendation.user_status ? (
                                         <>
                                             <>
-                                                <div className="flex items-center gap-2">
+                                                <div className="flex flex-wrap items-center gap-2">
                                                     <span
                                                         className={`${
                                                             recommendation.user_status ===
                                                             "adopted"
                                                                 ? "bg-green-500/20 text-emerald-600"
                                                                 : "bg-gray-200 text-gray-500"
-                                                        } flex items-center gap-2 px-4 py-2  text-[13px]  border border-gray-200 rounded-full w-fit h-fit font-semibold whitespace-nowrap`}
+                                                        } flex flex-wrap items-center gap-2 px-4 py-2  text-[13px]  border border-gray-200 rounded-full w-fit h-fit font-semibold whitespace-normal sm:whitespace-nowrap`}
                                                     >
                                                         {recommendation.user_status ===
                                                         "adopted" ? (
@@ -126,7 +126,7 @@ export default function RecommendationsContent() {
                                                                 recommendation.id,
                                                             )
                                                         }
-                                                        className="flex items-center gap-2 px-4 py-2 bg-white text-[13px] text-emerald-900 border border-gray-200 rounded-full w-fit h-fit font-semibold whitespace-nowrap shadow-2xs cursor-pointer transition-colors hover:bg-emerald-50/60"
+                                                        className="flex flex-wrap items-center gap-2 px-4 py-2 bg-white text-[13px] text-emerald-900 border border-gray-200 rounded-full w-fit h-fit font-semibold whitespace-normal sm:whitespace-nowrap shadow-2xs cursor-pointer transition-colors hover:bg-emerald-50/60"
                                                     >
                                                         {isThisLoading ? (
                                                             <>
@@ -160,7 +160,7 @@ export default function RecommendationsContent() {
                                                         recommendation.id,
                                                     )
                                                 }
-                                                className="flex items-center gap-2 px-4 py-2 bg-green-500/20 text-[13px] text-emerald-900 border border-gray-200 rounded-full w-fit h-fit font-semibold whitespace-nowrap shadow-2xs cursor-pointer transition-colors hover:bg-green-500/30"
+                                                className="flex flex-wrap items-center gap-2 px-4 py-2 bg-green-500/20 text-[13px] text-emerald-900 border border-gray-200 rounded-full w-fit h-fit font-semibold whitespace-normal sm:whitespace-nowrap shadow-2xs cursor-pointer transition-colors hover:bg-green-500/30"
                                             >
                                                 {isThisLoading ? (
                                                     <>
@@ -187,13 +187,13 @@ export default function RecommendationsContent() {
                     })}
                 </div>
 
-                <div className="flex items-center gap-2 justify-end">
+                <div className="flex flex-wrap items-center gap-2 justify-end">
                     {general_recommendations.links.map((link, index) => {
                         if (!link.url) {
                             return (
                                 <span
                                     key={index}
-                                    className="p-2 h-10 w-10 text-center rounded text-gray-400 bg-gray-50 cursor-not-allowed"
+                                    className="min-h-11 min-w-11 sm:min-h-10 sm:min-w-10 p-2 h-10 w-10 text-center rounded text-gray-400 bg-gray-50 cursor-not-allowed"
                                     dangerouslySetInnerHTML={{
                                         __html: link.label,
                                     }}
@@ -206,7 +206,7 @@ export default function RecommendationsContent() {
                                 preserveScroll
                                 key={index}
                                 href={link.url}
-                                className={`p-2 h-10 w-10 text-center border rounded transition-colors shadow ${
+                                className={`min-h-11 min-w-11 sm:min-h-10 sm:min-w-10 p-2 h-10 w-10 text-center border rounded transition-colors shadow ${
                                     link.active
                                         ? "bg-emerald-800 text-white border-emerald-800 font-medium"
                                         : "bg-white text-gray-700 hover:bg-gray-100"
@@ -242,7 +242,7 @@ export default function RecommendationsContent() {
                                     return (
                                         <div
                                             key={recommendation.id}
-                                            className="flex flex-1 gap-2 bg-white rounded-lg border p-4 transition-all"
+                                            className="flex flex-1 min-w-0 w-full basis-full md:basis-auto lg:min-w-[28rem] gap-2 bg-white rounded-lg border p-4 transition-all"
                                         >
                                             <div
                                                 className={`h-16 w-16 aspect-square rounded-full flex items-center justify-center bg-green-500/20 text-green-700`}
@@ -254,7 +254,7 @@ export default function RecommendationsContent() {
                                                     }}
                                                 />
                                             </div>
-                                            <div className="flex flex-col justify-between gap-2">
+                                            <div className="flex flex-col justify-between gap-2 min-w-0 flex-1">
                                                 <div className="flex items-center justify-between">
                                                     <span
                                                         className={`${recommendation.category_id === 1 ? "bg-green-500/10 text-emerald-700" : "bg-blue-500/10 text-blue-700"} w-fit px-2 py-1 font-medium rounded-xl flex items-center gap-1 text-[14px]`}
@@ -285,8 +285,8 @@ export default function RecommendationsContent() {
                                                             "high" && "Alta"}
                                                     </span>
                                                 </div>
-                                                <div className="flex items-center gap-1">
-                                                    <div className="flex flex-col w-fit">
+                                                <div className="flex flex-col lg:flex-row lg:items-center lg:gap-1 gap-2">
+                                                    <div className="flex flex-col w-fit min-w-0">
                                                         <p className="font-semibold text-[14px] text-gray-800 w-fit">
                                                             {
                                                                 recommendation.title
@@ -302,14 +302,14 @@ export default function RecommendationsContent() {
                                                         {recommendation.user_status ? (
                                                             <>
                                                                 <>
-                                                                    <div className="flex items-center gap-2">
+                                                                    <div className="flex flex-wrap items-center gap-2">
                                                                         <span
                                                                             className={`${
                                                                                 recommendation.user_status ===
                                                                                 "adopted"
                                                                                     ? "bg-green-500/20 text-emerald-600"
                                                                                     : "bg-gray-200 text-gray-500"
-                                                                            } flex items-center gap-2 px-4 py-2  text-[13px]  border border-gray-200 rounded-full w-fit h-fit font-semibold whitespace-nowrap`}
+                                                                            } flex flex-wrap items-center gap-2 px-4 py-2  text-[13px]  border border-gray-200 rounded-full w-fit h-fit font-semibold whitespace-normal sm:whitespace-nowrap`}
                                                                         >
                                                                             {recommendation.user_status ===
                                                                             "adopted" ? (
@@ -333,7 +333,7 @@ export default function RecommendationsContent() {
                                                                                     recommendation.id,
                                                                                 )
                                                                             }
-                                                                            className="flex items-center gap-2 px-4 py-2 bg-white text-[13px] text-emerald-900 border border-gray-200 rounded-full w-fit h-fit font-semibold whitespace-nowrap shadow-2xs cursor-pointer transition-colors hover:bg-emerald-50/60"
+                                                                            className="flex flex-wrap items-center gap-2 px-4 py-2 bg-white text-[13px] text-emerald-900 border border-gray-200 rounded-full w-fit h-fit font-semibold whitespace-normal sm:whitespace-nowrap shadow-2xs cursor-pointer transition-colors hover:bg-emerald-50/60"
                                                                         >
                                                                             {isThisLoading ? (
                                                                                 <>
@@ -373,7 +373,7 @@ export default function RecommendationsContent() {
                                                                             recommendation.id,
                                                                         )
                                                                     }
-                                                                    className="flex items-center gap-2 px-4 py-2 bg-green-500/20 text-[13px] text-emerald-900 border border-gray-200 rounded-full w-fit h-fit font-semibold whitespace-nowrap shadow-2xs cursor-pointer transition-colors hover:bg-green-500/30"
+                                                                    className="flex flex-wrap items-center gap-2 px-4 py-2 bg-green-500/20 text-[13px] text-emerald-900 border border-gray-200 rounded-full w-fit h-fit font-semibold whitespace-normal sm:whitespace-nowrap shadow-2xs cursor-pointer transition-colors hover:bg-green-500/30"
                                                                 >
                                                                     {isThisLoading ? (
                                                                         <>
@@ -408,14 +408,14 @@ export default function RecommendationsContent() {
                                     );
                                 },
                             )}
-                            <div className="flex items-center gap-2 justify-end col-span-full">
+                            <div className="flex flex-wrap items-center gap-2 justify-end col-span-full">
                                 {recommendations_for_you.links.map(
                                     (link, index) => {
                                         if (!link.url) {
                                             return (
                                                 <span
                                                     key={index}
-                                                    className="p-2 h-10 w-10 text-center rounded text-gray-400 bg-gray-50 cursor-not-allowed"
+                                                    className="min-h-11 min-w-11 sm:min-h-10 sm:min-w-10 p-2 h-10 w-10 text-center rounded text-gray-400 bg-gray-50 cursor-not-allowed"
                                                     dangerouslySetInnerHTML={{
                                                         __html: link.label,
                                                     }}
@@ -428,7 +428,7 @@ export default function RecommendationsContent() {
                                                 preserveScroll
                                                 key={index}
                                                 href={link.url}
-                                                className={`p-2 h-10 w-10 text-center border rounded transition-colors shadow ${
+                                                className={`min-h-11 min-w-11 sm:min-h-10 sm:min-w-10 p-2 h-10 w-10 text-center border rounded transition-colors shadow ${
                                                     link.active
                                                         ? "bg-emerald-800 text-white border-emerald-800 font-medium"
                                                         : "bg-white text-gray-700 hover:bg-gray-100"
