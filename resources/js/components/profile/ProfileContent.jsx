@@ -8,7 +8,7 @@ import ToastMessage from "../ToastMessage";
 
 export default function ProfileContent() {
     return (
-        <div className=" grid grid-cols-3 max-h-full md:grid-cols-5 items-start gap-6 pb-24 px-6 pt-6 md:p-6 ">
+        <div className=" grid grid-cols-1 md:grid-cols-5 max-h-full items-start gap-6 pb-6 px-6 pt-6 md:p-6 ">
             <ToastMessage />
             <UserResumen />
             <YourImpact />

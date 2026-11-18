@@ -8,14 +8,14 @@ export default function AccountStats() {
     const opcionesFecha = { day: "2-digit", month: "short", year: "numeric" };
 
     return (
-        <div className="col-span-2 rounded-md flex flex-col gap-4 bg-white shadow p-4">
+        <div className="col-span-1 md:col-span-2 rounded-md flex flex-col gap-4 bg-white shadow p-4">
             <div className="flex gap-2 items-center">
                 <div className="w-8 h-8 p-2 rounded-full bg-green-600/10 flex items-center justify-center text-emerald-800">
                     <IconChartBarPopular size={20} />
                 </div>
                 <p className="font-bold">Estadísticas de tu cuenta</p>
             </div>
-            <div className="w-full flex gap-3">
+            <div className="w-full flex flex-wrap gap-3">
                 <div className="w-1/2 border-r border-gray-200">
                     <p className="text-gray-500">Días activos</p>
                     <p className="font-bold">{diasActivo}</p>

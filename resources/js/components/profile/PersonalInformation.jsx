@@ -17,7 +17,7 @@ export default function PersonalInformation() {
     const opcionesFecha = { day: "2-digit", month: "short", year: "numeric" };
 
     return (
-        <div className="col-span-3 rounded-md flex flex-col gap-2 bg-white shadow p-4">
+        <div className="col-span-1 md:col-span-3 rounded-md flex flex-col gap-2 bg-white shadow p-4">
             <div className="flex gap-2 items-center">
                 <div className="w-10 h-10 rounded-full bg-green-600/10 flex items-center justify-center text-emerald-800">
                     <IconUserFilled />

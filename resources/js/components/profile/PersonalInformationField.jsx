@@ -10,7 +10,7 @@ export default function PersonalInformationField({ field, value, icon: Icon }) {
                 <TableCell className={"text-[14px] text-gray-500 font-medium"}>
                     {field}
                 </TableCell>
-                <TableCell className={"font-medium"}>{value}</TableCell>
+                <TableCell className={"font-medium break-all"}>{value}</TableCell>
             </TableRow>
         </>
     );
