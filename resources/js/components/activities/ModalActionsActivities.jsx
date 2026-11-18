@@ -256,7 +256,7 @@ export default function ModalActionsActivities({
                                                 }
                                             </p>
                                         </div>
-                                        <div className="grid grid-cols-2 gap-4">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                             <div className="flex flex-col gap-2">
                                                 <label
                                                     htmlFor="transport_type_id"
@@ -422,7 +422,7 @@ export default function ModalActionsActivities({
                                             />
 
                                             <select
-                                                className="focus:outline-none w-full min-w-0 bg-transparent text-sm"
+                                                className="focus:outline-none w-full min-w-0 bg-transparent text-base sm:text-sm"
                                                 value={data.energy_source_id}
                                                 onChange={(e) =>
                                                     setData(
@@ -455,7 +455,7 @@ export default function ModalActionsActivities({
                                         </label>
                                         <div className="flex items-center border bg-gray-200 rounded-md w-full overflow-hidden">
                                             <input
-                                                className="focus:outline-none py-1.5 px-2 bg-white w-full min-w-0 text-sm"
+                                                className="focus:outline-none py-1.5 px-2 bg-white w-full min-w-0 text-base sm:text-sm"
                                                 type="number"
                                                 min={1}
                                                 step={0.001}
@@ -490,7 +490,7 @@ export default function ModalActionsActivities({
                                             Fecha de registro
                                         </label>
                                         <input
-                                            className="border px-2 py-1.5 rounded-md w-full min-w-0 text-sm bg-white"
+                                            className="border px-2 py-1.5 rounded-md w-full min-w-0 text-base sm:text-sm bg-white"
                                             type="date"
                                             min={primerDia}
                                             max={ultimoDia}

@@ -53,8 +53,8 @@ export default function FormularioTransporte() {
                     ?.getAttribute("content")}
             />
 
-            <div className="w-full flex gap-4">
-                <div className="w-1/2 flex flex-col gap-1">
+            <div className="w-full flex flex-col sm:flex-row gap-4">
+                <div className="w-full sm:w-1/2 flex flex-col gap-1">
                     <FormActivityLabel htmlFor="transport">
                         Medio de transporte
                     </FormActivityLabel>
@@ -89,7 +89,7 @@ export default function FormularioTransporte() {
                 {data.transport_type_id == 5 || data.transport_type_id == 6 ? (
                     <input type="hidden" name="fuel_type_id" value={6} />
                 ) : (
-                    <div className="w-1/2 flex flex-col gap-1">
+                    <div className="w-full sm:w-1/2 flex flex-col gap-1">
                         <FormActivityLabel htmlFor="fuel_type">
                             Tipo de combustible
                         </FormActivityLabel>
@@ -130,8 +130,8 @@ export default function FormularioTransporte() {
                 )}
             </div>
 
-            <div className="w-full flex gap-4 ">
-                <div className="w-1/2 flex flex-col gap-1">
+            <div className="w-full flex flex-col sm:flex-row gap-4 ">
+                <div className="w-full sm:w-1/2 flex flex-col gap-1">
                     <FormActivityLabel htmlFor="quantity">
                         Distancia recorrida
                     </FormActivityLabel>
@@ -188,7 +188,7 @@ export default function FormularioTransporte() {
                         )}
                     </div>
                 </div>
-                <div className="w-1/2 flex flex-col gap-1 ">
+                <div className="w-full sm:w-1/2 flex flex-col gap-1 ">
                     <FormActivityLabel htmlFor="activity_date">
                         Fecha de la actividad
                     </FormActivityLabel>
@@ -250,7 +250,7 @@ export default function FormularioTransporte() {
                 </div>
             </div>
 
-            <div className="flex items-center justify-between">
+            <div className="flex flex-wrap gap-3 items-center justify-between">
                 <Link
                     href={route("dashboard.activities.index")}
                     className="py-2 px-4 border border-emerald-600 rounded-md text-[14px] text-gray-600 font-medium"

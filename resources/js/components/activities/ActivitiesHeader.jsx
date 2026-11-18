@@ -5,7 +5,7 @@ import { route } from "ziggy-js";
 
 export default function ActivitiesHeader() {
     return (
-        <header className="flex justify-between items-center pb-4 pt-2 max-w-full">
+        <header className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 pb-4 pt-2 max-w-full">
             <div className="flex gap-2 items-center">
                 <div className="flex items-center justify-center rounded-full bg-green-600/10 text-emerald-800 w-20 h-20 aspect-square">
                     <IconLeafFilled size={45} />

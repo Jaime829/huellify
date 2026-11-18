@@ -60,7 +60,7 @@ export default function LatestActivities() {
             <ToastMessage />
             <div className="shadow rounded-md">
                 {activitiesFormateadas.length > 0 ? (
-                    <Table className={"bg-white rounded-md"}>
+                    <Table className={"bg-white rounded-md min-w-[36rem]"}>
                         <TableBody>
                             {activitiesFormateadas.map((activity) => {
                                 const nombreActividad = activity.category_name
@@ -178,7 +178,7 @@ export default function LatestActivities() {
                         return (
                             <span
                                 key={index}
-                                className="px-4 py-2 rounded text-gray-400 bg-gray-50 cursor-not-allowed"
+                                className="min-h-11 sm:min-h-0 px-4 py-2 rounded text-gray-400 inline-flex items-center bg-gray-50 cursor-not-allowed"
                                 dangerouslySetInnerHTML={{
                                     __html: link.label,
                                 }}
@@ -190,7 +190,7 @@ export default function LatestActivities() {
                         <Link
                             key={index}
                             href={link.url}
-                            className={`px-4 py-2 border rounded transition-colors shadow ${
+                            className={`min-h-11 sm:min-h-0 inline-flex items-center px-4 py-2 border rounded transition-colors shadow ${
                                 link.active
                                     ? "bg-emerald-800 text-white border-emerald-800 font-medium"
                                     : "bg-white text-gray-700 hover:bg-gray-100"

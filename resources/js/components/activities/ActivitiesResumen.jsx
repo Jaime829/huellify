@@ -16,7 +16,7 @@ export default function ActivitiesResumen() {
     );
     return (
         <div className="bg-green-500/10 p-4 rounded-md flex flex-col xl:flex-row xl:justify-between xl:items-center shadow">
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-4">
                 <div className="flex gap-3">
                     <div className="flex items-center justify-center rounded-full bg-green-600/10 text-emerald-800 w-12 h-12">
                         <IconLeafFilled size={30} />

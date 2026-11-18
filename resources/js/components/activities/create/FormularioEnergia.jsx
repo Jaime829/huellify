@@ -47,8 +47,8 @@ export default function FormularioEnergia() {
                     .querySelector('meta[name="csrf-token"]')
                     ?.getAttribute("content")}
             />
-            <div className="flex gap-4 w-full">
-                <div className="flex flex-col gap-1 w-1/3">
+            <div className="flex flex-col sm:flex-row gap-4 w-full">
+                <div className="flex flex-col gap-1 w-full sm:w-1/3">
                     <FormActivityLabel
                         htmlFor="energy_source_id"
                         isRequired={true}
@@ -76,7 +76,7 @@ export default function FormularioEnergia() {
                         </select>
                     </div>
                 </div>
-                <div className="flex flex-col gap-1 w-1/3">
+                <div className="flex flex-col gap-1 w-full sm:w-1/3">
                     <FormActivityLabel htmlFor="quantity" isRequired={true}>
                         Cantidad
                     </FormActivityLabel>
@@ -111,7 +111,7 @@ export default function FormularioEnergia() {
                         </select>
                     </div>
                 </div>
-                <div className="flex flex-col gap-1 w-1/3">
+                <div className="flex flex-col gap-1 w-full sm:w-1/3">
                     <FormActivityLabel
                         htmlFor="activity_date"
                         isRequired={true}
@@ -162,7 +162,7 @@ export default function FormularioEnergia() {
                 ></textarea>
             </div>
 
-            <div className="flex items-center justify-between">
+            <div className="flex flex-wrap gap-3 items-center justify-between">
                 <Link
                     href={route("dashboard.activities.index")}
                     className="py-2 px-4 border border-emerald-600 rounded-md text-[14px] text-gray-600 font-medium"

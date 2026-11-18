@@ -5,12 +5,12 @@ export default function ErrorsList({ errors }) {
 
     return (
         listadoErrores.length > 0 && (
-            <div className="fixed top-20 right-8 z-[1000]">
+            <div className="fixed top-20 left-2 right-2 sm:left-auto sm:right-8 z-[1000]">
                 <ul className="flex flex-col gap-2">
                     {listadoErrores.map((error, index) => (
                         <li
                             key={index}
-                            className="flex items-center animate-wobble text-white gap-1 h-auto text-xs max-w-46 bg-red-500/70 p-2 rounded-xl"
+                            className="flex items-center animate-wobble text-white gap-1 h-auto text-xs max-w-full sm:max-w-46 bg-red-500/70 p-2 rounded-xl"
                         >
                             <span>
                                 <svg

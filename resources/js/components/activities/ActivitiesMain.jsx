@@ -23,7 +23,7 @@ export default function ActivitiesMain({ lateralController }) {
         <div className="p-4 border-t border-gray-200 flex flex-col gap-4 max-w-full">
             <nav className="flex flex-wrap items-center gap-3">
                 <button
-                    className={`${activeFilter === "all" ? "bg-emerald-700 text-white" : "bg-white text text-gray-500"} flex items-center justify-center  h-8 w-28 shadow rounded-md cursor-pointer font-medium text-[12px] `}
+                    className={`${activeFilter === "all" ? "bg-emerald-700 text-white" : "bg-white text text-gray-500"} flex items-center justify-center  h-11 sm:h-8 w-28 shadow rounded-md cursor-pointer font-medium text-[12px] `}
                     onClick={() => filtrarPorTipo("all")}
                 >
                     Todas
@@ -37,7 +37,7 @@ export default function ActivitiesMain({ lateralController }) {
 
                     return (
                         <button
-                            className={`${activeFilter == activity.id ? "bg-emerald-700 text-white" : "bg-white text text-gray-500"} flex items-center justify-center gap-1 bg-emerald-700 h-8 w-28 shadow rounded-md cursor-pointer font-medium text-[12px]`}
+                            className={`${activeFilter == activity.id ? "bg-emerald-700 text-white" : "bg-white text text-gray-500"} flex items-center justify-center gap-1 bg-emerald-700 h-11 sm:h-8 w-28 shadow rounded-md cursor-pointer font-medium text-[12px]`}
                             key={activity.id}
                             onClick={() => filtrarPorTipo(activity.id)}
                         >
