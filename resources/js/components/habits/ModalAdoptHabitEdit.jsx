@@ -75,7 +75,7 @@ export default function ModalAdoptHabitEdit({
                         <span>{selectedHabit.instructions}</span>
                     </DialogDescription>
                 </DialogHeader>
-                <div className="flex justify-between bg-green-500/15 p-2 rounded-lg">
+                <div className="flex flex-wrap gap-2 justify-between bg-green-500/15 p-2 rounded-lg">
                     <div className="flex">
                         <div></div>
                         <div>

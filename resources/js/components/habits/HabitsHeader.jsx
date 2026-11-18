@@ -5,7 +5,7 @@ import { route } from "ziggy-js";
 
 export default function HabitsHeader() {
     return (
-        <header className="flex items-center justify-between">
+        <header className="flex flex-col sm:flex-row sm:items-center gap-3 sm:justify-between">
             <div className="flex items-center gap-2">
                 <div className="flex items-center justify-center w-20 h-20 aspect-square bg-emerald-600/10 text-emerald-700 rounded-full">
                     <IconLeafFilled size={40} />

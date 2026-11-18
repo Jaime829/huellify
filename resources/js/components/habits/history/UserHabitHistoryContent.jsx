@@ -72,7 +72,7 @@ export default function UserHabitHistoryContent() {
             >
                 <ChevronLeft /> Volver a Mis hábitos
             </Link>
-            <div className="flex gap-2 p-4 bg-white rounded-lg border relative">
+            <div className="flex flex-wrap gap-4 p-4 bg-white rounded-lg border relative">
                 <div
                     className={`${userHabit.habit.habit_category_id == 1 ? "bg-green-500/20 text-emerald-700" : "text-blue-700 bg-blue-500/20"} flex items-center justify-center h-20 aspect-square rounded-full`}
                 >
@@ -81,8 +81,8 @@ export default function UserHabitHistoryContent() {
                         className="scale-200"
                     />
                 </div>
-                <div className="flex flex-col gap-1">
-                    <h1 className="font-semibold text-xl text-gray-800">
+                <div className="flex flex-col gap-1 min-w-0 flex-1">
+                    <h1 className="font-semibold text-xl text-gray-800 break-words">
                         {userHabit.habit.name}
                     </h1>
                     <span
@@ -109,7 +109,7 @@ export default function UserHabitHistoryContent() {
                     categoryId={userHabit.habit.habit_category_id}
                 />
             </div>
-            <div className="flex gap-4">
+            <div className="grid grid-cols-2 lg:flex gap-4">
                 <InfoCardHistory
                     icon={IconDatabase}
                     value={totalActions}
@@ -172,7 +172,7 @@ export default function UserHabitHistoryContent() {
                 />
             </div>
             <div className="flex flex-col gap-4 p-4 border rounded-lg bg-white">
-                <header className="flex justify-between">
+                <header className="flex flex-wrap gap-2 items-center justify-between">
                     <div className="flex gap-2">
                         <Clock
                             color={
@@ -201,9 +201,9 @@ export default function UserHabitHistoryContent() {
                             return (
                                 <div
                                     key={action.id}
-                                    className="border p-2 rounded-xl flex justify-between items-center gap-4"
+                                    className="border p-2 rounded-xl flex flex-wrap sm:flex-nowrap justify-between items-center gap-4"
                                 >
-                                    <div className="flex gap-4 items-center w-1/2">
+                                    <div className="flex gap-4 items-center w-full sm:w-1/2 min-w-0 flex-wrap">
                                         <div
                                             className={`${userHabit.habit.habit_category_id == 1 ? "text-emerald-800 bg-green-500/20" : "text-blue-800 bg-blue-500/20"} h-14 w-14 aspect-square flex items-center justify-center rounded-full `}
                                         >
@@ -233,7 +233,7 @@ export default function UserHabitHistoryContent() {
                                     </div>
                                     <div>
                                         {action.notes && (
-                                            <small className="flex items-center gap-1 text-gray-700 font-medium text-[14px] bg-green-400/10 px-2 py-1 rounded-xl">
+                                            <small className="flex items-center gap-1 text-gray-700 font-medium text-[14px] bg-green-400/10 px-2 py-1 rounded-xl break-all">
                                                 <IconNote color="#007955" />
                                                 {action.notes}
                                             </small>
@@ -334,7 +334,7 @@ export default function UserHabitHistoryContent() {
                         />
                     )}
                 </div>
-                <div className="flex items-center gap-2 justify-center">
+                <div className="flex flex-wrap items-center gap-2 justify-center">
                     {userHabitActions.links.map((link, index) => {
                         if (!link.url) {
                             return (

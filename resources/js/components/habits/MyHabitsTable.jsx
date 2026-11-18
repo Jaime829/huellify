@@ -94,31 +94,31 @@ export default function MyHabitsTable() {
             <div className="flex flex-col gap-4 py-4">
                 <div className={"flex items-center gap-2 px-4"}>
                     <button
-                        className={`${activeFilter === "all" ? "bg-emerald-700 text-white" : "bg-gray-100 text-gray-500"} py-1 px-2 rounded-xl font-medium cursor-pointer`}
+                        className={`${activeFilter === "all" ? "bg-emerald-700 text-white" : "bg-gray-100 text-gray-500"} inline-flex items-center min-h-11 sm:min-h-0 py-1 px-2 rounded-xl font-medium cursor-pointer`}
                         onClick={() => filtrarPorStatus("all")}
                     >
                         Todos
                     </button>
                     <button
-                        className={`${activeFilter === "active" ? "bg-emerald-700 text-white" : "bg-gray-100 text-gray-500"} py-1 px-2 rounded-xl font-medium cursor-pointer`}
+                        className={`${activeFilter === "active" ? "bg-emerald-700 text-white" : "bg-gray-100 text-gray-500"} inline-flex items-center min-h-11 sm:min-h-0 py-1 px-2 rounded-xl font-medium cursor-pointer`}
                         onClick={() => filtrarPorStatus("active")}
                     >
                         Activos
                     </button>
                     <button
-                        className={`${activeFilter === "paused" ? "bg-emerald-700 text-white" : "bg-gray-100 text-gray-500"} py-1 px-2 rounded-xl font-medium cursor-pointer`}
+                        className={`${activeFilter === "paused" ? "bg-emerald-700 text-white" : "bg-gray-100 text-gray-500"} inline-flex items-center min-h-11 sm:min-h-0 py-1 px-2 rounded-xl font-medium cursor-pointer`}
                         onClick={() => filtrarPorStatus("paused")}
                     >
                         Pausados
                     </button>
                     <button
-                        className={`${activeFilter === "abandoned" ? "bg-emerald-700 text-white" : "bg-gray-100 text-gray-500"} py-1 px-2 rounded-xl font-medium cursor-pointer`}
+                        className={`${activeFilter === "abandoned" ? "bg-emerald-700 text-white" : "bg-gray-100 text-gray-500"} inline-flex items-center min-h-11 sm:min-h-0 py-1 px-2 rounded-xl font-medium cursor-pointer`}
                         onClick={() => filtrarPorStatus("abandoned")}
                     >
                         Abandonados
                     </button>
                 </div>
-                <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 items-start">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
                     {userHabits.length > 0 ? (
                         <>
                             {userHabits.map((habit) => {
@@ -510,7 +510,7 @@ export default function MyHabitsTable() {
                             />
                         </>
                     ) : (
-                        <p className="px-4 font-medium text-gray-500 text-center col-span-2 lg:col-span-3">
+                        <p className="px-4 font-medium text-gray-500 text-center col-span-1 sm:col-span-2 lg:col-span-3">
                             {activeFilter === "all" &&
                                 "Aun no tienes hábitos adoptados"}
                             {activeFilter === "paused" &&

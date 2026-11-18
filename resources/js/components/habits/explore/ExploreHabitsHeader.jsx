@@ -13,7 +13,7 @@ export default function ExploreHabitsHeader() {
                 src="/images/assets/explore-habit-bg.jpeg"
                 alt=""
             />
-            <div className="absolute z-10 flex gap-2 mt-6">
+            <div className="absolute z-10 flex gap-2 mt-6 max-w-full pr-4">
                 <div className="bg-green-500/15 w-20 h-20  aspect-square rounded-full flex justify-center items-center">
                     <img
                         className="w-[70%] h-[70%]"
@@ -22,7 +22,7 @@ export default function ExploreHabitsHeader() {
                     />
                 </div>
                 <div className="flex flex-col gap-2 justify-center">
-                    <h1 className="text-4xl font-semibold text-emerald-900">
+                    <h1 className="text-3xl sm:text-4xl font-semibold text-emerald-900">
                         Explorar hábitos
                     </h1>
                     <p className="text-gray-500 font-medium">

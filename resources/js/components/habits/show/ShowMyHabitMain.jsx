@@ -52,7 +52,7 @@ export default function ShowMyHabitMain() {
 
     return (
         <>
-            <div className="px-6 pt-6 pb-24 xl:pb-6 flex flex-col gap-4">
+            <div className="px-6 pt-6 pb-6 md:pb-24 xl:pb-6 flex flex-col gap-4">
                 <Link
                     className="flex gap-1 items-center w-fit text-[14px] font-medium"
                     href={route("dashboard.myhabits")}
@@ -60,7 +60,7 @@ export default function ShowMyHabitMain() {
                     <ChevronLeft /> Volver a Mis hábitos
                 </Link>
 
-                <div className="border flex gap-4 relative p-4 rounded-lg bg-white">
+                <div className="border flex flex-wrap gap-4 relative p-4 rounded-lg bg-white">
                     <div
                         className={`${userHabit.habit.habit_category_id !== 1 ? "bg-blue-500/20 text-blue-700" : "bg-green-500/20 text-emerald-700"} flex items-center justify-center w-24 h-24 aspect-square rounded-full`}
                     >
@@ -84,7 +84,7 @@ export default function ShowMyHabitMain() {
                                 }
                                 size={14}
                             />
-                            <p className="text-gray-800 text-[14px] max-w-[70%]">
+                            <p className="text-gray-800 text-[14px] max-w-full md:max-w-[70%]">
                                 {userHabit.habit.instructions}
                             </p>
                         </div>
@@ -251,7 +251,7 @@ export default function ShowMyHabitMain() {
                     </div>
                 </div>
                 <div className="border flex flex-col gap-4 relative p-4 rounded-lg bg-white">
-                    <div className="flex justify-between items-center">
+                    <div className="flex flex-wrap gap-2 justify-between items-center">
                         <div className="flex items-center gap-2">
                             <TrendingUp
                                 color={
@@ -271,9 +271,9 @@ export default function ShowMyHabitMain() {
                             <PlusCircle /> Registrar avance
                         </button>
                     </div>
-                    <div className="flex items-center gap-4 relative">
-                        <div className="flex gap-4">
-                            <div className="flex  gap-3  pr-6 border-r">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-4 relative">
+                        <div className="flex flex-wrap gap-4">
+                            <div className="flex  gap-3  sm:pr-6 sm:border-r">
                                 <div
                                     className={`${userHabit.habit.habit_category_id !== 1 ? "bg-blue-500/10 text-blue-700" : "bg-green-500/10 text-emerald-700"} flex items-center justify-center p-2 aspect-square w-fit h-fit rounded-full `}
                                 >
@@ -295,7 +295,7 @@ export default function ShowMyHabitMain() {
                                 </div>
                             </div>
 
-                            <div className="flex gap-3 items-center pr-6 border-r">
+                            <div className="flex gap-3 items-center sm:pr-6 sm:border-r">
                                 <SafeDBIcon
                                     className={`${userHabit.habit.habit_category_id !== 1 ? "text-blue-700" : "text-emerald-700"} h-fit scale-125`}
                                     svgRawString={userHabit.habit.icon}
@@ -323,8 +323,8 @@ export default function ShowMyHabitMain() {
                             </div>
                         </div>
 
-                        <div className="flex-1 flex justify-between items-center">
-                            <div className="w-[70%]">
+                        <div className="flex-1 flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
+                            <div className="w-full sm:w-[70%]">
                                 <HabitProgressBar
                                     color={
                                         userHabit.habit.habit_category_id !== 1
@@ -356,9 +356,9 @@ export default function ShowMyHabitMain() {
                         </div>
                     </div>
                 </div>
-                <div className="flex gap-4">
+                <div className="flex flex-col xl:flex-row gap-4">
                     <div className="flex flex-col gap-2 bg-white p-4 rounded-lg flex-1 border">
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-wrap gap-2 items-center justify-between">
                             <p className="flex items-center gap-2 font-medium">
                                 <Clock
                                     color={
@@ -392,7 +392,7 @@ export default function ShowMyHabitMain() {
                                 return (
                                     <div
                                         key={log.id}
-                                        className="flex items-center gap-4 px-4 py-2 border rounded-lg"
+                                        className="flex flex-wrap items-center gap-4 px-4 py-2 border rounded-lg"
                                     >
                                         <div
                                             className={`${userHabit.habit.habit_category_id !== 1 ? "bg-blue-500/10 text-blue-700" : "bg-green-500/10 text-emerald-700"} p-2 rounded-full w-14 h-14 flex items-center justify-center`}
@@ -420,7 +420,7 @@ export default function ShowMyHabitMain() {
                         </div>
                     </div>
                     <div className="flex flex-col gap-2 bg-white p-4 rounded-lg flex-1 border">
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-wrap gap-2 items-center justify-between">
                             <p className="flex items-center gap-2 font-medium">
                                 <Info
                                     color={

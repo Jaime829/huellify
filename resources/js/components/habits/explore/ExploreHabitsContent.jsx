@@ -52,10 +52,10 @@ export default function ExploreHabitsContent() {
 
     return (
         <div className="p-6 bg-white border-t rounded-t-xl flex flex-col gap-4 h-full">
-            <header className="flex justify-between">
-                <div className="flex gap-2">
+            <header className="flex flex-col lg:flex-row lg:justify-between gap-4">
+                <div className="flex flex-wrap gap-2">
                     <button
-                        className={`${activeFilter === "all" ? "bg-emerald-700 text-white" : "bg-gray-100 text text-gray-600"} flex items-center justify-center px-2 py-1 shadow rounded-md cursor-pointer font-medium text-[12px] transition-colors ease-in-out delay-75`}
+                        className={`${activeFilter === "all" ? "bg-emerald-700 text-white" : "bg-gray-100 text text-gray-600"} flex items-center justify-center px-2 py-1 shadow rounded-md cursor-pointer font-medium text-[12px] transition-colors ease-in-out delay-75 min-h-11 sm:min-h-0 inline-flex items-center`}
                         onClick={() => filtrarPorTipo("all")}
                     >
                         Todos
@@ -63,7 +63,7 @@ export default function ExploreHabitsContent() {
                     {habitCategories.map((category) => {
                         return (
                             <button
-                                className={`${activeFilter == category.id ? "bg-emerald-700 text-white" : "bg-gray-100 text text-gray-600"} flex items-center justify-center gap-1 bg-emerald-700 px-2 py-1 rounded-md cursor-pointer font-medium text-[12px] transition-colors ease-in-out delay-75`}
+                                className={`${activeFilter == category.id ? "bg-emerald-700 text-white" : "bg-gray-100 text text-gray-600"} flex items-center justify-center gap-1 bg-emerald-700 px-2 py-1 rounded-md cursor-pointer font-medium text-[12px] transition-colors ease-in-out delay-75 min-h-11 sm:min-h-0 inline-flex items-center`}
                                 key={category.id}
                                 onClick={() => filtrarPorTipo(category.id)}
                             >
@@ -72,14 +72,14 @@ export default function ExploreHabitsContent() {
                         );
                     })}
                 </div>
-                <div className="border rounded-xl flex px-2 py-1 items-center gap-2">
+                <div className="border rounded-xl flex px-2 py-1 items-center gap-2 w-full lg:w-auto">
                     <label htmlFor="habit-search">
                         <Search size={20} className="text-gray-500" />
                     </label>
                     <input
                         type="text"
                         id="habit-search"
-                        className="focus:outline-none text-gray-600 text-[14px]"
+                        className="focus:outline-none text-gray-600 text-base sm:text-[14px] w-full"
                         placeholder="Buscar hábitos..."
                         onChange={(e) => {
                             const params = new URLSearchParams(
@@ -101,7 +101,7 @@ export default function ExploreHabitsContent() {
                     />
                 </div>
             </header>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {habits.length > 0 ? (
                     habits.map((habit) => {
                         return (
