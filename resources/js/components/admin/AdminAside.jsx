@@ -10,7 +10,7 @@ import { router } from "@inertiajs/react";
 
 export default function AdminAside() {
     return (
-        <aside className="z-100 flex flex-col gap-6 p-2 bg-teal-800 h-screen max-w-72 sticky top-0 left-0 rounded-tr-md">
+        <aside className="z-100 hidden md:flex flex-col gap-6 p-2 bg-teal-800 h-dvh max-w-72 sticky top-0 left-0 rounded-tr-md">
             <div className="max-w-full w-44 h-fit">
                 <img className="" src="/images/logo-admin.webp" alt="" />
             </div>

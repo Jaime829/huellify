@@ -9,9 +9,9 @@ export default function RecommendationsMetrics() {
     return (
         <>
             <Head title="Factores de emision" />
-            <main className="flex min-h-screen">
+            <main className="flex min-h-dvh">
                 <AdminAside />
-                <section className="flex flex-col flex-1 bg-gray-50">
+                <section className="flex flex-col flex-1 min-w-0 bg-gray-50">
                     <AdminHeader />
                     <ToastMessage />
                     <RecommendationsMetricsMain />

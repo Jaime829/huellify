@@ -27,7 +27,7 @@ import Logo from "./Logo";
 export default function AsideNav() {
     return (
         <>
-            <aside className="hidden md:bg-white md:border-r md:sticky md:border-gray-300 md:h-screen md:max-w-64 md:p-4 md:flex md:flex-col md:justify-between md:top-0">
+            <aside className="hidden md:bg-white md:border-r md:sticky md:border-gray-300 md:h-dvh md:max-w-64 md:p-4 md:flex md:flex-col md:justify-between md:top-0">
                 <div className="flex flex-col flex-1">
                     <Logo />
 

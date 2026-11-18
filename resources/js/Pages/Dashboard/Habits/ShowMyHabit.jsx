@@ -1,7 +1,6 @@
 import AsideNav from "@/components/AsideNav";
 import HeaderDashboard from "@/components/dashboard/HeaderDashboard";
 import ShowMyHabitMain from "@/components/habits/show/ShowMyHabitMain";
-import MobileBar from "@/components/MobileBar";
 import ToastMessage from "@/components/ToastMessage";
 import { Head, usePage } from "@inertiajs/react";
 
@@ -10,15 +9,14 @@ export default function ShowMyHabit() {
     return (
         <>
             <Head title={name} />
-            <main className="flex min-h-screen">
+            <main className="flex min-h-dvh">
                 <AsideNav />
-                <section className="flex flex-col flex-1 bg-gray-50">
+                <section className="flex flex-col flex-1 min-w-0 bg-gray-50">
                     <HeaderDashboard />
                     <ToastMessage />
                     <ShowMyHabitMain />
                 </section>
             </main>
-            <MobileBar />
         </>
     );
 }
