@@ -7,7 +7,7 @@ export default function RecomendacionesDestacadas() {
     const { recommendations_for_you } = usePage().props;
 
     return (
-        <div className="p-4 bg-white shadow rounded-md h-full flex flex-col gap-2 order-4 col-start-3 col-end-4 row-start-2 row-end-3 lg:col-start-auto lg:col-end-auto lg:row-start-auto lg:row-end-auto">
+        <div className="p-4 bg-white shadow rounded-md h-full flex flex-col gap-2 order-4 col-span-1 sm:col-span-2 lg:col-start-auto lg:col-end-auto">
             <header className="flex justify-between items-center flex-wrap">
                 <div className="flex gap-2 items-center flex-wrap">
                     <Lightbulb />

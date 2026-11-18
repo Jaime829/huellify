@@ -46,7 +46,7 @@ export default function GraficoEmisiones({ size = 56 }) {
     const datos = authUser().periodsGraphic[periodo];
 
     return (
-        <div className="w-full rounded-xl border border-slate-200 bg-white p-4 shadow-sm col-span-3 lg:col-span-2">
+        <div className="w-full rounded-xl border border-slate-200 bg-white p-4 shadow-sm col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-2">
             <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
                 <h2 className="text-base font-semibold text-slate-800">
                     Evolución de tus emisiones

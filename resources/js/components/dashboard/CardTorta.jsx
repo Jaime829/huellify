@@ -46,14 +46,14 @@ export default function CardTorta({ wrap = false }) {
 
     return (
         <div
-            className={` ${wrap ? "flex-row" : "h-full shadow col-span-2 p-4 gap-4 rounded-md bg-white"}  flex flex-col`}
+            className={` ${wrap ? "flex-row" : "h-full shadow col-span-1 sm:col-span-2 p-4 gap-4 rounded-md bg-white"}  flex flex-col`}
         >
             {!wrap && <p className="font-bold">Emisiones por categoria</p>}
 
             {emissions_per_categories ? (
                 <>
                     <div
-                        className={`flex items-center  ${wrap ? "w-full justify-between lg:flex-wrap  gap-2" : ""}`}
+                        className={`flex flex-col sm:flex-row items-center ${wrap ? "w-full sm:justify-between lg:flex-wrap gap-2" : "gap-4"}`}
                     >
                         <div
                             className={`${wrap ? "w-32 h-32" : "w-56 h-56"} my-0 mx-auto relative`}
@@ -68,7 +68,7 @@ export default function CardTorta({ wrap = false }) {
                                 </span>
                             </div>
                         </div>
-                        <div className="w-[50%] flex flex-col">
+                        <div className="w-full sm:w-[50%] flex flex-col">
                             {Object.entries(emissions_per_categories).map(
                                 ([key, value]) => {
                                     return (

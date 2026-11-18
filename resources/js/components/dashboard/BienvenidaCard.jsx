@@ -3,7 +3,7 @@ import { authUser } from "@/stores/user-store";
 export default function BienvenidaCard() {
     const user = authUser().user;
     return (
-        <div className="col-span-3 relative w-full h-full rounded-xl bg-slate-50 overflow-hidden p-8 flex items-center shadow">
+        <div className="col-span-1 sm:col-span-2 md:col-span-3 relative w-full h-full rounded-xl bg-slate-50 overflow-hidden p-8 flex items-center shadow">
             <div className="absolute inset-y-0 right-0 w-full md:w-2/3 lg:w-1/2 bg-cover bg-bottom-right z-0">
                 <img
                     className="size-full absolute object-cover -z-10 object-bottom-right"
