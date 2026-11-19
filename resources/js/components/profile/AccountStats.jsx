@@ -8,7 +8,7 @@ export default function AccountStats() {
     const opcionesFecha = { day: "2-digit", month: "short", year: "numeric" };
 
     return (
-        <div className="col-span-1 md:col-span-2 rounded-md flex flex-col gap-4 bg-white shadow p-4">
+        <div className="col-span-1 lg:col-span-2 rounded-md flex flex-col gap-4 bg-white shadow p-4">
             <div className="flex gap-2 items-center">
                 <div className="w-8 h-8 p-2 rounded-full bg-green-600/10 flex items-center justify-center text-emerald-800">
                     <IconChartBarPopular size={20} />

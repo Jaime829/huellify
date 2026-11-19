@@ -16,7 +16,7 @@ export default function CategoriaMasImpacto() {
             .replace(/[\u0300-\u036f]/g, "") ?? "";
 
     return (
-        <div className="flex flex-col p-4 rounded-md shadow bg-white gap-2 sm:col-span-2 lg:col-span-1 lg:row-span-1">
+        <div className="flex flex-col p-4 rounded-md shadow bg-white gap-2 lg:col-span-1 lg:row-span-1">
             <p className="font-bold text-[14px]">Categoria con mayor impacto</p>
             {mostFrequentActivity ? (
                 <>

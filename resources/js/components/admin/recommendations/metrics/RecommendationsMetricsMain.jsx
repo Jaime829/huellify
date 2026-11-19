@@ -69,7 +69,7 @@ export default function RecommendationsMetricsMain() {
 
     return (
         <div className="flex flex-col gap-4 px-4 pt-4 pb-8">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
                 <div className="flex flex-col">
                     <h1 className="text-2xl font-bold">
                         Métricas de recomedaciones
@@ -87,7 +87,7 @@ export default function RecommendationsMetricsMain() {
                     <span>Volver al dashboard</span>
                 </Link>
             </div>
-            <div className="flex flex-col sm:grid sm:grid-cols-2 md:flex md:flex-row md:gap-2 gap-2">
+            <div className="flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row lg:gap-2 gap-2">
                 <AdminCardInfo
                     icon={IconBulbFilled}
                     title={"Total de recomendaciones"}

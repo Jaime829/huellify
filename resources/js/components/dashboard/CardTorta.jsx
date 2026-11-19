@@ -46,7 +46,7 @@ export default function CardTorta({ wrap = false }) {
 
     return (
         <div
-            className={` ${wrap ? "flex-row" : "h-full shadow col-span-1 sm:col-span-2 p-4 gap-4 rounded-md bg-white"}  flex flex-col`}
+            className={` ${wrap ? "flex-row" : "h-full shadow col-span-1 lg:col-span-2 p-4 gap-4 rounded-md bg-white"}  flex flex-col`}
         >
             {!wrap && <p className="font-bold">Emisiones por categoria</p>}
 

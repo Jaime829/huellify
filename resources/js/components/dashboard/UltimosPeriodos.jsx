@@ -14,7 +14,7 @@ export default function UltimosPeriodos() {
     const limitedPeriods = authUser().periods.slice(0, 3);
 
     return (
-        <div className="p-4 col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-2 h-full bg-white shadow rounded-md flex flex-col gap-2">
+        <div className="p-4 col-span-1 lg:col-span-2 h-full bg-white shadow rounded-md flex flex-col gap-2">
             <header className="flex justify-between items-center">
                 <div className="flex gap-2 items-center">
                     <Clock />

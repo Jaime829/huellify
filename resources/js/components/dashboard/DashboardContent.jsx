@@ -17,7 +17,7 @@ export default function DashboardContent() {
     const userHabitsAdopted = authUser().userHabitsAdopted;
 
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 max-h-full items-start gap-6 px-6 pt-6 pb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-4 max-h-full items-start gap-6 px-6 pt-6 pb-6">
             <BienvenidaCard />
             <PeriodoCard />
             <ResumenHuella />

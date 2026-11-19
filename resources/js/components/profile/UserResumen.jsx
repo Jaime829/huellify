@@ -7,7 +7,7 @@ import UserAvatar from "../UserAvatar";
 export default function UserResumen() {
     const user = authUser().user;
     return (
-        <div className="flex bg-green-500/10 h-full col-span-1 md:col-span-3 gap-2 rounded-md p-4 relative">
+        <div className="flex bg-green-500/10 h-full col-span-1 lg:col-span-3 gap-2 rounded-md p-4 relative">
             <UserAvatar size={24} isNav={false} />
 
             <div>

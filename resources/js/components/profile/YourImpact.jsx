@@ -8,7 +8,7 @@ export default function () {
 
 
     return (
-        <div className="bg-white rounded-md shadow flex flex-col gap-3 col-span-1 md:col-span-2 p-4">
+        <div className="bg-white rounded-md shadow flex flex-col gap-3 col-span-1 lg:col-span-2 p-4">
             <div className="flex gap-2 items-center">
                 <div className="flex items-center justify-center rounded-full bg-green-600/10 text-emerald-800 w-16 h-16">
                     <IconLeafFilled size={35} />

@@ -333,7 +333,7 @@ export default function RecommendationsContent() {
                                                                                     recommendation.id,
                                                                                 )
                                                                             }
-                                                                            className="flex flex-wrap items-center gap-2 px-4 py-2 bg-white text-[13px] text-emerald-900 border border-gray-200 rounded-full w-fit h-fit font-semibold whitespace-normal sm:whitespace-nowrap shadow-2xs cursor-pointer transition-colors hover:bg-emerald-50/60"
+                                                                            className="flex items-center gap-2 px-4 py-2 bg-white text-[13px] text-emerald-900 border border-gray-200 rounded-full w-fit h-fit font-semibold whitespace-normal sm:whitespace-nowrap shadow-2xs cursor-pointer transition-colors hover:bg-emerald-50/60"
                                                                         >
                                                                             {isThisLoading ? (
                                                                                 <>
@@ -373,7 +373,7 @@ export default function RecommendationsContent() {
                                                                             recommendation.id,
                                                                         )
                                                                     }
-                                                                    className="flex flex-wrap items-center gap-2 px-4 py-2 bg-green-500/20 text-[13px] text-emerald-900 border border-gray-200 rounded-full w-fit h-fit font-semibold whitespace-normal sm:whitespace-nowrap shadow-2xs cursor-pointer transition-colors hover:bg-green-500/30"
+                                                                    className="flex items-center gap-2 px-4 py-2 bg-green-500/20 text-[13px] text-emerald-900 border border-gray-200 rounded-full w-fit h-fit font-semibold whitespace-normal sm:whitespace-nowrap shadow-2xs cursor-pointer transition-colors hover:bg-green-500/30"
                                                                 >
                                                                     {isThisLoading ? (
                                                                         <>

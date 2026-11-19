@@ -15,7 +15,7 @@ export default function PopupUserActions() {
     const [state, setState] = useState(false);
 
     return (
-        <Collapsible className="relative z-1000">
+        <Collapsible className="relative z-1000 w-fit">
             <CollapsibleTrigger
                 className="flex gap-1 items-center cursor-pointer"
                 onClick={() => {
