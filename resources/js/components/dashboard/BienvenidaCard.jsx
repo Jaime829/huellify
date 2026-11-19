@@ -14,12 +14,12 @@ export default function BienvenidaCard() {
             </div>
 
             <div className="relative z-10 max-w-xl grid gap-2">
-                <p className="text-sm font-medium text-emerald-800 flex items-center gap-1">
+                <p className="text-sm font-medium text-emerald-800 flex items-center gap-1 break-words min-w-0">
                     {" "}
                     Hola, {user.name}
                     <span>👋</span>
                 </p>
-                <h1 className="text-2xl md:text-2xl font-bold text-teal-950 tracking-tight">
+                <h1 className="text-2xl md:text-2xl font-bold text-teal-950 tracking-tight break-words">
                     Aquí está el resumen de tu huella de carbono
                 </h1>
                 <p className="text-slate-600 text-sm md:text-base leading-5">

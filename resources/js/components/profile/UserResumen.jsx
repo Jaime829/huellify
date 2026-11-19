@@ -13,10 +13,10 @@ export default function UserResumen() {
             <div>
                 <div className="flex flex-col gap-4">
                     <div>
-                        <h1 className="text-2xl font-bold text-emerald-900">
+                        <h1 className="text-2xl font-bold text-emerald-900 break-words">
                             {user?.name}
                         </h1>
-                        <p className="text-[12px] text-gray-500">
+                        <p className="text-[12px] text-gray-500 break-all">
                             {user?.email}
                         </p>
                     </div>
