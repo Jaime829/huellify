@@ -3,14 +3,14 @@
 @section('content')
     <main class="flex flex-col w-full min-h-dvh sm:h-screen sm:flex-row relative">
         <section class="h-56 sm:h-full w-full sm:w-[50%] relative shrink-0 overflow-hidden">
-            <img class="size-full absolute z-1 object-cover object-center" src="{{ asset('images/bg-auth.jpg') }}"
+            <img loading="lazy" class="size-full absolute z-1 object-cover object-center" src="{{ asset('images/bg-auth.webp') }}"
                 alt="Fondo autenticacion">
 
 
             <div
                 class="flex flex-col z-10 border-amber-600 relative h-full px-6 sm:px-16 lg:px-25 py-2 gap-2 items-start justify-center">
                 <div class="w-56 h-28 sm:w-60 sm:h-32 flex justify-center items-center">
-                    <img class="w-full h-full" src="{{ asset('images/logo.png') }}" alt="Logo Huellify">
+                    <img class="w-full h-full" src="{{ asset('images/logo.webp') }}" alt="Logo Huellify">
                 </div>
                 <div class="flex flex-col gap-4">
 

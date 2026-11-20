@@ -3,7 +3,7 @@
 @section('content')
     <header class="flex items-center justify-between px-8 py-2">
         <div class="h-fit w-32">
-            <img src="{{ asset('images/logo.png') }}" alt="">
+            <img src="{{ asset('images/logo.webp') }}" alt="">
         </div>
         <nav class="flex items-center gap-4">
             <a class="text-[14px] text-gray-800 pb-1 border-b-2 border-transparent transition-colors hover:border-emerald-800 hover:text-emerald-800"
@@ -32,7 +32,7 @@
                 <a class="text-emerald-700 text-[14px] font-medium hover:text-emerald-800"
                     href="{{ route('auth.login') }}">Iniciar sesión</a>
                 <a class="bg-emerald-800 text-white h-fit w-fit text-[14px] p-2  rounded-full flex justify-center items-center gap-1 transition-colors hover:bg-emerald-900"
-                    href="{{ route('auth.login') }}"><span>Comenzar gratis</span> <svg xmlns="http://www.w3.org/2000/svg"
+                    href="{{ route('auth.register') }}"><span>Comenzar gratis</span> <svg xmlns="http://www.w3.org/2000/svg"
                         width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round"
                         class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-right">

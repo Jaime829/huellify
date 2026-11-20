@@ -94,7 +94,7 @@
                     style="width:100%; max-width:560px; background-color:#ffffff; border:1px solid #e3e9e5; border-radius:16px; overflow:hidden;">
                     <tr>
                         <td align="center" style="padding:40px 40px 20px;">
-                            <img src="{{ asset('images/logo.png') }}" alt="Huellify" width="64" height="64"
+                            <img loading="lazy" src="{{ asset('images/logo.webp') }}" alt="Huellify" width="64" height="64"
                                 style="display:block; width:64px; height:64px; margin:0 auto 16px;">
 
                             <p

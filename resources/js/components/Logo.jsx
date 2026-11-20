@@ -12,7 +12,7 @@ export default function Logo({ isHidden = false }) {
         <div className={styleFather}>
             <img
                 className="w-full h-full object-cover"
-                src="/images/logo.png"
+                src="/images/logo.webp"
                 alt="Logo Huellify"
             />
         </div>
