@@ -27,6 +27,10 @@ Route::get('/', function () {
     ]);
 })->name('landing');
 
+Route::view('/about', 'pages.about.index', ['title' => 'Acerca de Huellify'])->name('about');
+Route::view('/terms', 'pages.legal.terms', ['title' => 'Términos y condiciones'])->name('terms');
+Route::view('/privacy', 'pages.legal.privacy', ['title' => 'Política de privacidad'])->name('privacy');
+
 Route::middleware('guest')
     ->prefix('auth')
     ->name('auth.')

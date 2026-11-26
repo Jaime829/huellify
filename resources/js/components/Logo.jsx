@@ -11,6 +11,7 @@ export default function Logo({ isHidden = false }) {
     return (
         <div className={styleFather}>
             <img
+                loading="lazy"
                 className="w-full h-full object-cover"
                 src="/images/logo.webp"
                 alt="Logo Huellify"
