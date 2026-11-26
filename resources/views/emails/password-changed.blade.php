@@ -60,7 +60,7 @@
                     <tr>
                         <td align="center" style="padding:35px 25px 20px;">
 
-                            <img src="{{ asset('images/logo.png') }}" alt="Huellify" width="64"
+                            <img loading="lazy" src="{{ asset('images/logo.webp') }}" alt="Huellify" width="64"
                                 style="display:block; width:64px; max-width:100%;
                                        height:auto; border:0; margin:0 auto 15px;">
 

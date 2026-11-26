@@ -9,7 +9,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.3",
+        "php": "^8.4",
         "catshredengera/laravel-agent": "^1.0",
         "inertiajs/inertia-laravel": "^3.5",
         "laravel/framework": "^13.17",
