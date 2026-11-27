@@ -109,7 +109,8 @@ class HabitController
             return $userHabit ? redirect()->route('dashboard.myhabits')->with('status', "Hábito adoptado con exito") : back()->with('error', 'Hubo un error al adoptar hábito');
         } catch (QueryException $e) {
             if (
-                $e->getCode() === '23505'
+                (string) $e->getCode() === '23505' ||
+                str_contains($e->getMessage(), 'UNIQUE constraint failed')
             ) {
                 return back()->with(
                     'error',

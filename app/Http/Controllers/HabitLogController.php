@@ -68,8 +68,9 @@ class HabitLogController
             return  redirect()->back()->with('status', "Avance registrado con exito");
         } catch (QueryException $e) {
             if (
-                $e->getCode() === '23505' &&
-                str_contains($e->getMessage(), 'habit_logs_user_habit_date_unique')
+                (string) $e->getCode() === '23505' ||
+                str_contains($e->getMessage(), 'habit_logs_user_habit_date_unique') ||
+                str_contains($e->getMessage(), 'UNIQUE constraint failed: habit_logs')
             ) {
                 return back()->with(
                     'error',
@@ -103,8 +104,9 @@ class HabitLogController
             return $habitLog->update($data) ? back()->with('status', 'Registro actualizado con exito') : back()->with('error', 'Hubo un error al actualizar el registro');
         } catch (QueryException $e) {
             if (
-                $e->getCode() === '23505' &&
-                str_contains($e->getMessage(), 'habit_logs_user_habit_date_unique')
+                (string) $e->getCode() === '23505' ||
+                str_contains($e->getMessage(), 'habit_logs_user_habit_date_unique') ||
+                str_contains($e->getMessage(), 'UNIQUE constraint failed: habit_logs')
             ) {
                 return back()->with(
                     'error',

@@ -91,7 +91,7 @@ class EmissionFactorController
                             'value' => $data['value'],
                             'source' => $data['source'],
                             'valid_from' => $data['valid_from'],
-                            'valid_until' => $data['valid_until'],
+                            'valid_until' => $data['valid_until'] ?? null,
                             'active' => $data['active'],
                             'created_at' => now()
 
@@ -139,7 +139,7 @@ class EmissionFactorController
                             'value' => $data['value'],
                             'source' => $data['source'],
                             'valid_from' => $data['valid_from'],
-                            'valid_until' => $data['valid_until'],
+                            'valid_until' => $data['valid_until'] ?? null,
                             'active' => $data['active'],
                             'created_at' => now()
 
@@ -233,7 +233,7 @@ class EmissionFactorController
                             'value' => $data['value'],
                             'source' => $data['source'],
                             'valid_from' => $data['valid_from'],
-                            'valid_until' => $data['valid_until'],
+                            'valid_until' => $data['valid_until'] ?? null,
                             'active' => $data['active']
 
                         ]);
@@ -278,7 +278,7 @@ class EmissionFactorController
                             'value' => $data['value'],
                             'source' => $data['source'],
                             'valid_from' => $data['valid_from'],
-                            'valid_until' => $data['valid_until'],
+                            'valid_until' => $data['valid_until'] ?? null,
                             'active' => $data['active']
 
                         ]);
